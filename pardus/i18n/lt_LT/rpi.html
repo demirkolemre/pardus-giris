@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Raspberry Pi informacija</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <!--Body content-->
+            <h2>Kelios svarbios pastabos.</h2>
+            <p>Nors patyrimas yra vizualiai panašus į Ubuntu MATE darbalaukio laidos patyrimą, tačiau bazinė architektūra visiškai skiriasi. Šis puslapis išryškins kelis tokius skirtumus.</p>
+            <hr class="soften"/>
+
+            <h3>Failų sistemos dydžio keitimas</h3>
+            <span id="rpi-resized" hidden>
+              <p class="success-text"><span class="fa fa-check-circle"></span>
+              Jūsų failų sistemos dydis jau buvo pakeistas.</p>
+            </span>
+            <span id="rpi-not-resized" hidden>
+              <p>Pirmą kartą nustačius savo Raspberry Pi įrenginyje Ubuntu MATE, failų sistema bus apribota iki pradinio atvaizdžio dydžio, kuris yra maždaug 3.9 GB. Naudokite šį mygtuką, kad pakeistumėte dydį ir užpildytumėte visą Micro-SD kortelę.</p>
+              <a href="cmd://resize-rpi" class="btn btn-inverse"><span class="fa fa-hdd-o"></span>&nbsp; Keisti dydį dabar</a>
+            </span>
+            <span id="rpi-restart-now" hidden>
+              <p><span class="fa fa-warning"></span>
+              Tam, kad užbaigtumėte savo Raspberry Pi failų sistemos dydžio keitimą, užverkite visus atvertus langus ir dabar paleiskite sistemą iš naujo.</p>
+              <a href="cmd://reboot-rpi" class="btn btn-danger"><span class="fa fa-refresh"></span>&nbsp; Paleisti iš naujo</a>
+            </span>
+            <hr class="soften"/>
+
+            <h3>Nesuderinama programinė įranga</h3>
+            <p>Kai kurie Ubuntu sistemoje prieinami paketai buvo parašyti ir sukompiliuoti tik <code>i386</code> ar
+            <code>amd64</code> architektūroms. Kadangi Raspberry Pi yra pagrįsta <code>armv7</code>, šie paketai nebus prieinami įdiegti. Priklausomai nuo paketo, gali būti įmanoma jį sukompiliuoti patiems arba naudoti esamą perkeltą versiją.</p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
+            <h5>Nesuderinami:</h5>
+            <ul>
+              <li><img src="img/applications/google-chrome.png" width="24px" height="24px"> Google Chrome</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft (Java Edition)</li>
+              <li><img src="img/applications/adobeflash.png" width="24px" height="24px"> Adobe Flash</li>
+              <li><img src="img/applications/virtualbox.png" width="24px" height="24px"> VirtualBox</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <h5>Suderinami:</h5>
+            <ul>
+              <li><img src="img/applications/chromium.png" width="24px" height="24px"> Chromium</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft: Pi Edition</li>
+              <li><a href="cmd://link?https://ubuntu-mate.community/t/tutorial-flash-player-for-chromium-and-firefox/3598">Pepper Flash</a></li>
+              <li>QEMU</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+            <hr class="soften"/>
+            <h3>Naujinimai</h3>
+            <p>Prašome <b><u>nebandyti</u></b> jokiu būdu <b>naujinti</b>
+            savo Raspberry Pi į naujesnę distribucijos versiją (pavyzdžiui, iš 15.04 į 15.10), kadangi bazinis branduolys <b>nėra skirtas</b> atlikti tokius veiksmus. Šio proceso užbaigimas užims labai ilgai, kol galimai bus užpildyta visa jūsų SD kortelė ir, kol joje nebeliks laisvos vietos.</p>
+
+            <p>Yra saugiau pasidaryti visų savo norimų išsaugoti duomenų atsarginę kopiją ir perrašyti kortelę nauju atvaizdžiu. Bandymas naujinti gali pažeisti jūsų SD kortelę, neleisti jūsų įdiegimui pasileisti ar sukelti rimtus gedimus.</p>
+
+            <p>Kita vertus, jūs galite įdiegti <b>įprastus atnaujinimus</b> per paslaugų programą
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Programų naujinimas</a> , kuri yra skirta jūsų įdiegtai programinei įrangai.</p>
+
+            <hr class="soften"/>
+            <h3>Branduolio atnaujinimai</h3>
+            <p>Tas pats branduolys, kurį pateikia
+            <a href="cmd://link?https://www.raspberrypi.org/documentation/linux/kernel/">Raspberry Pi fondas</a>
+            yra naudojamas šioje Ubuntu MATE laidoje. Kadangi šis branduolys yra pateikiamas kaip "programinės aparatinės įrangos" gumulėlis, atnaujinimai nėra platinami per programą
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Programų naujinimas</a> ar <b>apt-get</b>.</p>
+
+            <p><b>Vietoj to, norėdami atnaujinti branduolį, atverkite terminalą ir vykdykite:</b></p>
+            <blockquote><code>sudo rpi-update</code></blockquote>
+
+            <hr class="soften"/>
+            <h3>Aparatinės įrangos spartinimas</h3>
+            <p>Šiuo metu, aparatine įranga spartinamos programos yra <b>neprieinamos</b>
+            , priešingai nei sistemoje <a href="cmd://link?https://www.raspbian.org/">Raspbian</a>.
+            Programos, kurios yra priklausomos nuo OpenGL ES bibliotekų arba kurios reikalauja GPU, nepasileis.</p>
+
+            <p>Atkurti vaizdo įrašus gali programa <code>omxplayer</code> , ji yra iš anksto įdiegta. Jeigu jūs norite atkurti MPEG-2 ar VC-1 vaizdo failus, tuomet <b>jums reikės MPEG-2 ir/ar VC-1 licencijų iš
+            <a href="cmd://link?http://www.raspberrypi.com/license-keys/">Raspberry Pi parduotuvės.</a></b></p>
+
+            <hr class="soften"/>
+            <h3>Įjungti/Išjungti X11</h3>
+            <p>Naudotojams, kurie, naudodami Ubuntu MATE, norėtų sukurti savo "begalvį" <i>"serverį"</i> yra prieinama grafinės aplinkos perjungimo paslaugų programa.</p>
+
+            <p><b>Tam, kad išjungtumėte X11 ir prisijungtumėte per pultą:</b>
+            <blockquote><code>sudo graphical disable</code></blockquote>
+            </p>
+
+            <p><b>Tam, kad įjungtumėte X11, kad atkurtumėte Ubuntu MATE darbalaukį:</b>
+            <blockquote><code>sudo graphical enable</code></blockquote>
+
+            Pakeitimai įsigalioja po paleidimo iš naujo.
+            </p>
+
+            <hr class="soften"/>
+            <h3>Laidos informacija</h3>
+            <p>Norėdami skaityti laidos informaciją ir versijų pakeitimus, apsilankykite Ubuntu MATE svetainėje.</p>
+            <div align="center">
+              <a class="btn btn-lg btn-success" href="cmd://link?https://ubuntu-mate.org/raspberry-pi/"><img src="img/welcome/ubuntu-mate-gray.svg">&nbsp; ubuntu-mate.org/raspberry-pi</a>
+            </div>
+
+            <div class="center">
+              <br>
+              <small>Raspberry Pi yra prekės ženklas, kurio savininkas yra <a href="cmd://link?https://www.raspberrypi.org/">Raspberry Pi Foundation</a>.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>

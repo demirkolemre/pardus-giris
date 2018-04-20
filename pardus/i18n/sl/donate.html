@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Prispevajte</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+      <div class="row-fluid">
+        <div class="span12">
+          <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+            <li class="active"><a onclick="smoothFade('#supporters','#about')" data-toggle="tab" id="tabAbout">O prispevkih</a></li>
+            <li><a onclick="smoothFade('#about','#supporters')" data-toggle="tab" id="tabSupporters">Naši podporniki</a></li>
+          </ul>
+          <div class="alert alert-warning offline">
+            <h5>Kaže da niste povezani na internet. Preverite povezavo za dostop do te vsebine.</h5>
+            <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Oprostite, Welcome ni mogel vzpostaviti povezave </p></div>
+            <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Poskusi znova</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="about">
+          <div class="row-fluid">
+            <div class="span12">
+              <p>Ubuntu MATE se financira s pomočjo skupnosti. Vaši prispevki pomagajo plačati:</p>
+              <ul>
+                <li>Spletno gostovanje in stroške pasovne širine.</li>
+                <li>Podpiranje odprtokodnih projektov od katerih je Ubuntu MATE odvisen.</li>
+                <li>Sčasoma plačilo razvijalcem Ubuntu MATE ter namizja MATE, s polnim delovnim časom.</li>
+              </ul>
+              <p><b>Patreon</b> je edinstven način financiranja odprtokodnega projekta. Redni mesečni dohodek zagotavlja vzdržnost projekta Ubuntu MATE. Podporniki bodo nagrajeni z ekskluzivnimi novicami o projektu, posodobitvah in povabilih na udeležbi video konference, kjer bodo lahko govorili neposredno z razvijalci.</p>
+              <p>Če želite uporabiti <b>PayPal</b> imamo možnosti mesečnih prispevkov ali enkraten prispevek. Sprejemamo pa tudi prispevke prek <b>Bitcoina</b>.</p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?http://www.patreon.com/ubuntu_mate"><span class="fa fa-3x fa-usd fa-va"></span>&nbsp; Postanite Patreon</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-paypal fa-va"></span>&nbsp; Prispevajte preko PayPala</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-bitcoin fa-va"></span>&nbsp; Prispevajte preko Bitcoina</a>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12">
+              <hr class="soften" />
+              <p><b>Komercialno sponzorstvo</b> je tudi na voljo. Kliknite na
+              <a href="cmd://link?http://www.patreon.com/ubuntu_mate">Postanite Patreon</a> gumb zgoraj, če želite izvedeti več.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="supporters" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <h4>Hvala!</h4>
+              <p>Vsak mesec naredimo seznam naših prispevkov in napišemo, kako smo jih porabili.</p>
+              <p>To mesečno objavimo na našem <a href="cmd://link?http://ubuntu-mate.org/blog/">Ubuntu MATE spletnem dnevniku</a>,
+              ki si ga lahko ogledate spodaj.</p>
+
+              <!-- Idea = Server side word graph that compiles names of all donators together - Higher donations = Larger names. -->
+
+              <table class="table table-bordered" id="donationTable">
+                <tr>
+                  <th style="text-align:center">Leto</th>
+                  <th style="text-align:center" colspan="12">Mesec</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

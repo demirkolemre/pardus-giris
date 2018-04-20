@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Raspberry Pi Information</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <!--Body content-->
+            <h2>Ein paar wichtige Hinweise.</h2>
+            <p>Während die Erfahrung ist optisch ähnlich wie die Desktop- Ausgabe von Ubuntu MATE, die zugrunde liegende Architektur ist sehr unterschiedlich. Auf dieser Seite werden einige dieser Unterschiede hervorgehoben.</p>
+            <hr class="soften"/>
+
+            <h3>Ändern der Größe des Dateisystems</h3>
+            <span id="rpi-resized" hidden>
+              <p class="success-text"><span class="fa fa-check-circle"></span>
+              Ihr Dateisystem hat bereits die neue Größe erreicht.</p>
+            </span>
+            <span id="rpi-not-resized" hidden>
+              <p>Nach dem Einrichten Ubuntu MATE zum ersten Mal auf dem Raspberry Pi, das Dateisystem ist auf die Größe des ursprünglichen Bildes eingeschränkt werden, die etwa 3,9 GB entspricht. Verwenden Sie diese Taste, um die Größe zu ändern und die gesamte Micro-SD-Karte zu füllen.</p>
+              <a href="cmd://resize-rpi" class="btn btn-inverse"><span class="fa fa-hdd-o"></span>&nbsp; Große jetzt ändern</a>
+            </span>
+            <span id="rpi-restart-now" hidden>
+              <p><span class="fa fa-warning"></span>
+              Zur Vervollständigung der Große Änderung Ihrer Raspberry Pi -Dateisystem, Bitte schließen Sie alle geöffneten Fenster, und starten Sie jetzt neu.</p>
+              <a href="cmd://reboot-rpi" class="btn btn-danger"><span class="fa fa-refresh"></span>&nbsp; Neu starten</a>
+            </span>
+            <hr class="soften"/>
+
+            <h3>Inkompatible Software</h3>
+            <p>Manche verfügbar Paketen für Ubuntu sind nur geschrieben und kompiliert worden für die <code>i386</code> oder
+            <code>amd64</code> Architektur. Wie auf die Raspberry Pi basiert ist <code>armv7</code>, diese Pakete stehen nicht zu installieren zur Verfügung. Je nach Paket, kann es möglich sein, diese selbst zu kompilieren oder einen vorhandenen Port zu verwenden.</p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
+            <h5>Nicht kompatibel:</h5>
+            <ul>
+              <li><img src="img/applications/google-chrome.png" width="24px" height="24px"> Google Chrome</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft (Java Edition)</li>
+              <li><img src="img/applications/adobeflash.png" width="24px" height="24px"> Adobe Flash</li>
+              <li><img src="img/applications/virtualbox.png" width="24px" height="24px"> VirtualBox</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <h5>Kompatibel:</h5>
+            <ul>
+              <li><img src="img/applications/chromium.png" width="24px" height="24px"> Chromium</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft: Pi Edition</li>
+              <li><a href="cmd://link?https://ubuntu-mate.community/t/tutorial-flash-player-for-chromium-and-firefox/3598">Pepper Flash</a></li>
+              <li>QEMU</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+            <hr class="soften"/>
+            <h3>Aktualisierungen</h3>
+            <p>Bitte <b><u>unterlassen Sie</u></b> jede Versuch zum <b>Aktualisieren</b>
+            Ihre Raspberry Pi auf eine neuere Version der Distribution (zum Beispiel, von 15.04 auf 15.10), als der bereits vorliegende Kernel ist <b>nicht entwickelt</b> um dies zu erreichen. Dieser Vorgang dauert eine sehr lange Zeit, während möglicherweise die SD-Karte bis zu einem Punkt auffüllen wird, wo kein Platz mehr vorhanden ist.</p>
+
+            <p>Es ist sicherer, eine Sicherung aller Ihrer Daten die Sie behalten möchten zu machen und die Karte mit dem neuen Bild, nochmal neu Schrieben. Der Versuch die SD-Karte zu aktualisieren, könnte möglicherweise die Installation verhindern zu Booten, beschädigen oder schwere Störungen verursachen.</p>
+
+            <p>Sie können, jedoch, installieren <b>regelmäßige Aktualisierungen</b> über die
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Software -Verwaltung</a> Dienstprogramm für Ihre installierte Software.</p>
+
+            <hr class="soften"/>
+            <h3>Kernel-Updates</h3>
+            <p>Der gleiche Kern bereitgestellt von der
+            <a href="cmd://link?https://www.raspberrypi.org/documentation/linux/kernel/">Raspberry Pi foundation</a>
+            wird in dieser Ausgabe von Ubuntu MATE verwendet. Da dieser Kern ist wie ein "Firmware" Klecks geliefert, Aktualisierungen werden nicht über das verteilte
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Software -Verwaltung</a> oder <b>apt-get</b>.</p>
+
+            <p><b>Stattdessen, um den Kernel zu aktualisieren, öffnen Sie ein Terminal und führen Sie folgendes aus:</b></p>
+            <blockquote><code>sudo rpi-update</code></blockquote>
+
+            <hr class="soften"/>
+            <h3>Hardware-Beschleunigung</h3>
+            <p>Derzeitige Hardware-beschleunigte Anwendungen sind <b>nicht unterstützt</b>
+            im Gegensatz <a href="cmd://link?https://www.raspbian.org/">Raspbian</a>.
+            zu Anwendungen, die die auf OpenGL ES-Bibliotheken benötigen oder auf die GPU abhängen, wird nicht gestartet.</p>
+
+            <p>Um Videos zu spielen, die Anwendung <code>omxplayer</code> wird in der Lage sein, dies zu tun und ist vorinstalliert. Wenn Sie , MPEG-2 oder VC-1 -Videodateien suchen, dann zu dies spielen <b>benötigen Sie MPEG-2 und / oder VC-1-Lizenzen von der
+            <a href="cmd://link?http://www.raspberrypi.com/license-keys/">Raspberry Pi Store.</a></b></p>
+
+            <hr class="soften"/>
+            <h3>X11 Aktivieren/Deaktivieren</h3>
+            <p>Zu erstellen ihre eigenen Headless- <i>"Server"</i> mit Ubuntu MATE, gibt es ein Programm, um die grafische Umgebung zum Hin und her schalten.</p>
+
+            <p><b>So deaktivieren Sie X11 und sich über die Konsole Anmelden:</b>
+            <blockquote><code>sudo graphical disable</code></blockquote>
+            </p>
+
+            <p><b>So aktivieren Sie X11, um die Ubuntu MATE Desktop wiederherstellen:</b>
+            <blockquote><code>sudo graphical enable</code></blockquote>
+
+            Änderungen werden nach einem Neustart angewandt.
+            </p>
+
+            <hr class="soften"/>
+            <h3>Versionshinweise</h3>
+            <p>Besuchen Sie der Ubuntu-MATE-Website um Versionshinweise (Release Notes) und auf Änderungen von Versionen zu lesen. </p>
+            <div align="center">
+              <a class="btn btn-lg btn-success" href="cmd://link?https://ubuntu-mate.org/raspberry-pi/"><img src="img/welcome/ubuntu-mate-gray.svg">&nbsp; ubuntu-mate.org/raspberry-pi</a>
+            </div>
+
+            <div class="center">
+              <br>
+              <small>Raspberry Pi ist ein Warenzeichen der <a href="cmd://link?https://www.raspberrypi.org/">Raspberry Pi Foundation</a>.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>

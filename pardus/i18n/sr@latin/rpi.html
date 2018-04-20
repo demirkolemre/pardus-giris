@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Informacije o Raspberry Pi</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <!--Body content-->
+            <h2>Par bitnih napomena.</h2>
+            <p>Mada liči kao Ubuntu MATE destop izdanje, osnova na koju se oslanja je jako drugačija. Na ovoj stranici naglasićemo par bitnih razlika.</p>
+            <hr class="soften"/>
+
+            <h3>Izmena veličine fajl sistema</h3>
+            <span id="rpi-resized" hidden>
+              <p class="success-text"><span class="fa fa-check-circle"></span>
+              Fajl sistem je uvećan.</p>
+            </span>
+            <span id="rpi-not-resized" hidden>
+              <p>Nakon što po prvi put postavite Ubuntu MATE na Vaš Raspberry Pi, fajl sistem će biti ograničen na veličinu orginalne slike, oko 3.9 GB. Koristeći taster ispod možete izvršiti uvećanje do pune veličine SD kartice.</p>
+              <a href="cmd://resize-rpi" class="btn btn-inverse"><span class="fa fa-hdd-o"></span>&nbsp; Pokreni uvećanje</a>
+            </span>
+            <span id="rpi-restart-now" hidden>
+              <p><span class="fa fa-warning"></span>
+              Da bi se završilo uvećanje Raspberry Pi fajl sistema, molim Vas zatvorite sve aktivne aplikacije i zadajte restart.</p>
+              <a href="cmd://reboot-rpi" class="btn btn-danger"><span class="fa fa-refresh"></span>&nbsp; Restart</a>
+            </span>
+            <hr class="soften"/>
+
+            <h3>Nekompatibilni softver</h3>
+            <p>Neki od paketa dostupnih za Ubuntu su napisani i kompajlirani za <code>i386</code> ili
+            <code>amd64</code> arhitekture. Kako se Raspberry Pi zasniva na <code>armv7</code>, ovi paketi nisu prisutni i njihova instalacija nije moguća. U zavisnosti od paketa, postoji mogućnost da ih kompajlirate sami ili da koristite tuđe.</p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
+            <h5>Nekompatibilni:</h5>
+            <ul>
+              <li><img src="img/applications/google-chrome.png" width="24px" height="24px"> Google Chrome</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft (Java Edition)</li>
+              <li><img src="img/applications/adobeflash.png" width="24px" height="24px"> Adobe Flash</li>
+              <li><img src="img/applications/virtualbox.png" width="24px" height="24px"> VirtualBox</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <h5>Kompatibilni:</h5>
+            <ul>
+              <li><img src="img/applications/chromium.png" width="24px" height="24px"> Chromium</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft: Pi Edition</li>
+              <li><a href="cmd://link?https://ubuntu-mate.community/t/tutorial-flash-player-for-chromium-and-firefox/3598">Pepper Flash</a></li>
+              <li>QEMU</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+            <hr class="soften"/>
+            <h3>Nova izdanja</h3>
+            <p>Molim Vas <b><u>nemojte</u></b> pokušavati da <b>nadograđujete</b>
+            Vaš Raspberry Pi na novije izdanje distribucije (npr. sa 15.04 na 15.10) jer kernel u osnovi <b>nije predviđen</b> da to podrži. Ovaj proces će trajati jako dugo i ostavlja mogućnost da u potpunosti utroši sav raspoloživi prostor na SD kartici.</p>
+
+            <p>Sigurnija je varijanta da na stranu sačuvate bitne podatke a SD karticu kompletnu presnimite sa novijim izdanjem. Pokušaj ažuriranja aktivnog sistema na noviju verziju može: da dovede do oštećenja podataka koji se nalaze na kartici; da sistem više nije moguće startovati; da izazove izrazite nepravilnosti u radu.</p>
+
+            <p>Sa druge strane, možete pokretati <b>redovno ažuriranje</b> preko
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Software Updater</a> alata.</p>
+
+            <hr class="soften"/>
+            <h3>Ažuriranje kernel-a</h3>
+            <p>Istovetni kernel koji je dostupan od strane
+            <a href="cmd://link?https://www.raspberrypi.org/documentation/linux/kernel/">Raspberry Pi fondacije</a>
+            koristi se u ovom izdanju Ubuntu MATE-a. Kako se ovaj kernel distribuira kao firmver blok, ažuriranje se ne vrši kroz
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Software Updater</a> ili <b>apt-get</b>.</p>
+
+            <p><b>Tako da za ažuriranje kernela, otvorite terminal i zadajte:</b></p>
+            <blockquote><code>sudo rpi-update</code></blockquote>
+
+            <hr class="soften"/>
+            <h3>Hardversko ubrzanje</h3>
+            <p>Trenutno, hardversko ubrzanje aplikacija <b>nije dostupno</b>
+            za razliku od <a href="cmd://link?https://www.raspbian.org/">Raspbian</a>.
+            Aplikacije koje zavise od OpenGL ES biblioteka ili zahtevaju GPU neće hteti da se pokrenu.</p>
+
+            <p>Za reprodukciju videa možete koristiti <code>omxplayer</code> koji je već unapred instaliran. Ako želite da reporodukujete MPEG-2 ili VC-1 video sadržaj <b>neophodne su MPEG-2 i/ili VC-1 licence iz
+            <a href="cmd://link?http://www.raspberrypi.com/license-keys/">Raspberry Pi prodavnice.</a></b></p>
+
+            <hr class="soften"/>
+            <h3>X11 uključen/isključen</h3>
+            <p>Korisnicima koji žele da, koristeću Ubuntu MATE, naprave <i>"server"</i> bez grafičkog prikaza, ostavljen je alat kojim mogu to jednostavno da izaberu.</p>
+
+            <p><b>Za isključeni X11, prijavite se na konzolu i zadajte:</b>
+            <blockquote><code>sudo graphical disable</code></blockquote>
+            </p>
+
+            <p><b>Da uključite X11 i vratite nazad Ubuntu MATE desktop:</b>
+            <blockquote><code>sudo graphical enable</code></blockquote>
+
+            Izmene su aktivne nakon restarta.
+            </p>
+
+            <hr class="soften"/>
+            <h3>Izveštaji</h3>
+            <p>Za detalje o svakoj verziji i izmenama unešenim u nova izdanja pogledajte sekciju na Ubuntu MATE sajtu</p>
+            <div align="center">
+              <a class="btn btn-lg btn-success" href="cmd://link?https://ubuntu-mate.org/raspberry-pi/"><img src="img/welcome/ubuntu-mate-gray.svg">&nbsp; ubuntu-mate.org/raspberry-pi</a>
+            </div>
+
+            <div class="center">
+              <br>
+              <small>Raspberry Pi je registrovana robna marka <a href="cmd://link?https://www.raspberrypi.org/">Raspberry Pi Foundation</a>.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>

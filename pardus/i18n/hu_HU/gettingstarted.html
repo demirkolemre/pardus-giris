@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="indexClose(); smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <a id="index-open" onclick="indexOpen()" class="navigation-button"><span class="fa fa-bars"></span></a>
+        <div id="navigation-title" hidden>Kezdő lépések - <span id="navigation-sub-title"> </span></div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <a id="index-overlay" onclick="indexClose()" hidden></a>
+    <div id="index-menu" hidden>
+      <a id="index-close" onclick="indexClose();"><span class="fa fa-close"></span></a>
+
+      <!-- Shown in live session only -->
+      <span class="live-session-only"><h5>Előfeltételek</h5></span>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("sysreq","Rendszerkövetelmények")'>        <span class="fa fa-laptop"></span>        Rendszerkövetelmények</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("prepare","Telepítési előkészületek")'> <span class="fa fa-hdd-o"></span>         Telepítési előkészület</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("dualboot","Kettős indítás ")'>             <span class="fa fa-retweet"></span>       Kettős indítás </a>
+      <a class="btn btn-success index-btn live-session-only" href="cmd://install">                                                    <span class="fa fa-download"></span>      Telepítés most</a>
+
+      <!-- Shown when installed -->
+      <br class="live-session-only"/>
+      <span class="live-session"><h5>Telepítés után</h5></span>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("updates","Szoftverfrissítések")'>          <span class="fa fa-refresh"></span>       Szoftverfrissítések</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("drivers","Illesztőprogramok")'>                   <span class="fa fa-gear"></span>          Illesztőprogramok</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("languageInput","Nyelv és bevitel")'>    <span class="fa fa-globe"></span>         Nyelv és bevitel</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("tasks","Választható feladatok")'>              <span class="fa fa-check-square"></span>  Választható feladatok</a>
+
+      <br><h5>Személyre szabás</h5>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("customize","Testreszabás")'>           <span class="fa fa-adjust"></span>        Testreszabás</a>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("shortcuts","Billentyűkombinációk")'>      <span class="fa fa-keyboard-o"></span>    Billentyűkombinációk</a>
+
+      <!-- Shown in either session -->
+      <br><h5>Problémamegoldás</h5>
+      <a class="btn btn-inverse index-btn"     onclick='changePage("specs","Rendszer leírás"); InitSystemInfo()'> <span class="fa fa-laptop"></span>        Rendszer leírás</a>
+
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+
+      <!-- Topics -->
+      <div id="initial" class="row-fluid topicContents" hidden>
+        <div class="span12">
+          <h4 class="center">Kérlek válassz egy témát a kezdéshez.</h4>
+        </div>
+      </div>
+
+      <!-- System Requirements (shown in guest session only) -->
+      <div id="sysreq" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Mérsékelt rendszerkövetelmények</h2>
+            <p>Az Ubuntu MATE jól működik a legerősebb és a lassú számítógépeken is, a funkcionalításra lett optimalizálva úgy, hogy közben spórol az erőforrásokkal.</p>
+
+            <h5>Minimális</h5>
+            <ul>
+              <li>Pentium III 750 megahertz (MHz)</li>
+              <li>512 megabájt (MB) RAM</li>
+              <li>8 gigabájt (GB) lemezterület</li>
+            </ul>
+
+            <h5>Ajánlott</h5>
+            <ul>
+              <li>Core 2 Duo 1.6 gigahertz (GHz)</li>
+              <li>2 gigabájt (GB) RAM</li>
+              <li>16 gigabájt (GB) lemezterület</li>
+            </ul>
+
+            <p>Az operációs rendszer hatékonyabban működik, ha a számítógéped eléri, vagy fölülmúlja az ajánlott követelményeket.</p>
+
+            <div class="center">
+              <a onclick='changePage("specs","Rendszer leírás"); InitSystemInfo()' class="btn btn-inverse"><span class="fa fa-question-circle"></span>&nbsp; Mi van a számítógépemben?</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","Telepítési előkészületek")'>
+                <b>Következő:</b>&nbsp; Telepítési előkészületek <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Installation Preparations (shown in guest session only) -->
+      <div id="prepare" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Felkészülés a telepítésre</h2>
+            <p>Az Ubuntu MATE-t viszonylag könnyű beállítani akár a meglévő operációs rendszeredet szeretnéd lecserélni, akár egy meglévő mellé szeretnéd telepíteni - mint a&nbsp;<span class="fa fa-windows"></span>
+            Microsoft Windows, vagy más<span class="fa fa-linux"></span>
+            GNU/Linux disztribúció.</p>
+
+            <h3>A legjobb eredmény érdekében:</h3>
+            <ul>
+              <li><u><b>Készíts biztonsági másolatot</b></u> minden fontos adatról egy másik tárolóeszközre.</li>
+              <li class="offline">Csatlakozás az internetre minden elérhető frissítés telepítéséhez telepítés közben.</li>
+              <li class="online">Maradj az internethez csatlakozva az elérhető frissítések telepítéséhez.</li>
+              <li>Csatlakoztasd a készülékedet elektromos hálózatra, ha akkumulátorról működik.</li>
+            </ul>
+            <hr class="soften"/>
+
+            <img src="img/applications/ubiquity.png" class="left"/>
+            <p>A live munkamenet, amiben jelenleg vagy, jó lehetőség arra, hogy teszteld az Ubuntu MATE-t bármilyen módosítás nélkül a gépeden, lehetőséged van tesztelni minden külső eszköz működését, mielőtt elkötelezed magad a telepítésre. Ha kész vagy, kattints duplán a telepítő ikonra az asztalon.</p>
+            <hr class="soften"/>
+
+            <h3>Modern UEFI alapú számítógépek</h3>
+            <p>Ha egy modern számítógéped van, ami a Unifed Extended Firmware Interface-t (UEFI) használja, lehet, hogy le kell tiltanod a <b>Secure Boot funkciót</b> (vagy engedélyezned az <b>Unlock Bootloader</b>
+            lehetőséget) a telepítés előtt, különösen, ha egy operációs rendszer előre volt telepítve.</p>
+
+            <p>Ha egy régi BIOS-os gépet használsz, erre nem lesz szükséged.</p>
+
+            <p>
+              Különösen több operációs rendszer futtatása esetén fontos, hogy a megfelelő módban indítsd a rendszered és a <b> 64-bites lemezképet használd</b> , mivel nem fogsz tudni elindítani egy BIOS módban telepített operációs rendszert egy olyan rendszer telepítése után, ahol az UEFI engedélyezve van, illetve fordítva.
+            </p>
+
+            <p>UFI képes rendszerek BIOS módban történő indítása során a GPT-re formázott lemez "védelmi rétegként"  működhet. <b>Ne aggódj, </b> az adataid nem vesztek el, vagy rongálódtak meg!
+            </p>
+
+            <div class="alert alert-info">
+              A rendszered jelenleg az alábbi <b><span id="boot-mode">???</span> módban fut:</b>.
+            </div>
+
+            <hr class="soften"/>
+
+            <h3>Swap</h3>
+            <p>Azon számítógépeknél, ahol kezd kevés lenni a memória (RAM), az operációs rendszer elkezd a lemezre írni. A Windowsnál ez "lapozófájlként" ismert. A teljesítmény csökken, ha kevés a memória és le is fagyhat, ha teljesen elfogy a memória és nincs cserehelyként használható lemezterület.</p>
+            <p>Alapértelmezetten a swap partíció a RAM-od mérete alapján lesz meghatározva. Pl. ha 2 GiB RAM-od van, akkor 2GiB merevlemez tárhely lesz lefoglalva cserehelynek a lemezed végén.</p>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("sysreq","Rendszerkövetelmények")'>
+                <span class="fa fa-chevron-left"></span> <b>Előző:</b>&nbsp; Rendszerkövetelmények</a>
+              <a class="btn" onclick='changePage("dualboot","Kettős indítás ")'>
+                <b>Következő:</b>&nbsp; Kettős indítás  <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advise on Dual Booting (shown in guest session only) -->
+      <div id="dualboot" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h3>Kettős indítás </h3>
+            <p>Ha az ubuntu MATE-t a meglévő operációs rendszered mellé szeretnéd telepíteni, a partícióidat össze kell zsugorítani. Ez a merevlemezed szekciói kettéválasztását eredményezi több operációs rendszer között.</p>
+
+            <label class="checkbox">
+              <input type="checkbox" value="" id="showDualBootWin">
+                &nbsp;Közös indítás a  &nbsp;<span class="fa fa-windows"></span> Microsoft Windows.
+            </label>
+
+            <h5>Az adatvesztés, vagy hiba esélyének csökkentése érdekében bizonyosodj meg róla, hogy:</h5>
+            <ul class="unstyled" style="margin-left:8px">
+              <li><span class="fa fa-check-circle"></span> Van elég szabad hely. 10 GB minimum ajánlott.</li>
+              <li><span class="fa fa-check-circle"></span> <b><u>Készíts biztonsági másolatot</u></b> a fontos adataidról egy másik meghajtóra.</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> Töredezettségmentesítsd a merevelemezt.</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> Bizonyosodj meg róla, hogy a Windows rendesen le lett állítva (nem hibernálás).</li>
+            </ul>
+
+            <hr>
+            <p><b>Melyik megközelítés teszik jobban?</b></p>
+            <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+              <li><a onclick="smoothFade('.partition','#partitionSimple')" data-toggle="tab">Egyszerű</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionAdvanced')" data-toggle="tab">Haladó</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionWindows')" data-toggle="tab" class="dualBootWin"><span class="fa fa-windows"></span> Legbiztonságosabb</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane partition" id="partitionSimple">
+                <h5>A legegyszerűbb módszer a telepítő használata.</h5>
+                <p>
+                  A telepítő megvizsgálja a lemezeket, létező operációs rendszereket keres és lehetőségeket kínál fel.
+                  <blockquote>
+                    <b>Ehhez hasonló opciót fogsz látni:</b>
+                    <br>
+                    <img src="img/screenshots/install-split-choice.png"/>
+                    <br>
+                    <b>Ez követi:</b>
+                    <br>
+                    <img src="img/screenshots/install-split-partitions.png"/>
+                  </blockquote>
+                </p>
+                <div class="alert alert-danger">
+                  <h5><span class="fa fa-warning"></span> Ne szakítsd félbe, vagy ne kapcsold ki a gépet az átméretezés művelet alatt.</h5>
+                  <p>Ha mégis megteszed, előfordulhat adatvesztés, vagy partíciós tábla rongálódás. Ellenőrizd alaposan a változtatásokat, mielőtt folytatod.</p>
+                  <p>A telepítőn megjelenhet <span class="fa fa-spinner"></span> a forgó kurzor elég hosszú ideig a lemezed méretétől függően.</p>
+                </div>
+                <p class="dualBootWin">
+                  <span class="fa fa-windows"></span> <b>Mikor legközelebb indítod a Windowst, futtasd</b>
+                  <code>chkdsk /f</code> a parancssorból, hogy ellenőrizd a fájlrendszerhibákat. A Windows lehet, hogy automatikusan beütemezi ezt. Ez az NTFS fájlrendszer egységességét biztosítja.
+                </p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionAdvanced">
+                <h5>Használd a Gpartedet vagy a telepítő "Egyéni" opcióját.</h5>
+                <p>
+                  <img class="left" src="img/applications/gparted.png"/>
+                  <b>A GParted</b> csak a live munkamenet alatt érhető el.
+                  Megtalálható a <b>Rendszer <span class="fa fa-long-arrow-right"></span>
+                  Adminisztráció</b> menüben. A Gparted teljes rugalmasságot biztosít a partícióidhoz, elsődlegesen a haladó felhasználók számára, akik tudják, hogyan akarják elrendezni a lemezeiket. Ez a módszer a telepítés előtt eszközöl változtatásokat a partíciókban.
+                </p>
+                <div class="center">
+                  <a href="cmd://gparted" class="btn btn-inverse"><img src="img/applications/gparted.png" width="32px" height="32px"> Open GParted</a>
+                </div>
+                <br>
+                <p>A lemezeden történő műveletek befejezése után meghagyhatod a fennmaradó helyet felhasználatlanként,
+                mivel a telepítő ezt a felhasználatlan helyet felismeri az Ubuntu MATE telepítéséhez.</p>
+                <br>
+                <h5>A Telepítő "Egyéni" opciójának használata.</h5>
+                <p>A Gparted helyett, vagy kiegészítéseként az <b>Egyéni</b> opció a telepítő varázsló alatt szintén be tudja állítani és átméretezni a partícióidat, és a csatolási potokat is ki lehet választani. A lemezeid felosztása könnyebbi teszi a redszer későbbi újratelepítését, ha szükséges.</p>
+
+                <p><b>Ezeket a csatolási pontokat adhatod meg:</b></p>
+                <ul>
+                  <li><code>/</code> - Az alap az Ubuntu MATE-hoz</li>
+                  <li><code>/boot</code> - Rendszerbetöltő és kernelek</li>
+                  <li><code>/home</code> - Személyes fájlok és mappák</li>
+                  <li><code>/tmp</code> - Ideiglenes fájlok</li>
+                  <li><code>/usr</code> - Az alkalmazások nagy részét tartalmazza <i> (binárisok, dokumentáció, könyvtárak, stb.)</i></li>
+                  <li><code>/var</code> - Változó adat <i>(mint pl. rendszer bejegyzések)</i></li>
+                  <li><code>/srv</code> - Adat rendszerszolgálatatásokhoz <i>(jellemzően szerver konfigurációkhoz használt)</i></li>
+                  <li><code>/opt</code> - További szoftver amit a csomagkezelő nem kezel
+                                          <i>(mint pl. <img src="img/applications/spotify.png" width="16px" height="16px"> Spotify)</i></li>
+                </ul>
+                <p>Nem szükséges külön partíciókat létrehozni az összes felsorolt csatolási ponthoz.
+                A leginkább partícionált könyvtárak: <code>/</code>, <code>/home</code>
+                és <code>/boot</code>. Ezek a csatolási pontok beállíthatók különböző
+                fizikai lemezekre is, pl. ha a rendszeredet rá szeretnéd tenni egy <code>/</code> SSD-re,
+                de a személyes fájlokat <code>/home</code> egy mechanikus merevlemezen tárolnád.</p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionWindows">
+                <h5>A rendszer lemezed zsugorítása Windowson belül.</h5>
+                <div class="alert alert-warning">
+                  <h5><span class="fa fa-exclamation-circle"></span> A Windows Vistára és az utáni verziókra vonatkozik.</h5>
+                  <p>Ha Windows XP-t, vagy korábbi verziót használsz, használnod kell a
+                  <b>Egyszerű</b> vagy <b>Haladó</b> módszert a lemezed zsugorítására.</p>
+                </div>
+
+                <p>A Windows újabb verziói biztosítanak egy eszközt az NTFS kötetek zsugorítására Windowson belül. Ez biztonságosabb, ha szükséges, hogy Windows is legyen a gépen amíg az Ubuntu MATE-t kitapasztalod.</p>
+                <blockquote>
+                  1. Megnyitás <b>Lemezkezelőt</b> a start menüből.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-1.png">
+                  </div>
+                  <br>
+                  2. Jobb klikk a kívánt meghajtóra és válaszd ki a <b>partíció zsugorítása</b> lehetőséget a menüből.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-2.png">
+                  </div>
+                  <br>
+                  3. Írd be a partíció zsugorításához kívánt mennyiséget.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-3.png">
+                  </div>
+                  <br>
+                  <div class="alert alert-info">
+                    Fontos, hogy az Ubuntu MATE legalább 8 GB lemezterületet igényel.
+                    <b>1 GB = 1000 MB</b>
+                  </div>
+                </blockquote>
+
+                <h5>További olvasnivaló</h5>
+                <p>A legjobb gyakrolatokhoz a Windowst tartalmazó partíciók módosításához további információért nézd meg a következő
+                <a href="cmd://link?https://help.ubuntu.com/community/HowtoResizeWindowsPartitions">
+                  Segítségnyújtó cikket</a> online.</p>
+              </div>
+
+            <hr class="soften"/>
+            <h3>Indítási problémák javitása</h3>
+
+            <p>A linux disztribúciók rendszerbetöltőt használnak közismert néven   <code>grub</code>,
+            ami megkeresi és betölti az operációs rendszert. Azonban néhány operációs rendszer (pl. a Windows) nem működnek együtt létező rendszerbetöltőkkel és felülírják azokat, így ideiglenesen gátolják a hozzáférést az Ubuntu MATE-hoz.</p>
+
+            <p>Szerencsére használhatod a  <b>Rendszerindító helyreállító</b> eszközt, hogy kijavítsd a más operációs rendszerek által okozott problémákat.</p>
+            </div>
+
+            <div class="alert alert-warning offline">
+              <h5>Szükséges egy csomag letöltése.</h5>
+              <p>Kérlek csatlakozz az internetre a program letöltéséhez ás használatához.</p>
+              <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Elnézést, az Üdvözlőképernyő nem képes létrehozni a kapcsolatot.</p></div>
+              <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Megismétel</a>
+            </div>
+
+            <a class="boot-repair-install btn btn-inverse online" href="cmd://install-appid?boot-repair"><span class="fa fa-download"></span>&nbsp; A rendszerbetöltő javító letöltése</a>
+            <a class="boot-repair-remove btn btn-success" href="cmd://run?boot-repair"><span class="fa fa-wrench"></span>&nbsp; A rendszerbetöltő javító megnyitása </a>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","Telepítési előkészületek")'>
+                <span class="fa fa-chevron-left"></span> <b>Előző:</b>&nbsp; Telepítési előkészületek</a>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software Updates -->
+      <div id="updates" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Szoftverfrissítések</h2>
+
+            <div class="alert alert-warning offline">
+              <h5>Internet csatlakozás szükséges a frissítések letöltéséhez és telepítéséhez.</h5>
+            </div>
+            <p>Az Ubuntu MATE rendszeresen ellenőrzi, hogy elérhető-e új szoftver és biztonsági frissítés a számítógépedhez. Ha éppen most telepítetted az Ubuntu MATE-t, érdemes most megtenned.</p>
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://update" onclick="smoothFade('','#updates-hint')">
+                <img src="img/applications/system-software-update.png" width="32px" height="32px"/>&nbsp; A Szoftverfrissítő
+              </a>
+              <span id="updates-hint" class="center" hidden><small>
+                <p><span class="fa fa-info-circle"></span> <b>A Szoftverfrissítő</b> később megtalálható lesz itt:
+                <b><i>Rendszer <span class="fa fa-long-arrow-right"></span> Adminisztráció.</i></b></p>
+              </small></span>
+            </div>
+            <hr class="soften"/>
+            <p>A kodek csomag teljes, platformfüggetlen megoldásokat tartalmaz dekódoláshoz, kódoláshoz, felvételhez, konvertáláshoz és audió és videó sreameléséhez. MP3 audió dekódert is tartalmaz, ami lehetővé teszi az MPEG 1 audio réteg III (MP3) lejátszását.</p>
+            <!-- <p>Szükséged lesz a Blu-ray AACS adatbázisra az AACS titkosított vagy BD+ védelemmel ellátott lemezek lejátszásához.</p> -->
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://install-appid?codecs">
+                <img src="img/applications/codecs.png" width="32px" height="32px"/>&nbsp; Kodek csomag telepítése  
+              </a>
+              <!-- <a class="btn btn-lg btn-inverse" href="cmd://get-aacs-db">
+                <img src="img/applications/bluray.png" width="32px" height="32px"/>&nbsp; Blu-ray AACS adatbázis telepítése
+              </a> -->
+              <span class="codecs-applying bluray-applying"><br><br><img src="img/welcome/processing.gif" width="24px" height="24px"/> Telepítés...</span>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("drivers","Illesztőprogramok")'>
+                <b>Következő:</b>&nbsp; Illesztőprogramok <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drivers -->
+      <div id="drivers" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Illesztőprogramok</h2>
+            <p>Bár igen sok hardver kompatibilis az Ubuntu MATE-val, van néhány összetevő és külső eszköz, ami zárt illesztőprogramokat igényel a megfelelő működéshez. A firmware csomag telepítése gyakran szükséges néhány készülék megfelelő működéséhez, jellemzően Bluetooth és Wi-Fi.</p>
+            <div class="alert alert-warning offline">
+              <h5>Internetcsatlakozás szükséges az illesztőprogramok letöltéséhez és telepítéséhez.</h5>
+            </div>
+            <div align="center">
+                <a class="btn btn-inverse" href="cmd://drivers" onclick="smoothFade('','#drivers-hint')">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; További illesztőprogramok
+                </a>
+                <a class="btn btn-inverse" href="cmd://install-appid?firmware">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; Firmware csomag telepítése
+                </a>
+            </div>
+
+            <span id="drivers-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>További illesztőprogramok</b> később megtalálható lesz itt:
+              <b><i>Rendszer <span class="fa fa-long-arrow-right"></span> Adminisztráció.</i></b></p>
+            </small></span>
+
+            <!-- Advice about graphics -->
+            <a onclick="toggleSub('graphics-section','graphics-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="graphics-arrow"></span> &zwnj;Graphics&zwnj;</h3></a>
+            <div id="graphics-section" hidden>
+
+              <div class="graphics-unknown alert alert-danger">
+                <h5>Sajnáljuk, az Üdvözlő nem tudta automatikusan beazonosítani a grafikus kártya gyártóját.</h5>
+                <p><span class="fa fa-plug"></span><b> Kártya/Csipkészlet: </b><i class="graphics-pci">Ismeretlen</i></p>
+              </div>
+
+              <div class="graphics-nvidia alert alert-info" hidden>
+                <h5>NVIDIA Grafikus kártya érzékelve.</h5>
+                <p>NVIDIA lehet, hogy tartalmaz illesztőprogramokat a kártyádhoz, melyek növelhetik a 3D alkalmazások és játékok teljesítményét és javításokat biztosítanak az energiagazdálkodáshoz. </p>
+                <p><span class="fa fa-plug"></span><b> Kártya/Csipkészlet: </b><i class="graphics-pci">Ismeretlen</i></p>
+              </div>
+
+              <div class="graphics-amd alert alert-success" hidden>
+                <h5>AMD Grafikus kártya érzékelve.</h5>
+                <p>Az AMD illesztőprogramjai már nem támogatottak Ubuntun. A jelenleg használt nyílt forrású illesztőprogramok hozzák ki a legstabilabb teljesítményt a kártyádból.</p>
+                <p><span class="fa fa-plug"></span><b> Kártya/Csipkészlet: </b><i class="graphics-pci">Ismeretlen</i></p>
+              </div>
+
+              <div class="graphics-intel alert alert-success" hidden>
+                <h5>Már készen állsz kezdéshez.</h5>
+                <p>Az Intel illesztőprogramok nyílt forrásúak és a kernellel együtt vannak karban tartva és frissítve.</p>
+                <p><span class="fa fa-plug"></span><b> Kártya/Csipkészlet: </b><i class="graphics-pci">Ismeretlen</i></p>
+              </div>
+
+              <div class="graphics-vbox alert alert-info" hidden>
+                <h5>VirtualBox Vendég Kiegészítők</h5>
+                <p>A grafikus teljesítmény gyorsításához a virtuális gépen belül telepítsd a VirtualBox Vendég Kiegészítőket!</p>
+              </div>
+
+              <div id="graphics-proprietary" hidden>
+                <h4>Zárt vagy nyílt forrású illesztőprogramok?</h4>
+                <p>Zárt forrású illesztőprogramok közvetlenül a gyártótól érkeznek.
+                Mivel nem nyílt forrásúak, az Ubuntu fejlesztői <b>nem tudják a forráskódot átnézni és fejleszteni</b> ami azt jelenti, hogy a gyártón múlik a támogatás.</p>
+
+                <p>Egyébként a zárt forrású meghajtók képesek <b>jelentősen megnövelni a grafikus teljesítményt</b> és ennek eredményeként
+                az egész rendszerét. A felhasználók ezeket az illesztőprogramokat is telepíthetik:</p>
+                <ul>
+                  <li>3D-s alkalmazásokat és játékok futtatása.</li>
+                  <li>Compiz használata az ablak effektekhez. </li>
+                  <li>Az energiagazdálkodás javítása, különösen ha az eszköz túlmelegszik a nyílt forrású illesztőprogramokkal.</li>
+                  <li>Teljesítmény növekedés több és nagy felbontású monitoroknál.</li>
+                  <li>Üres képernyő problémák kijavítása.</li>
+                </ul>
+
+                <p>A zárt illesztőprogramok "bináris buborékok"-ként ismertek. Bizonyos hardvernél rosszabb viselkedést tapasztalhatunk,
+                ami több problémát okoz, mint a nyílt forrású illesztőprogramok pl.: </p>
+                <ul>
+                  <li>Nem képes a grafikus asztalt betölteni.</li>
+                  <li>Sérült illesztőprogramok frissítés után.</li>
+                  <li>Súlyos grafikai hibák.</li>
+                  <li>Problémák hardveres gyorsítást igénylő alkalmazásokkal/játékokkal.</li>
+                </ul>
+
+                <p class="graphics-nvidia graphics-amd">
+                  <code id="graphics-open-driver-name"></code> a nyílt forrású illesztőprogram a kártyádhoz.
+                </p>
+
+                <p id="graphics-nvidia" hidden>
+                  <hr class="soften"/>
+                  <h4>És mi van a legújabb NVIDIA illesztőprogramokkal?</h4>
+                  <p><b>További illesztőprogramok</b> letölti a legújabb tesztelt illesztőprogramokat az Ubuntu tárolókból.
+                  Haladó felhasználók és játékosok számára, akik az újabb kiadásokat szeretnék használni megfontolandó hozzáadni az
+                  <a href="cmd://link?https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa">Ubuntu Grafikus Illesztőprogram PPA-t</a>,
+                  amik tartalmazzák a legújabb NVIDIA illesztőprogramokat Ubuntuhoz. Ezek a csomagok nem olyan alaposan teszteltek.</p>
+                  <div class="alert alert-warning">
+                    <span class="fa fa-exclamation-triangle"></span> Ez csak az aktívan támogatott kártyákra érvényes, a régebbi kártyákra nem.
+                  </div>
+                  <a class="btn btn-warning" href="cmd://upgrade-appid?nvidia-settings"><span class="fa fa-level-up"></span>&nbsp; Tároló hozzáadása</a>
+                  <br><br>
+                  <!-- <a class="btn btn-danger" href="#"><span class="fa fa-trash"></span>&nbsp; Remove Repository</a> -->
+                  <p>Hogy hozzáadd a tárolót a rendszerhez, nyiss egy terminált, és írd be a következőket:</p>
+                  <blockquote class="terminal miscCmd">
+                    <span class="fa fa-dollar"></span> sudo add-apt-repository ppa:graphics-drivers/ppa
+                    <br>&nbsp;<span class="fa fa-dollar"></span> sudo apt-get update
+                  </blockquote>
+                  <p>A PPA hozzáadása után újabb verziók állnak rendelkezésre telepítésre itt:  <a href="cmd://drivers">További illesztőprogramok: </a></p>
+                  <img src="img/screenshots/graphics-drivers-nvidia.png"/>
+                </p>
+              </div>
+            </div>
+
+            <!-- Advice about wireless -->
+            <a onclick="toggleSub('wireless-section','wireless-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="wireless-arrow"></span> Vezeték nélküli, Bluetooth és egyéb eszközök</h3></a>
+            <div id="wireless-section" hidden>
+             <p>Ha nem található további illesztőprogram a hardverhez vagy a firmware csomagok telepítése után nem működik, kénytelen leszel megkeresni a megfelelő meghajtóprogramot az eszközödhöz. </p>
+
+              <p>Sajnos, ez amiatt van, hogy a gyártó a hardveredhez nem biztosított forráskódot a fejlesztőknek szabad felhasználásra, vagy nem elégséges a dokumentáció az illesztőprogramok elkészítéséhez az adott márkához vagy modellhez.</p>
+
+               <p>Néhány gyártó biztosíthat zárt forrású meghajtóprogramokat közvetlenül. Ha segítségedre lenne szükséged, akkor nyugodtan <a onclick="smoothPageFade('community.html')">kérdezz a közösségtől</a>.</p>
+
+               <p><a href="cmd://link?https://help.ubuntu.com/community/WifiDocs/WirelessTroubleShootingGuide/Drivers">
+               <span class="fa fa-globe"></span> Olvass többet a vezeték nélküli hardver hibaelhárításáról. </a></p>
+            </div>
+
+            <!-- Advice about printers -->
+            <a onclick="toggleSub('printers-section','printers-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="printers-arrow"></span> Nyomtatók</h3></a>
+            <div id="printers-section" hidden>
+              <p>Mikor beállítasz egy nyomtatót a
+              <a href="cmd://printers">
+              <img src="/usr/share/icons/Humanity/actions/16/document-print.svg" width="20px" height="20px"/>
+              <b>Nyomtatók</b></a>
+              segédprogrammal <i>(alatt Rendszer <span class="fa fa-long-arrow-right"></span>
+              Adminisztráció)</i>, kapsz egy listát az elérhető illesztőprogramokról használatra, ha alkalmazható.</p>
+
+              <p>Néhány gyártó biztosíthat saját illesztőprogramot és neked kell letölteni azokat a weboldalukról.</p>
+              <p><a href="cmd://link?https://help.ubuntu.com/community/Printers">
+              <span class="fa fa-globe"></span> Olvass többet a nyomtatásról</a>.</p>
+
+              <hr class="soften"/>
+
+              <div class="row-fluid">
+                <div class="span2 center-inside">
+                  <img src="img/applications/hplip.png" width="64px" height="64px"/>
+                  <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+                </div>
+                <div class="span10">
+                  <p><b>HP Linux Nyomtatás és Képalkotási Rendszer</b></p>
+                  <p>Ajánlott, ha HP nyomtatód van, mivel teljes támogatást nyújt a nyomtatáshoz a legtöbb HP SFP (egyfunkciós periféria) tintasugaras és sok lézer esetében, illetve szkennelésre faxküldésre és kártyaolvasón keresztüli fotó eléréshez a legtöbb HP MFP (multifunkciós periféria) nyomtatóhoz.</p>
+                  <p class="text-right">
+                    <a class="btn btn-inverse hp-printer-remove" href="cmd://launch-appid?hp-printer"><img src="img/applications/hplip.png" width="20px" height="20px"/>&nbsp; Megnyitás</a>
+                    <a class="btn btn-success hp-printer-install" href="cmd://install-appid?hp-printer"><span class="fa fa-download"></span>&nbsp; Telepítés</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("updates","Szoftverfrissítések")'>
+                <span class="fa fa-chevron-left"></span> <b>Előző:</b>&nbsp; Szoftverfrissítések</a>
+              <a class="btn" onclick='changePage("languageInput","Beviteli nyelv")'>
+                <b>Következő:</b>&nbsp; Beviteli nyelv <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language & Input Support -->
+      <div id="languageInput" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Nyelvi támogatás</h2>
+            <p>A számítógépednek szüksége lehet a nyelvi és területi beállításaid frissítésére, vagy lehet, hogy további nyelvi támogatást is akarsz telepíteni.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://language" onclick="smoothFade('','#locale-hint')">
+              <img src="img/humanity/preferences-desktop-locale.svg" width="32px" height="32px"/>&nbsp; Nyelvi támogatás
+            </a></div>
+            <span id="locale-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Nyelvi támogatás</b> később megtalálható lesz itt:
+              <b><i>Rendszer <span class="fa fa-long-arrow-right"></span> Beállítások
+                           <span class="fa fa-long-arrow-right"></span> Személyes</i></b></p>
+            </small></span>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Összetett bevitel</h2>
+            <p>Néhány földrészen szükséges az összetett bevitel. </p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-chinese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Kínai</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-japanese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Japán</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-korean"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Koreai</a>
+          </div>
+        </div>
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("drivers","Illesztőprogramok")'>
+            <span class="fa fa-chevron-left"></span> <b>Előző:</b>&nbsp; Illesztőprogramok</a>
+          <a class="btn" onclick='changePage("tasks","Választható feladatok")'>
+            <b>Következő:</b>&nbsp; Választható feladatok <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Additional Tasks - Backups / Firewall / Users -->
+      <div id="tasks" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Biztonsági mentés, tűzfal és felhasználók kezelése</h2>
+            <p>Az Ubuntu MATE eszközöket biztosít adataid mentésére, előre telepített tűzfallal érkezik és támogatja a többfelhasználós fiókokat.</p>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-backup.png">
+          </div>
+          <div class="span6">
+            <h3>Biztonsági mentések</h3>
+            <p>Semmi sem fontosabb annál, hogy a személyes adataidról biztonsági mentésed legyen, arra az esetekre ha valami katasztrófa történne a számítógépeddel.</p>
+            <p><img src="img/applications/deja-dup.png" width="20px" height="20px"/>
+            <b>Deja-Dup</b> előre telepítve érkezik és támogatja a biztonsági mentéseket a helyi eszközökhöz és a felhő alapú szolgáltatásokhoz is.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://backup" onclick="smoothFade('','#backup-hint')">
+              <img src="img/applications/deja-dup.png" width="32px" height="32px"/>&nbsp; Biztonsági mentés beállítása
+            </a>
+            <span id="backup-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Biztonsági mentések</b> később megtalálható lesz itt:
+              <b><i>Rendszer <span class="fa fa-long-arrow-right"></span> Beállítások
+                           <span class="fa fa-long-arrow-right"></span> Személyes</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-firewall.png">
+          </div>
+          <div class="span6">
+            <h3>Tűzfal</h3>
+            <p>A tűzfal megakadályozza a kimenő és bejövő rosszindulatú csatlakozásokat. Alapbeállításként a tűzfal le van tiltva,
+              <a href="cmd://link?https://help.ubuntu.com/community/DoINeedAFirewall">tudj meg többet a tűzfalakról</a>.</p>
+            <p><img src="img/applications/gufw.png" width="20px" height="20px"/>
+              <b>Gufw</b> grafikus felületet biztosít ehhez: <code>ufw</code>
+              (Egyszerű tűzfal). Ha a biztonság fontos számodra, akkor 
+              <a href="cmd://link?https://wiki.ubuntu.com/BasicSecurity">több lehetőséged is van arra, hogy biztonságban maradj</a>.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://firewall" onclick="smoothFade('','#firewall-hint')">
+              <img src="img/applications/gufw.png" width="32px" height="32px"/>&nbsp; Tűzfal beállítása
+            </a>
+            <span id="firewall-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Tűzfal beállítás</b> később megtalálható lesz itt:
+              <b><i>Rendszer <span class="fa fa-long-arrow-right"></span> Beállítások
+                           <span class="fa fa-long-arrow-right"></span> Internet és hálózat</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-users.png">
+          </div>
+          <div class="span6">
+            <h3>Felhasználók</h3>
+            <p>
+              Megosztod a gépedet másokkal? Állíts be különálló felhasználói fiókot minden felhasználónak a közös gépet használó felhasználók egyéni magánszférájának védelme érdekében.
+            </p>
+            <p>Szintén beléphetsz egy <b>Vendég munkamenetbe</b> ha valaki csak futólag használja a számítógépedet.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://users" onclick="smoothFade('','#users-hint')">
+              <img src="img/humanity/system-users.svg" width="32px" height="32px"/>&nbsp; Felhasználók beállításai
+            </a>
+            <span id="users-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Felhasználók és csoportok</b> később megtalálható lesz itt:
+              <b><i>Rendszer <span class="fa fa-long-arrow-right"></span> Adminisztráció
+                           <span class="fa fa-long-arrow-right"></span> Felhasználók és csoportok</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("languageInput","Beviteli nyelv")'>
+            <span class="fa fa-chevron-left"></span> <b>Előző:</b>&nbsp; Beviteli nyelv</a>
+          <a class="btn" onclick='changePage("customize","Testreszabás")'>
+            <b>Következő:</b>&nbsp; Testreszabás <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Customizing the Experience -->
+      <div id="customize" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Felhasználói felület</h2>
+            <p>Az Ubuntu MATE biztosít egy egyedi eszközt a felhasználói felület alakításához. Használható arra, hogy gyorsan beállítsuk úgy a felületet, hogy tükrözze más népszerű operációs rendszerek kinézetét és élményét. <b>Redmond</b> elrendezések a legjobban a Microsoft Windows-hoz hasonlítanak, míg <b>Cupertino</b> elrendezések a legjobban az Apple Mac OS X-hez hasonlóak.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://tweak" onclick="smoothFade('','#tweak-hint')">
+              <img src="img/applications/control-centre.png" width="32px" height="32px"/>&nbsp; Felhasználói felület
+            </a></div>
+            <span id="tweak-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>MATE Finomhangoló eszköz</b> később megtalálható lesz itt:
+              <b><i>Rendszer <span class="fa fa-long-arrow-right"></span> Beállítások
+                           <span class="fa fa-long-arrow-right"></span> Kinézet és élmény</i></b>.</p>
+            </small></span>
+
+            <h2>Vezérlőközpont</h2>
+            <p>A fent említett segédprogramok mindegyike az Ubuntu MATE által biztosított kiterjedt Vezérlőközpont részei. Számítógépe szinte minden szempontból a Vezérlőközpontból konfigurálható.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://control" onclick="smoothFade('','#control-hint')">
+              <img src="img/applications/user-desktop.svg" width="32px" height="32px"/>&nbsp; Vezérlőközpont
+            </a></div>
+            <span id="control-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Vezérlőközpont</b> megtalálható később a
+              <b><i>Rendszer</i></b> menüben.</p>
+            </small></span>
+
+            <h2>Asztal háttere</h2>
+            <p>Az Ubuntu MATE közösség az évek alatt több tucat asztali háttérkép készítésével működött közre. Telepítsd őket és találd meg az ízlésednek megfelelőt.</p>
+            <div class="center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?ubuntu-mate-wallpapers-complete"><span class="fa fa-3x fa-picture-o fa-va"></span>&nbsp; Háttérképek</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("tasks","Választható feladatok")'>
+                <span class="fa fa-chevron-left"></span> <b>Előző:</b>&nbsp; Választható feladatok</a>
+              <a class="btn" onclick='changePage("shortcuts","Billentyűkombinációk")'>
+                <b>Következő:</b>&nbsp; Billentyűkombinációk <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts -->
+      <div id="shortcuts" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Billentyűkombinációk</h2>
+            <p>AZ Ubuntu MATE rengeteg billentyűkombinációval segíti hatékonyabbá tenni a számítógép használatát.</p>
+            <h3>Általános alkalmazás billentyűkombinációk</h3>
+            <p>Ezek a billentyűkombinációk a legtöbb alkalmazásra érvényesek.</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">C</b></td>
+                <td>Kijelölt szöveg/objektum másolása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">X</b></td>
+                <td>Kijelölt szöveg/objektum kivágása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">V</b></td>
+                <td>Kijelölt szöveg/objektum beillesztése/beszúrása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>Minden szöveg kijelölése</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F</b></td>
+                <td>Szavak keresése és felülírása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">B</b></td>
+                <td>Kijelölt szöveg legyen félkövér</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">I</b></td>
+                <td>Kijelölt szöveg legyen dőlt</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">U</b></td>
+                <td>Kijelölt szöveg aláhúzása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>Új dokumentum, vagy ablak megnyitása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>Jelenlegi dokumentum mentése</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">O</b></td>
+                <td>Másik dokumentum megnyitása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">P</b></td>
+                <td>Jelenlegi dokumentum nyomtatása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>Legutóbbi változtatás visszavonása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>Legutóbbi visszavont változtatás megismétlése</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">F11</b></td>
+                <td>Aktív alkalmazás váltása teljes képernyő és ablakos mód között</td>
+              </tr>
+            </table>
+
+            <h3>Asztali billentyűkombinációk</h3>
+            <p>Ez a rész általános billentyűkombinációkat sorol fel, amiket az asztal részeinek működtetésére használhatsz.</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F1</b></td>
+                <td>Az alkalmazás menü megnyitása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F2</b></td>
+                <td>Egy alkalmazás futtatása a nevének beírásával a megjelenő dobozba</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Prt Sc</b></td>
+                <td>Képernyőkép készítése az egész képernyőről</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Prt Sc</b></td>
+                <td>Képernyőkép készítése az aktív ablakról</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Delete</b></td>
+                <td>Párbeszédablakot nyit a leállításhoz, újraindításhoz, vagy felfüggesztéshez.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">L</b></td>
+                <td>Képernyő lezárása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">T</b></td>
+                <td>Terminál megnyitása</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>Képernyő olvasó engedélyezés/letiltás.</td>
+              </tr>
+            </table>
+
+            <h3>Ablak billentyűkombinációk</h3>
+            <table class="table">
+              <tr>
+                <td style="width:270px;"><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tab</b></td>
+                <td>
+                  Jelenleg megnyitott ablakok közötti váltás.
+                  <ul>
+                    <li>Nyomd meg az Alt + Tab-ot, majd engedd el a Tab-ot (de az Alt-ot tartsd nyomva).</li>
+                    <li>Nyomd a Tab-ot többször, hogy végigmenj az elérhető ablakok listáján, amik megjelennek a képernyőn.</li>
+                    <li>Engedd el az Alt gombot a kijelölt ablakra váltáshoz.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tab</b></td>
+                <td>
+                  Jelenleg megnyitott ablakok közötti váltás minden munkaterületen.
+                  <ul>
+                    <li>Nyomd a Tab-ot többször, hogy végigmenj az elérhető ablakok listáján, amik megjelennek a képernyőn.</li>
+                    <li>Engedd el a Ctrl és Alt gombot a kijelölt ablakra váltáshoz.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Bal</b></td>
+                <td>Váltás az előző munkaterületre.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Jobb</b></td>
+                <td>Váltás a következő munkaterületre.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Bal</b></td>
+                <td>A jelenlegi ablak áthelyezése az előző munkaterületre.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Jobb</b></td>
+                <td>A jelenlegi ablak áthelyezése a következő munkaterületre.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F4</b></td>
+                <td>Ablak bezárása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F5</b></td>
+                <td>Ablak visszaállítása 'normál', vagy az előző méretre.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F7</b></td>
+                <td>A jelenlegi ablak mozgatása (mozgatható az egérrel, vagy a billentyűzettel).</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F8</b></td>
+                <td>Jelenlegi ablak átméretezése (szintén mozgatható az egérrel, vagy billentyűzettel).</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F9</b></td>
+                <td>Jelenlegi ablak minimalizálása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F10</b></td>
+                <td>Jelenlegi ablak maximalizálása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F12</b></td>
+                <td>Lenyíló terminál</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Szóköz</b></td>
+                <td>Megjeleníti az ablakmenüt opciókkal, mint pl.: 'Mindig felül' és 'Minimalizálás' és 'Maximalizálás' és a fenti parancsok.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numerikus billentyű 7</b></td>
+                <td>Az ablak elhelyezése a képernyő bal felső sarkába.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numerikus billentyű 8</b></td>
+                <td>Az ablak elhelyezése a képernyő felső felébe.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numerikus billentyű 9</b></td>
+                <td>Az ablak elhelyezése a képernyő jobb felső sarkába.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numerikus billentyű 5</b></td>
+                <td>Az ablak elhelyezése/maximalizálása a képernyő közepén.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numerikus billentyű 1</b></td>
+                <td>Az ablak elhelyezése a képernyő bal alsó sarkába.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numerikus billentyű 2</b></td>
+                <td>Az ablak elhelyezése a képernyő alsó felébe.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numerikus billentyű 3</b></td>
+                <td>Az ablak elhelyezése a képernyő jobb alsó sarkába.</td>
+              </tr>
+            </table>
+
+            <h3>Compiz effekt gyorsbillentyűk</h3>
+            <p>Az összes billentyűkombinációhoz ebben a részben szükséges a Compiz engedélyezése.</p>
+            <table class="table">
+              <tr>
+                <td style="width: 280px"><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">D</b></td>
+                <td>'Asztal mutatása' bekapcsolása.</td>
+              </tr>
+              <!--
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Up</b></td>
+                <td>Engedélyez egy 'expozíció' szerű funkciót, ami megmutatja az összes jelenleg megnyitott ablakot, lehetővé téve, hogy válassz egyet közülük.</td>
+              <tr>
+                <td><b class="btn btn-xs disabled">Control</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Down</b></td>
+                <td>Kibontja az asztalváltó kockát, ami lehetővé teszi, hogy egyszerre egynél több munkaterületet láss, a bal és jobb egérgombok használatával választhatod ki a használni kívánt munkaterületet.</td>
+              </tr>
+              -->
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>Kizoomolás, a munkaterület váltó mutatása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>A 'skálázás' effekt engedélyezése, megmutatja az összes ablakot a jelenlegi munkaterületen.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>A 'skálázás' effekt engedélyezése, megmutatja az összes ablakot az összes munkaterületen.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>Az aktív ablak színeinek invertálása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">M</b></td>
+                <td>Az egész képernyő színeinek invertálása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Egér görgő</b></td>
+                <td>Képernyő nagyítása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Középső egérgomb</b></td>
+                <td>Egy terület kiválasztása a nagyításhoz egy téglalap használatával.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Bal egér gomb</b></td>
+                <td>Aktív ablak mozgatása.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Középső egérgomb</b></td>
+                <td>Aktív ablak átméretezése.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Jobb egér gomb</b></td>
+                <td>Ablakmenü mutatása.</td>
+              </tr>
+            </table>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("customize","Testreszabás")'>
+                <span class="fa fa-chevron-left"></span> <b>Előző:</b>&nbsp; Testreszabás</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's inside my computer? -->
+      <div id="specs" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Mi van a számítógépemben?</h2>
+            <p>A géped különböző összetevőkből épül fel, melyek hatással vannak egymásra. Ez az információ hasznos a támogatáshoz annak biztosítása érdekében, hogy a hardver és a szoftver működjön a gépeden.</p>
+          </div>
+        </div>
+        <div id="specs-loading"><p>Kérlek várj, míg összegyűjtjük az információt...</p></div>
+        <ul id="specs-tabs" class="nav nav-pills" data-tabs="tabs" hidden>
+          <li class="active"><a onclick="smoothFade('.tab-contents','#specs-basic')" data-toggle="tab">Alap</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-detailed')" data-toggle="tab">Részletes</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-more')" data-toggle="tab">Kellékek</a></li>
+        </ul>
+
+        <div class="tab-contents" id="specs-basic" hidden>
+          <div id="specs-icon">
+            <img class="specs-icon" hidden id="specs-device-normal" src="img/welcome/ubuntu-mate-laptop.png"/>
+            <img class="specs-icon" hidden id="specs-device-rpi" src="img/logos/raspberry-pi.png"/>
+            <img class="specs-icon" hidden id="specs-device-vbox" src="img/logos/virtualbox-vbox.png"/>
+            <img class="specs-icon" hidden id="specs-device-powerpc" src="img/logos/powerpc.png"/>
+            <img class="specs-icon" hidden id="specs-live-session" src="img/welcome/live-session-image.png"/>
+          </div>
+          <div id="specs-box">
+            <h4><span class="fa fa-cog"></span> Rendszer</h4>
+            <table class="table">
+              <tr>
+                <th>Disztribúció:</th>
+                <td><span id="spec-distro"></span></td>
+              </tr>
+              <tr>
+                <th>Rendszermag:</th>
+                <td>
+                  <span id="spec-kernel"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="A Linux rendszermag az Ubuntu szíve.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Alaplap:</th>
+                <td><span id="spec-motherboard"></span></td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Indítási mód:</th>
+                <td>
+                  <span id="spec-boot-mode"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Megjeleníti azt a módot, ahogy az Ubuntu MATE kommunikál a firmware-rel.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-bolt"></span> Processzor</h4>
+            <table class="table">
+              <tr>
+                <th>Modell:</th>
+                <td><span id="spec-cpu-model"></span></td>
+              </tr>
+              <tr>
+                <th>Sebesség:</th>
+                <td><span id="spec-cpu-speed"></span></td>
+              </tr>
+              <tr>
+                <th>Használt architektúra:</th>
+                <td>
+                  <span id="spec-arch-use"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Az operációs rendszer használatban lévő architektúrája. Például i386 = 32-bit.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi specs-hide-ppc">
+                <th>Támogatott architektúrák:</th>
+                <td>
+                  <span id="spec-arch-supported"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="A processzor által támogatott architektúrák.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-plug"></span> Összetevők</h4>
+            <table class="table">
+              <tr>
+                <th>Memória (RAM):</th>
+                <td>
+                  <span id="spec-memory"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="A több RAM lehetővé teszi több alkalmazás egyidejű futtatását.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Grafika:</th>
+                <td><span id="spec-graphics"></span></td>
+              </tr>
+              <tr>
+                <th>Internet hozzáférés:</th>
+                <td>
+                  <span id="specs-has-net"    style="color:#006400" hidden>&nbsp; <span class="fa fa-check"></span> Csatlakozva</span>
+                  <span id="specs-has-no-net" style="color:#640000" hidden>&nbsp; <span class="fa fa-close"></span> Nincs csatlakozva</span>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <div class="specs-hide-live">
+              <h4><span class="fa fa-hdd-o"></span> Tárhely</h4>
+
+              <table class="table">
+                <tr>
+                  <th>Gyökér fájlrendszer</th>
+                  <td>
+                    <span id="spec-filesystem"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="A fájlrendszer ahová az Ubuntu MATE telepítve van.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Teljes lemezkapacitás:</th>
+                  <td>
+                    <span id="spec-capacity"></span>
+                    <br>
+                    <div id="disk-usage" style="width:200px">
+                      <a id="disk-allocated" class="disk-line" style="width:auto" data-toggle="tooltip" data-placement="bottom" title="Ubuntu MATE felhasználás">
+                        <div id="disk-used" class="disk-line" style="width:0px"></div>
+                        <div id="disk-free" class="disk-line" style="width:0px"></div>
+                      </a>
+                      <a id="disk-other" class="disk-line" style="width:0px" data-toggle="tooltip" data-placement="bottom" title="Other Usage"></a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Lefoglalva az Ubuntu MATE számára:</th>
+                  <td>
+                    <span id="spec-allocated-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Az operációs rendszered partíciójának mérete.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #87A556"></div> Használt hely:</th>
+                  <td>
+                    <span id="spec-used-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #C2D3A6"></div> Szabad hely:</th>
+                  <td>
+                    <span id="spec-free-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #484848;"></div> Más felhasználás:</th>
+                  <td>
+                    <span id="spec-other-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Rendszer által lefoglalt, más partíciók, lefoglalatlan vagy cserehely.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <a data-trigger="hover" rel="unitsinfo" data-placement="top">
+                <span class="fa fa-info-circle"></span> Miért látok két mértékegységet?
+              </a>
+            </div>
+
+          </div>
+          <div id="popover_units" style="display: none;">
+            <h4>SI vagy IEC mértékegység?</h4>
+            <p>
+              <b>Decimális (SI szabvány)</b>
+              <ul>
+                <li><b>1 KB = 1000 bájt</b></li>
+                <li>Kiejtés: "ga" - mint a "Mega", "Giga".</li>
+                <li>Általános a mindennapos alkalmazásoknál és fájl tárhelyeknél.</li>
+              </ul>
+            </p>
+            <p>
+              <b>Bináris (IEC szabvány)</b>
+              <ul>
+                <li><b>1 KiB = 1024 bájt</b></li>
+                <li>Kiejtés: "bi" - mint a "Mebi", "Gibi".</li>
+                <li>Általános a RAM-nál, illesztőprogramoknál és partícióknál, beleértve az olyan eszközöket, mint a GParted.</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-detailed" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <p><span class="fa fa-info-circle"></span> A következő információ közvetlenül a <code>inxi</code> parancssor programból származik.</p>
+              <pre id="specs-inxi">Nem lehet adatot gyűjteni.</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-more" hidden>
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/hardinfo.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check hardinfo-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Rendszer profilozó és teljesítményteszt</b></p>
+              <p>Tekints meg még több rendszer információt egy grafikus ablakban,  csatolt USB eszközökről, PCI buszos eszközökről és egy egyszerű CPU sebességmérést.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse hardinfo-remove" href="cmd://launch-appid?hardinfo"><img src="img/applications/hardinfo.png" width="20px" height="20px"/>&nbsp; Megnyitás</a>
+                <a class="btn btn-success hardinfo-install" href="cmd://install-appid?hardinfo"><span class="fa fa-download"></span>&nbsp; Telepítés</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gnome-disk-utility.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gnome-disk-utility-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Lemezek</b></p>
+              <p>Előtelepített segédprogram, ami lehetővé tesz alapvető beállításokat a lemezeken és partíciókon, beleértve a formázást, partícionálást, csatolást, S.M.A.R.T adatok megtekintését és lemezképek írását SD kártyákra/USB meghajtókra.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gnome-disk-utility-remove" href="cmd://launch-appid?gnome-disk-utility"><img src="img/applications/gnome-disk-utility.png" width="20px" height="20px"/>&nbsp; Megnyitás</a>
+                <a class="btn btn-success gnome-disk-utility-install" href="cmd://install-appid?gnome-disk-utility"><span class="fa fa-download"></span>&nbsp; Telepítés</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gparted.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>A GParted</b></p>
+              <p>Egy fejlett eszköz partíciók megtekintésére, létrehozására, módosítására és törlésére. További funkciói még a fájlrendszerek növelése/zsugorítása és sok formátumot támogat.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gparted-remove" href="cmd://launch-appid?gparted"><img src="img/applications/gparted.png" width="20px" height="20px"/>&nbsp; Megnyitás</a>
+                <a class="btn btn-success gparted-install" href="cmd://install-appid?gparted"><span class="fa fa-download"></span>&nbsp; Telepítés</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-disk-usage-analyzer.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-disk-usage-analyzer-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Lemezhasználat elemző</b></p>
+              <p>Egy grafikus program a fájlrendszered, vagy az egyes mappák felderítésére, a felhasznált tárhely meghatározására.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-disk-usage-analyzer-remove" href="cmd://launch-appid?mate-disk-usage-analyzer"><img src="img/applications/mate-disk-usage-analyzer.png" width="20px" height="20px"/>&nbsp; Megnyitás</a>
+                <a class="btn btn-success mate-disk-usage-analyzer-install" href="cmd://install-appid?mate-disk-usage-analyzer"><span class="fa fa-download"></span>&nbsp; Telepítés</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-system-monitor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-system-monitor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Rendszerfigyelő</b></p>
+              <p>Figyeli a jelenleg futó folyamatokat, erőforrás használatot és a jelenleg csatolt fájlrendszerek használt és szabad tárhelyét.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-system-monitor-remove" href="cmd://launch-appid?mate-system-monitor"><img src="img/applications/mate-system-monitor.png" width="20px" height="20px"/>&nbsp; Megnyitás</a>
+                <a class="btn btn-success mate-system-monitor-install" href="cmd://install-appid?mate-system-monitor"><span class="fa fa-download"></span>&nbsp; Telepítés</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/psensor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check psensor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Psensor</b></p>
+              <p>Figyeli és szemlélteti a rendszerhez csatolt összetevők aktuális hőmérsékletét. Beleértve: alaplap, CPU, GPU és merevlemezek.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse psensor-remove" href="cmd://launch-appid?psensor"><img src="img/applications/psensor.png" width="20px" height="20px"/>&nbsp; Megnyitás</a>
+                <a class="btn btn-success psensor-install" href="cmd://install-appid?psensor"><span class="fa fa-download"></span>&nbsp; Telepítés</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

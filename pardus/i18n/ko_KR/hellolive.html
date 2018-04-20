@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <div id="navigation-title" hidden>웰컴</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div id="hello-page" class="span12 animated fadeIn" hidden>
+            <img id="hello-image" src="img/welcome/ubuntu-mate-laptop.png"/>
+
+            <h1 id="hello-header">안녕하세요.</h1>
+            <p>우분투 마테를 다운로드하고 우리 커뮤니티에 참여해 주셔서 감사합니다.</p>
+
+            <p>본 <img src="img/welcome/ubuntu-mate-icon.svg" width="16px" height="16px"/>
+            <b>웰컴</b> 애플리케이션은 여러분의 컴퓨터를 시작하는데 유용한 문서를 제공해드립니다. 한 번 설치하면, 웰컴은 여러분의 컴퓨터 활용을 극대화시킬 여러 가지 애플리케이션들을 나열하게 됩니다.</p>
+
+            <p>우분투 마테와 함께 즐거운 시간 되세요.</p>
+
+            <a class="btn btn-success" onclick="smoothPageFade('index.html')">계속하기</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>

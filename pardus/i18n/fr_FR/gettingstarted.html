@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="indexClose(); smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <a id="index-open" onclick="indexOpen()" class="navigation-button"><span class="fa fa-bars"></span></a>
+        <div id="navigation-title" hidden>Démarrer - <span id="navigation-sub-title"> </span></div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <a id="index-overlay" onclick="indexClose()" hidden></a>
+    <div id="index-menu" hidden>
+      <a id="index-close" onclick="indexClose();"><span class="fa fa-close"></span></a>
+
+      <!-- Shown in live session only -->
+      <span class="live-session-only"><h5>Pré-requis</h5></span>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("sysreq","Exigences Systèmes")'>        <span class="fa fa-laptop"></span>        Exigences Systèmes</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("prepare","Préparations avant Installation")'> <span class="fa fa-hdd-o"></span>         Préparation de l'Installation</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("dualboot","Double-Démarrage (Dual Boot)")'>             <span class="fa fa-retweet"></span>       Double-Démarrage (Dual Boot)</a>
+      <a class="btn btn-success index-btn live-session-only" href="cmd://install">                                                    <span class="fa fa-download"></span>      Installer Maintenant</a>
+
+      <!-- Shown when installed -->
+      <br class="live-session-only"/>
+      <span class="live-session"><h5>Rapport de fin d'Installation</h5></span>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("updates","Mises à Jour Logicielles")'>          <span class="fa fa-refresh"></span>       Mises à Jour Logicielles</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("drivers","Pilotes")'>                   <span class="fa fa-gear"></span>          Pilotes</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("languageInput","Langages & Clavier")'>    <span class="fa fa-globe"></span>         Langages & Clavier</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("tasks","Tâches Optionnelles")'>              <span class="fa fa-check-square"></span>  Tâches Optionnelles</a>
+
+      <br><h5>Familliarité</h5>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("customize","Personnalisation")'>           <span class="fa fa-adjust"></span>        Personnalisation</a>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("shortcuts","Raccourcis Claviers")'>      <span class="fa fa-keyboard-o"></span>    Raccourcis Claviers</a>
+
+      <!-- Shown in either session -->
+      <br><h5>Résolution des Problèmes</h5>
+      <a class="btn btn-inverse index-btn"     onclick='changePage("specs","Spécifications Systèmes"); InitSystemInfo()'> <span class="fa fa-laptop"></span>        Spécifications Systèmes</a>
+
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+
+      <!-- Topics -->
+      <div id="initial" class="row-fluid topicContents" hidden>
+        <div class="span12">
+          <h4 class="center">Veuillez choisir un sujet afin de démarrer.</h4>
+        </div>
+      </div>
+
+      <!-- System Requirements (shown in guest session only) -->
+      <div id="sysreq" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Exigences Systèmes Modestes</h2>
+            <p>Ubuntu MATE fonctionne aussi bien sur des ordinateurs puissants ou moins puissants. Il est optimisé pour être fonctionnel et exiger peu de ressources systèmes.</p>
+
+            <h5>Minimum</h5>
+            <ul>
+              <li>Pentium III 750 megahertz (MHz)</li>
+              <li>512 megabytes (MB) de mémoire vive (RAM)</li>
+              <li>8 gigabytes (GB) d'espace disque</li>
+            </ul>
+
+            <h5>Recommandé</h5>
+            <ul>
+              <li>Core 2 Duo 1.6 gigahertz (GHz)</li>
+              <li>2 gigabytes (GB) de mémoire vive (RAM)</li>
+              <li>16 gigabytes (GB) d'espace disque</li>
+            </ul>
+
+            <p>Le système d'exploitation fonctionnera de manière plus efficace si votre ordinateur dépasse les exigences relatives au matériel.</p>
+
+            <div class="center">
+              <a onclick='changePage("specs","Spécifications Systèmes"); InitSystemInfo()' class="btn btn-inverse"><span class="fa fa-question-circle"></span>&nbsp; Qu'y a-t-il dans mon ordinateur ?</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","Préparations avant Installation")'>
+                <b>Suivant :</b>&nbsp; Préparations avant Installation <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Installation Preparations (shown in guest session only) -->
+      <div id="prepare" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Préparations à l'installation</h2>
+            <p>Ubuntu MATE est relativement simple à installer et configurer, que vous cherchiez à remplacer votre système d'exploitation ou que vous installiez Ubuntu MATE aux côtés d'un système existant comme&nbsp;<span class="fa fa-windows"></span>
+            Microsoft Windows ou une autre<span class="fa fa-linux"></span>
+            Distribution GNU/Linux.</p>
+
+            <h3>Pour de meilleurs résultats :</h3>
+            <ul>
+              <li><u><b>Faites une sauvegarde</b></u> de toutes vos données importantes sur un autre appareil de stockage.</li>
+              <li class="offline">Connectez-vous à Internet afin d'installer toutes les mises à jour disponibles pendant l'installation.</li>
+              <li class="online">Restez connecté(e) à Internet afin d'installer toutes les mises à jour disponibles.</li>
+              <li>Branchez votre appareil à une source d'alimentation électrique si la batterie est faible.</li>
+            </ul>
+            <hr class="soften"/>
+
+            <img src="img/applications/ubiquity.png" class="left"/>
+            <p>La session Live dans laquelle vous êtes en ce moment est une bonne occasion de tester Ubuntu MATE sans modifier votre système, ce qui permet de tester vos périphériques et vérifier qu'ils fonctionnent comme ils le doivent avant de décider si oui ou non vous voulez installer Ubuntu MATE sur votre machine. Une fois prêt(e), double-cliquez l'icône d'installation sur le bureau.</p>
+            <hr class="soften"/>
+
+            <h3>Ordinateurs modernes basés sur UEFI</h3>
+            <p>Si vous avez un PC moderne utilisant l'Interface Firmware Étendue Unifiée (UEFI), il vous sera peut-être nécessaire de désactiver <b>le Démarrage Sécurisé (Secure Boot)</b> (ou d'activer l'option <b>débloquant le Chargeur d'Amorçage</b>
+            ) avant installation, en particulier si vous aviez déjà un système d'exploitation installé auparavant.</p>
+
+            <p>Si vous utilisez une machine fonctionnant à partir d'un BIOS legacy, vous n'aurez pas besoin de faire ceci.</p>
+
+            <p>
+              Spécifiquement quand vous utilisez un double démarrage, il est important que vous démarriez le système dans le mode approprié et que vous utilisiez <b> l'image disque 64-bit</b> , car vous ne pouvez pas démarrer un système d'exploitation installé en mode BIOS après avoir installé un système en mode UEFI et vice versa.
+            </p>
+
+            <p>En démarrant en mode BIOS sur un système UEFI avec un disque formatté en mode GPT une "couche de protection" se manifestera, vous empêchant de continuer. <b>Ne craignez rien, </b> Vos données ne sont ni perdues ni corrompues !
+            </p>
+
+            <div class="alert alert-info">
+              Votre système fonctionne actuellement en <b><span id="boot-mode">???</span> mode</b>.
+            </div>
+
+            <hr class="soften"/>
+
+            <h3>Mémoire Virtuelle (Swap)</h3>
+            <p>Pour les ordinateurs qui commencent à manquer de mémoire vive (RAM), le système d'exploitation commencera à mettre les données en swap sur le disque. Cette mémoire est connue en tant que "mémoire virtuelle de pagination" sur Windows. Les performances diminuent lorsque la mémoire vive est presque toute utilisée et l'ordinateur pourrait possiblement geler s'il utilise complètement sa mémoire vive sans avoir d'endroit pour consigner les données en swap sur le disque.</p>
+            <p>Par défaut, une partition de swap est créée en fonction de la taille de votre mémoire vive (RAM). Par exemple, si vous avez 2 GiB de RAM, 2 GiB d'espace disque seront réservés comme swap à la fin de votre disque.</p>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("sysreq","Exigences Systèmes")'>
+                <span class="fa fa-chevron-left"></span> <b>Précédent :</b>&nbsp; Exigences Systèmes</a>
+              <a class="btn" onclick='changePage("dualboot","Double-Démarrage (Dual Boot)")'>
+                <b>Suivant :</b>&nbsp; Double-Démarrage (Dual Boot) <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advise on Dual Booting (shown in guest session only) -->
+      <div id="dualboot" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h3>Double-Démarrage (Dual Boot)</h3>
+            <p>Dans le cas ou vous voudriez installer Ubuntu MATE aux cotés de votre système d'exploitation, vos partitions auront besoin d'être rétrécies. Ce qui implique que des sections de votre disque dur seront divisées entre différents systèmes d'exploitation.</p>
+
+            <label class="checkbox">
+              <input type="checkbox" value="" id="showDualBootWin">
+                &nbsp;Je suis en mode double-démarrage (Dual Boot) avec &nbsp;<span class="fa fa-windows"></span> Microsoft Windows.
+            </label>
+
+            <h5>Afin de minimiser les risque de perte de données ou de panne, assurez-vous que :</h5>
+            <ul class="unstyled" style="margin-left:8px">
+              <li><span class="fa fa-check-circle"></span> Vous ayez assez d'espace disque libre. 10 GB minimum sont recommandés.</li>
+              <li><span class="fa fa-check-circle"></span> <b><u>Faites une sauvegarde</u></b> vos données importantes sur un autre disque.</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> Défragmentez le disque dur.</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> Assurez-vous que Windows a été arrêté convenablement (qu'il ne soit pas en mode hibernation)</li>
+            </ul>
+
+            <hr>
+            <p><b>Quelle approche préférez-vous ?</b></p>
+            <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+              <li><a onclick="smoothFade('.partition','#partitionSimple')" data-toggle="tab">Simple</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionAdvanced')" data-toggle="tab">Avancée</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionWindows')" data-toggle="tab" class="dualBootWin"><span class="fa fa-windows"></span> Sûre</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane partition" id="partitionSimple">
+                <h5>La méthode la plus simple est d'utiliser l'installeur.</h5>
+                <p>
+                  L'installeur scanne vos disques afin de détecter d'autres systèmes d'exploitation et vous permet de choisir ce que vous voulez faire.
+                  <blockquote>
+                    <b>Vous verrez une option similaire à la suivante :</b>
+                    <br>
+                    <img src="img/screenshots/install-split-choice.png"/>
+                    <br>
+                    <b>Suivie par :</b>
+                    <br>
+                    <img src="img/screenshots/install-split-partitions.png"/>
+                  </blockquote>
+                </p>
+                <div class="alert alert-danger">
+                  <h5><span class="fa fa-warning"></span> N'interrompez pas l'opération de modification de la taille des partitions et n'éteignez pas votre ordinateur.</h5>
+                  <p>Dans le cas ou feriez une des manipulations précédemment mentionnées, il se peut que vous perdiez des données ou que vous corrompiez la table de partition. Veuillez re-vérifier les changements avant de continuer.</p>
+                  <p>Un curseur <span class="fa fa-spinner"></span>  en rotation peut apparaître pendant un long moment en fonction de la taille de vos disques..</p>
+                </div>
+                <p class="dualBootWin">
+                  <span class="fa fa-windows"></span> <b>La prochaine fois que vous démarrerez Windows, lancez</b>
+                  <code>chkdsk /f</code> à partir de l'invite de commandes et pour vérifier s'il y a des erreurs dans le système de fichier. Il se peut que Windows planifie cette tâche automatiquement. Cela assure la consistance pour le système de fichiers NTFS.
+                </p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionAdvanced">
+                <h5>Utilisez GParted ou le mode "Manuel" de l'installeur.</h5>
+                <p>
+                  <img class="left" src="img/applications/gparted.png"/>
+                  <b>GParted</b> est seulement disponible durant une session live.
+                  Il se trouve sous le menu <b>Système <span class="fa fa-long-arrow-right"></span>
+                  Administration</b> . GParted permet une flexibilité complète sur vos partitions. Il est principalement fait pour les utilisateurs confirmés qui savent comment ils veulent aménager leur disques. Cette méthode permet de changer les partitions avant l'installation.
+                </p>
+                <div class="center">
+                  <a href="cmd://gparted" class="btn btn-inverse"><img src="img/applications/gparted.png" width="32px" height="32px"> Open GParted</a>
+                </div>
+                <br>
+                <p>Une fois les opérations sur vos disques complétées, vous pouvez laisser l'espace disque restant non-alloué.
+                L'installeur détectera cet espace non-utilisé et y installera Ubuntu MATE.</p>
+                <br>
+                <h5>Utilisez le mode "Manuel" de l'installeur.</h5>
+                <p>À la place ou en plus de GParted, le mode <b>Manuel</b> de l'assistant d'installation peut aussi configurer et modifier la taille de vos partitions ainsi que choisir des points de montage. Diviser vos disques peut faciliter une éventuelle réinstallation du système d'exploitation ultérieure.</p>
+
+                <p><b>Vous pouvez spécifier ces points de montage :</b></p>
+                <ul>
+                  <li><code>/</code> - La base d'Ubuntu MATE</li>
+                  <li><code>/boot</code> - Le Chargeur d'Amorçage (Bootloader) et les noyaux (kernels)</li>
+                  <li><code>/home</code> - Vos fichiers et dossiers personnels</li>
+                  <li><code>/tmp</code> - Les fichiers temporaires</li>
+                  <li><code>/usr</code> - Contient la plupart des applications <i> (fichiers binaires, documents, librairies, ...etc)</i></li>
+                  <li><code>/var</code> - Données variables <i>(comme des fichiers de journalisation système)</i></li>
+                  <li><code>/srv</code> - Données des Services Système <i>(habituellement utilisées pour des configurations serveurs)</i></li>
+                  <li><code>/opt</code> - Les logiciels qui ne sont pas gérés par le gestionnaire de paquets
+                                          <i>(comme <img src="img/applications/spotify.png" width="16px" height="16px"> Spotify)</i></li>
+                </ul>
+                <p>Il n'est pas nécessaire de créer des partitions pour chaque point de montage mentionné plus haut.
+                Souvent les dossiers partitionés sont <code>/</code>, <code>/home</code>
+                et <code>/boot</code>. Ces points de montage peuvent aussi s'étendre sur différents
+                disques physiques. Par exemple si vous voulez que le système d'exploitation <code>/</code> soit sur un SSD,
+                mais que vos fichiers personnels soient <code>/home</code> sur un disque dur mécanique.</p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionWindows">
+                <h5>Rapetisser votre disque système sous Windows.</h5>
+                <div class="alert alert-warning">
+                  <h5><span class="fa fa-exclamation-circle"></span> Cela s'applique à Windows Vista et plus.</h5>
+                  <p>Si vous utilisez Windows XP ou un système plus ancien, il vous faudra utiliser la méthode
+                  <b>Simple</b> ou <b>Avancée</b> afin de rapetisser votre disque système.</p>
+                </div>
+
+                <p>Les nouvelles versions de Windows contiennent un utilitaire pour diminuer la taille du volume NTFS pendant que votre système est en marche. Ce qui est plus sûr s'il est essentiel que Windows puisse toujours démarrer sur votre ordinateur alors que vous faites l'expérience d'Ubuntu MATE.</p>
+                <blockquote>
+                  1. Ouvrir <b>Gestion des Disques</b> à partir du menu de démarrage.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-1.png">
+                  </div>
+                  <br>
+                  2. Faites un clic droit sur le disque désiré et sélectionnez <b>Rétrécir Partition</b> dans le menu contextuel.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-2.png">
+                  </div>
+                  <br>
+                  3. Entrer la taille désirée pour votre partition système.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-3.png">
+                  </div>
+                  <br>
+                  <div class="alert alert-info">
+                    Souvenez-vous, Ubuntu MATE a besoin de 8 GB d'espace disque minimum.
+                    <b>1 GB = 1000 MB</b>
+                  </div>
+                </blockquote>
+
+                <h5>Lecture Complémentaire</h5>
+                <p>Si vous avez besoin de plus d'information sur les pratiques optimales pour modifier des partitions contenant Windows, lisez
+                <a href="cmd://link?https://help.ubuntu.com/community/HowtoResizeWindowsPartitions">
+                  l'article d'aide</a> en ligne.</p>
+              </div>
+
+            <hr class="soften"/>
+            <h3>Réparer des Problèmes de Démarrage</h3>
+
+            <p>Les distributions Linux utilisent un chargeur de d'amorçage (boot loader) connu sous le nom de<code>grub</code>,
+            qui recherche et démarre le système d'exploitation. Cependant, certains systèmes (comme Windows) ne s'intègrent pas à d'autres chargeurs d'amorçage et essayera de les remplacer, avec la possibilité de perdre temporairement accès à Ubuntu MATE.</p>
+
+            <p>Par chance vous pouvez utiliser l'outil de <b>Réparateur d'Amorçage (Boot Repair)</b> pour réparer les problèmes les plus courants causés par d'autres systèmes d'exploitation.</p>
+            </div>
+
+            <div class="alert alert-warning offline">
+              <h5>Ceci requiert de télécharger un paquet.</h5>
+              <p>Veuillez vous connecter à Internet afin de télécharger et de pouvoir utiliser cet outil.</p>
+              <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Désolé, Bienvenue n'a pas été en mesure d'établir une connexion.</p></div>
+              <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Réessayer</a>
+            </div>
+
+            <a class="boot-repair-install btn btn-inverse online" href="cmd://install-appid?boot-repair"><span class="fa fa-download"></span>&nbsp; Télécharger le Réparateur d'Amorçage (Boot Repair)</a>
+            <a class="boot-repair-remove btn btn-success" href="cmd://run?boot-repair"><span class="fa fa-wrench"></span>&nbsp; Ouvrir Boot-Repair</a>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","Préparations avant Installation")'>
+                <span class="fa fa-chevron-left"></span> <b>Précédent :</b>&nbsp; Préparations avant Installation</a>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software Updates -->
+      <div id="updates" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Mises à Jour Logicielles</h2>
+
+            <div class="alert alert-warning offline">
+              <h5>Une connexion Internet est requise pour pouvoir télécharger et installer les mises à jour.</h5>
+            </div>
+            <p>Ubuntu MATE vérifie périodiquement si de nouvelles mises à jour logiciel ou de sécurité sont disponible pour votre ordinateur. Si vous venez tout juste d'installer Ubuntu MATE, vous devriez le faire maintenant.</p>
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://update" onclick="smoothFade('','#updates-hint')">
+                <img src="img/applications/system-software-update.png" width="32px" height="32px"/>&nbsp; Mise à Jour
+              </a>
+              <span id="updates-hint" class="center" hidden><small>
+                <p><span class="fa fa-info-circle"></span> <b>Mise à Jour</b> peut être retrouvée plus tard dans
+                <b><i>Système <span class="fa fa-long-arrow-right"></span> Administration.</i></b></p>
+              </small></span>
+            </div>
+            <hr class="soften"/>
+            <p>Le paquet "codecs" inclut une solution multi-plateformes pour décoder, encoder, enregistrer, convertir ainsi que diffuser de l'audio et du vidéo. Il inclut aussi un décodeur audio MP3 permettant la lecture de fichiers "MPEG 1 audio layer III" (MP3).</p>
+            <!-- <p>Vous aurez besoin de la base de données Blu-ray AACS pour lire des disques cryptés AACS ou protégés BD+.</p> -->
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://install-appid?codecs">
+                <img src="img/applications/codecs.png" width="32px" height="32px"/>&nbsp; Installer le Paquet Codecs
+              </a>
+              <!-- <a class="btn btn-lg btn-inverse" href="cmd://get-aacs-db">
+                <img src="img/applications/bluray.png" width="32px" height="32px"/>&nbsp; Installer la Base de Données Blu-ray AACS
+              </a> -->
+              <span class="codecs-applying bluray-applying"><br><br><img src="img/welcome/processing.gif" width="24px" height="24px"/> Installation en cours...</span>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("drivers","Pilotes")'>
+                <b>Suivant :</b>&nbsp; Pilotes <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drivers -->
+      <div id="drivers" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Pilotes</h2>
+            <p>Une large quantité de matériel est compatible avec Ubuntu MATE, cependant des composants et périphériques nécessitent des pilotes propriétaires pour fonctionner normalement. Installer le paquet du micrologiciel est souvent nécessaire pour faire fonctionner correctement certains périphériques, ceux-ci sont généralement du type Bluetooth ainsi que Wi-Fi.</p>
+            <div class="alert alert-warning offline">
+              <h5>Une connexion Internet est nécessaire pour télécharger et installer des pilotes.</h5>
+            </div>
+            <div align="center">
+                <a class="btn btn-inverse" href="cmd://drivers" onclick="smoothFade('','#drivers-hint')">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; Pilotes Additionnels
+                </a>
+                <a class="btn btn-inverse" href="cmd://install-appid?firmware">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; Installer Paquet Micrologiciel
+                </a>
+            </div>
+
+            <span id="drivers-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Pilotes Additionnels</b> peut être retrouvée plus tard dans
+              <b><i>Système <span class="fa fa-long-arrow-right"></span> Administration.</i></b></p>
+            </small></span>
+
+            <!-- Advice about graphics -->
+            <a onclick="toggleSub('graphics-section','graphics-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="graphics-arrow"></span> &zwnj;Graphics&zwnj;</h3></a>
+            <div id="graphics-section" hidden>
+
+              <div class="graphics-unknown alert alert-danger">
+                <h5>Désolé, Bienvenue n'a pas été en mesure d'identifier la marque de votre carte graphique.</h5>
+                <p><span class="fa fa-plug"></span><b> Carte/Chipset : </b><i class="graphics-pci">Inconnu</i></p>
+              </div>
+
+              <div class="graphics-nvidia alert alert-info" hidden>
+                <h5>NVIDIA Carte Graphique Détectée.</h5>
+                <p>NVIDIA a peut-être des pilotes pour votre carte. Ceux-ci peuvent améliorer les performances des applications 3D et des jeux mais aussi améliorer la gestion de l'alimentation.</p>
+                <p><span class="fa fa-plug"></span><b> Carte/Chipset : </b><i class="graphics-pci">Inconnu</i></p>
+              </div>
+
+              <div class="graphics-amd alert alert-success" hidden>
+                <h5>AMD Carte Graphique Détectée.</h5>
+                <p>Les pilotes AMD ne sont plus supportés sur Ubuntu. Les pilotes open source que vous utilisez actuellement donneront les performances les plus stables.</p>
+                <p><span class="fa fa-plug"></span><b> Carte/Chipset : </b><i class="graphics-pci">Inconnu</i></p>
+              </div>
+
+              <div class="graphics-intel alert alert-success" hidden>
+                <h5>Tout est déjà bon.</h5>
+                <p>Les pilotes Intel sont open source et sont supportés / mis à jour avec le noyau.</p>
+                <p><span class="fa fa-plug"></span><b> Carte/Chipset : </b><i class="graphics-pci">Inconnu</i></p>
+              </div>
+
+              <div class="graphics-vbox alert alert-info" hidden>
+                <h5>Additions Invité VirtualBox</h5>
+                <p>Pour améliorer les performances graphiques à l'intérieur de la machine virtuelle, veuillez installer les Additions Invité.</p>
+              </div>
+
+              <div id="graphics-proprietary" hidden>
+                <h4>Pilotes Propriétaires ou Open Source ?</h4>
+                <p>Les pilotes propriétaires proviennent directement du fabricant.
+                Comme ils ne sont pas open source, les développeurs d'Ubuntu ne <b>peuvent pas examiner ou améliorer le code</b> ce qui signifie que vous devrez vous référer au fabricant pour le support.</p>
+
+                <p>De plus, les pilotes propriétaires peuvent <b> grandement améliorer les performances graphiques</b>  et par extension
+                le système tout entier. Les utilisateurs pourraient désirer installer ces pilotes pour :</p>
+                <ul>
+                  <li>Lancer des applications 3D et des jeux.</li>
+                  <li>Utiliser les effets de fenêtres de Compiz.</li>
+                  <li>Améliorer la gestion de l'alimentation, surtout si l'appareil surchauffe avec les pilotes open source.</li>
+                  <li>Améliorer le support des hautes résolutions ainsi que des écrans multiples.</li>
+                  <li>Résoudre les problèmes d'écrans noirs.</li>
+                </ul>
+
+                <p>Les pilotes propriétaires sont connus sous le nom de "blobs binaires".  Certains périphériques se comporteront moins bien,
+                 ce qui créera plus de problèmes qu'avec les pilotes open source. Des problèmes comme :</p>
+                <ul>
+                  <li>L'échec du démarrage de l'interface graphique.</li>
+                  <li>Des pilotes cassés après une mise à jour.</li>
+                  <li>Des bugs graphiques sévères.</li>
+                  <li>Des problèmes avec les jeux et applications requérant une accélération matérielle.</li>
+                </ul>
+
+                <p class="graphics-nvidia graphics-amd">
+                  <code id="graphics-open-driver-name"></code> est le pilote open source pour votre carte.
+                </p>
+
+                <p id="graphics-nvidia" hidden>
+                  <hr class="soften"/>
+                  <h4>Qu'en est-il des derniers pilotes NVIDIA ?</h4>
+                  <p><b>Pilotes Additionnels</b> va chercher les derniers pilotes testés directement des dépôts Ubuntu.
+                  Les utilisateurs avancés ainsi que les "gamers" désirant des versions plus récentes pourront considérer le fait d'ajouter le PPA
+                  <a href="cmd://link?https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa">Ubuntu Graphics Driver</a>,
+                  qui contient les derniers pilotes NVIDIA pour Ubuntu. Ces paquets ne sont pas aussi minutieusement testés.</p>
+                  <div class="alert alert-warning">
+                    <span class="fa fa-exclamation-triangle"></span> Ceci ne s'applique que pour les cartes supportées, et non les cartes plus anciennes utilisant un pilote legacy.
+                  </div>
+                  <a class="btn btn-warning" href="cmd://upgrade-appid?nvidia-settings"><span class="fa fa-level-up"></span>&nbsp; Ajouter le Dépôt.</a>
+                  <br><br>
+                  <!-- <a class="btn btn-danger" href="#"><span class="fa fa-trash"></span>&nbsp; Remove Repository</a> -->
+                  <p>Pour ajouter le dépôt au système, ouvrez une fenêtre de terminal et tapez ceci :</p>
+                  <blockquote class="terminal miscCmd">
+                    <span class="fa fa-dollar"></span> sudo add-apt-repository ppa:graphics-drivers/ppa
+                    <br>&nbsp;<span class="fa fa-dollar"></span> sudo apt-get update
+                  </blockquote>
+                  <p>Après l'ajout du PPA, les nouvelles versions seront présentées à l'installation dans <a href="cmd://drivers">Pilotes Additionnels :</a></p>
+                  <img src="img/screenshots/graphics-drivers-nvidia.png"/>
+                </p>
+              </div>
+            </div>
+
+            <!-- Advice about wireless -->
+            <a onclick="toggleSub('wireless-section','wireless-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="wireless-arrow"></span> Connections Sans-fil, Bluetooth et Autres Appareils</h3></a>
+            <div id="wireless-section" hidden>
+             <p>Dans le cas où aucun pilote n'a été trouvé, et que votre matériel ne fonctionne pas après avoir installé les paquets de micrologiciels, il se peut que vous deviez faire une recherche en mentionnant le nom de votre appareil afin de trouver les pilotes appropriés.</p>
+
+              <p>Malheureusement cela est dû au fait que, soit le fabricant de votre matériel ne fournit pas gratuitement le code source aux développeurs Linux, soit il n'y a pas assez de documentation pour créer des pilotes pour cette marque et ce modèle précis.</p>
+
+               <p>Il se peut que certains fabricants fournissent eux-même des pilotes au code source privé directement. Si vous avec besoin d'aide, <a onclick="smoothPageFade('community.html')">posez vos question à la communauté</a>.</p>
+
+               <p><a href="cmd://link?https://help.ubuntu.com/community/WifiDocs/WirelessTroubleShootingGuide/Drivers">
+               <span class="fa fa-globe"></span> En lire plus sur le dépannage du matériel sans-fil.</a></p>
+            </div>
+
+            <!-- Advice about printers -->
+            <a onclick="toggleSub('printers-section','printers-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="printers-arrow"></span> Imprimantes</h3></a>
+            <div id="printers-section" hidden>
+              <p>Vous pouvez installer une imprimante dans
+              <a href="cmd://printers">
+              <img src="/usr/share/icons/Humanity/actions/16/document-print.svg" width="20px" height="20px"/>
+              <b>Imprimantes</b></a>
+              &nbsp; <i>(sous Système <span class="fa fa-long-arrow-right"></span>
+              Administration)</i>, vous verrez apparaître une liste de pilotes disponibles le cas échéant.</p>
+
+              <p>Il est possible que certains fabricants fournissent leur propres pilotes. Il se peut aussi qu'ils vous demandent de les télécharger à partir de leur site web.</p>
+              <p><a href="cmd://link?https://help.ubuntu.com/community/Printers">
+              <span class="fa fa-globe"></span> En lire plus sur les imprimantes</a>.</p>
+
+              <hr class="soften"/>
+
+              <div class="row-fluid">
+                <div class="span2 center-inside">
+                  <img src="img/applications/hplip.png" width="64px" height="64px"/>
+                  <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+                </div>
+                <div class="span10">
+                  <p><b>Le Système d'Impression et d'Imagerie Linux HP</b></p>
+                  <p>Recommandé si vous avez une imprimante HP. Il permet d'imprimer à partir de la plupart des Inkjets et plusieur LaserJets de types "périphériques simple-fonction HP" (HP SFP) ainsi que de scanner, envoyer des fax, et accéder aux stoquages de masse à partir de la plupart des imprimantes de types "périphériques multi-fonction" (MFP) de la marque HP .</p>
+                  <p class="text-right">
+                    <a class="btn btn-inverse hp-printer-remove" href="cmd://launch-appid?hp-printer"><img src="img/applications/hplip.png" width="20px" height="20px"/>&nbsp; Ouvrir</a>
+                    <a class="btn btn-success hp-printer-install" href="cmd://install-appid?hp-printer"><span class="fa fa-download"></span>&nbsp; Installer</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("updates","Mises à Jour Logicielles")'>
+                <span class="fa fa-chevron-left"></span> <b>Précédent :</b>&nbsp; Mises à Jour Logicielles</a>
+              <a class="btn" onclick='changePage("languageInput","Langue de Saisie")'>
+                <b>Suivant :</b>&nbsp; Langue de Saisie <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language & Input Support -->
+      <div id="languageInput" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Support des Langues</h2>
+            <p>Votre ordinateur pourrait nécessiter des mises à jours pour les paramètres de langue et de localisation, ou vous pouvez vouloir installer le support de langues additionnel.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://language" onclick="smoothFade('','#locale-hint')">
+              <img src="img/humanity/preferences-desktop-locale.svg" width="32px" height="32px"/>&nbsp; Support des Langues
+            </a></div>
+            <span id="locale-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Support des Langues</b> peut être retrouvée plus tard dans
+              <b><i>Système <span class="fa fa-long-arrow-right"></span> Préférences
+                           <span class="fa fa-long-arrow-right"></span> Personnel</i></b></p>
+            </small></span>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Saisie Complexe</h2>
+            <p>Certaines régions du monde nécessitent la Saisie Complexe. </p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-chinese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Chinois</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-japanese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Japonais</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-korean"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Coréen</a>
+          </div>
+        </div>
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("drivers","Pilotes")'>
+            <span class="fa fa-chevron-left"></span> <b>Précédent :</b>&nbsp; Pilotes</a>
+          <a class="btn" onclick='changePage("tasks","Tâches Optionnelles")'>
+            <b>Suivant :</b>&nbsp; Tâches Optionnelles <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Additional Tasks - Backups / Firewall / Users -->
+      <div id="tasks" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Sauvegarde, Pare-Feu et Gestion des Utilisateurs</h2>
+            <p>Ubuntu MATE inclut des outils permettant de sauvegarder vos fichiers, un pare-feu pré-installé, et supporte plusieurs comptes utilisateurs.</p>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-backup.png">
+          </div>
+          <div class="span6">
+            <h3>Sauvegardes</h3>
+            <p>Rien n'est plus important qu'avoir une sauvegarde de vos fichiers personnels, au cas où quelque-chose de désastreux arrive a votre ordinateur.</p>
+            <p><img src="img/applications/deja-dup.png" width="20px" height="20px"/>
+            <b>Deja-Dup</b> vient pré-installé et supporte la sauvegarde vers des appareils locaux ainsi que des services de stoquage dans le nuage.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://backup" onclick="smoothFade('','#backup-hint')">
+              <img src="img/applications/deja-dup.png" width="32px" height="32px"/>&nbsp; Configurer la Sauvegarde
+            </a>
+            <span id="backup-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Sauvegardes</b> peut être retrouvée plus tard dans
+              <b><i>Système <span class="fa fa-long-arrow-right"></span> Préférences
+                           <span class="fa fa-long-arrow-right"></span> Personnel</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-firewall.png">
+          </div>
+          <div class="span6">
+            <h3>Pare-Feu</h3>
+            <p>Les pare-feux empêchent les connections malveillantes d'entrer ou de sortir de votre ordinateur. Par défaut, le pare-feu est désactivé,
+              <a href="cmd://link?https://help.ubuntu.com/community/DoINeedAFirewall">en apprendre plus sur les pare-feu</a>.</p>
+            <p><img src="img/applications/gufw.png" width="20px" height="20px"/>
+              <b>Gufw</b> fournit une interface graphique à <code>ufw</code>
+              (Pare-Feu Non-Compliqué). Si la sécurité est importante pour vous, il y a
+              <a href="cmd://link?https://wiki.ubuntu.com/BasicSecurity">plusieurs manières de rester sécurisé</a>.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://firewall" onclick="smoothFade('','#firewall-hint')">
+              <img src="img/applications/gufw.png" width="32px" height="32px"/>&nbsp; Configurer le Pare-Feu
+            </a>
+            <span id="firewall-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Configuration du Pare-Feu</b> peut être retrouvée plus tard dans
+              <b><i>Système <span class="fa fa-long-arrow-right"></span> Préférences
+                           <span class="fa fa-long-arrow-right"></span> Internet et Réseaux</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-users.png">
+          </div>
+          <div class="span6">
+            <h3>Utilisateurs</h3>
+            <p>
+              Vous partagez votre ordinateur avec d'autres personnes ? Configurez des comptes utilisateurs séparés pour chacun des utilisateurs afin de protéger la vie privée de chaque personne utilisant le même ordinateur.
+            </p>
+            <p>Vous pouvez également vous connecter en tant qu' <b>Invité</b> si quelqu'un utilise votre ordinateur exceptionnellement.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://users" onclick="smoothFade('','#users-hint')">
+              <img src="img/humanity/system-users.svg" width="32px" height="32px"/>&nbsp; Configuration des Utilisateurs
+            </a>
+            <span id="users-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Utilisateurs et Groupes</b> peut être retrouvée plus tard dans
+              <b><i>Système <span class="fa fa-long-arrow-right"></span> Administration
+                           <span class="fa fa-long-arrow-right"></span> Utilisateurs et Groupes</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("languageInput","Langue de Saisie")'>
+            <span class="fa fa-chevron-left"></span> <b>Précédent :</b>&nbsp; Langue de Saisie</a>
+          <a class="btn" onclick='changePage("customize","Personnalisation")'>
+            <b>Suivant :</b>&nbsp; Personnalisation <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Customizing the Experience -->
+      <div id="customize" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Interface Utilisateur</h2>
+            <p>Vous trouverez dans Ubuntu MATE un outil unique pour transformer l'interface utilisateur. Vous pourrez l'utiliser afin de rapidement paramétrer l'interface utilisateur et ainsi imiter d'autres systèmes d'exploitation populaires, aussi bien en apparence qu'en fonction. Les agencements <b>Redmond</b> agencements donnent une apparence similaire à Microsoft Windows tandis que les agencements <b>Cupertino</b> donnent une apparence similaire à Apple Mac OS X.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://tweak" onclick="smoothFade('','#tweak-hint')">
+              <img src="img/applications/control-centre.png" width="32px" height="32px"/>&nbsp; Interface Utilisateur
+            </a></div>
+            <span id="tweak-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Adapteur MATE Tweak</b> peut être retrouvée plus tard dans
+              <b><i>Système <span class="fa fa-long-arrow-right"></span> Préférences
+                           <span class="fa fa-long-arrow-right"></span> Apparence et Fonction</i></b>.</p>
+            </small></span>
+
+            <h2>Centre de Contrôle</h2>
+            <p>Les utilitaires mentionnés plus haut font partie de l'application complète Centre de Contrôle, fournie avec Ubuntu MATE. Vous pouvez configurer le moindre aspect de votre système à partir du Centre de Contrôle.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://control" onclick="smoothFade('','#control-hint')">
+              <img src="img/applications/user-desktop.svg" width="32px" height="32px"/>&nbsp; Centre de Contrôle
+            </a></div>
+            <span id="control-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Centre de Contrôle</b> peut être retrouvé plus tard dans le
+              <b><i>Système</i></b> menu.</p>
+            </small></span>
+
+            <h2>Arrière-plan du Bureau</h2>
+            <p>La Communauté Ubuntu MATE a contribué au projet en soumettant des dizaines d'arrières-plans au fil des années. Pourquoi ne pas les installer, vous en trouverez peut-être un qui vous plaira ?</p>
+            <div class="center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?ubuntu-mate-wallpapers-complete"><span class="fa fa-3x fa-picture-o fa-va"></span>&nbsp; Arrière-plans</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("tasks","Tâches Optionnelles")'>
+                <span class="fa fa-chevron-left"></span> <b>Précédent :</b>&nbsp; Tâches Optionnelles</a>
+              <a class="btn" onclick='changePage("shortcuts","Raccourcis Claviers")'>
+                <b>Suivant :</b>&nbsp; Raccourcis Claviers <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts -->
+      <div id="shortcuts" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Raccourcis Claviers</h2>
+            <p>Ubuntu MATE est muni d'une quantité de raccourcis clavier aidant à vous rendre plus efficace en utilisant votre ordinateur.</p>
+            <h3>Raccourcis courants</h3>
+            <p>Ces raccourcis s'appliquent à la plupart des applications.</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">C</b></td>
+                <td>Copier le texte / l'objet sélectionné</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">X</b></td>
+                <td>Couper le texte / l'objet sélectionné</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">V</b></td>
+                <td>Coller/insérer le texte ou l'objet sélectionné</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>Sélectionner tout le texte</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F</b></td>
+                <td>Chercher et remplacer des mots</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">B</b></td>
+                <td>Mettre le texte sélectionné en caractères gras</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">I</b></td>
+                <td>Mettre le texte sélectionné en italique</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">U</b></td>
+                <td>Sous-ligner le texte sélectionné</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>Ouvrir un nouveau document ou une nouvelle fenêtre</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>Sauvegarder le document courant</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">O</b></td>
+                <td>Ouvrir un nouveau document</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">P</b></td>
+                <td>Imprimer le document courant</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>Annuler les derniers changements</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>Rétablir les changements que vous venez d'annuler</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">F11</b></td>
+                <td>Basculer entre le mode plein écran et fenêtré de l'application en cours</td>
+              </tr>
+            </table>
+
+            <h3>Raccourcis du bureau</h3>
+            <p>Cette section énumère les raccourcis clavier les plus courant. Ceux-ci peuvent être utilisés pour manœuvrer certaines parties du bureau.</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F1</b></td>
+                <td>Ouvrir le menu Applications</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F2</b></td>
+                <td>Lancer une application en entrant son nom dans la boîte qui apparaît</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Imp. écr</b></td>
+                <td>Prendre une capture d'écran complète</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Prt Sc</b></td>
+                <td>Prendre une capture d'écran de la fenêtre en cours</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Supprimer</b></td>
+                <td>Ouvrir une fenêtre de dialogue afin d'éteindre, redémarrer ou mettre en veille votre ordinateur.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">L</b></td>
+                <td>Bloquer votre écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">T</b></td>
+                <td>Ouvrir une fenêtre de terminal.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>Activer/désactiver le lecteur d'écran.</td>
+              </tr>
+            </table>
+
+            <h3>Raccourcis de la fenêtre</h3>
+            <table class="table">
+              <tr>
+                <td style="width:270px;"><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tabulation</b></td>
+                <td>
+                  Commuter entre les fenêtres ouvertes.
+                  <ul>
+                    <li>Appuyez sur Alt + Tab puis relâchez Tab (tout en continuant de maintenir Alt enfoncé).</li>
+                    <li>Appuyez sur Tab de façon répétée pour passer en revue la liste de fenêtres disponibles affichée sur l'écran.</li>
+                    <li>Relâchez la touche Alt pour passer à la fenêtre sélectionnée.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tab</b></td>
+                <td>
+                  Commuter entre les fenêtres ouvertes dans tous les Espaces de Travail.
+                  <ul>
+                    <li>Appuyez sur Tab de façon répétée pour passer en revue la liste de fenêtres disponibles affichée sur l'écran.</li>
+                    <li>Relâchez les touches Ctrl et Alt pour passer à la fenêtre sélectionnée.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Gauche</b></td>
+                <td>Passer a l'espace de travail précédent.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Droite</b></td>
+                <td>Passer au prochain espace de travail.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Majuscule</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Gauche</b></td>
+                <td>Déplacer la fenêtre active vers le précédent espace de travail.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Majuscule</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Droite</b></td>
+                <td>Déplacer la fenêtre active vers le prochain espace de travail.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F4</b></td>
+                <td>Fermer les fenêtres.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F5</b></td>
+                <td>Faire revenir la fenêtre à la taille "normale" ou précédente le cas échéant.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F7</b></td>
+                <td>Déplacer la fenêtre active (il est possible de la déplacer avec la souris ou le clavier).</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F8</b></td>
+                <td>Redimensionner la fenêtre active (il est aussi possible de la déplacer avec la souris ou le clavier).</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F9</b></td>
+                <td>Rapetisser la fenêtre active.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F10</b></td>
+                <td>Maximiser la fenêtre active.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F12</b></td>
+                <td>Terminal Déroulant.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Espace</b></td>
+                <td>Afficher le menu de la fenêtre, celui-ci contient des options comme "Toujours en Avant", "Rapetisser" et "Maximiser" ainsi que les commandes mentionnées plus haut.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Pavé Numérique 7</b></td>
+                <td>Placer la fenêtre dans le coin haut-gauche de l'écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Pavé Numérique 8</b></td>
+                <td>Placer la fenêtre dans la moitié haute de l'écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Pavé Numérique 9</b></td>
+                <td>Placer la fenêtre dans le coin haut-droit de l'écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Pavé Numérique 5</b></td>
+                <td>Centrer/Maximiser la fenêtre au milieu de l'écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Pavé Numérique 1</b></td>
+                <td>Placer la fenêtre dans le coin bas-gauche de l'écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Pavé Numérique 2</b></td>
+                <td>Placer la fenêtre dans le moitié basse de l'écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Pavé Numérique 3</b></td>
+                <td>Placer la fenêtre dans le coin bas-droit de l'écran.</td>
+              </tr>
+            </table>
+
+            <h3>Raccourcis vers les Effets Compiz</h3>
+            <p>Tous les raccourcis mis en liste dans cette section requièrent l'activation de Compiz.</p>
+            <table class="table">
+              <tr>
+                <td style="width: 280px"><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">D</b></td>
+                <td>Activer ou Désactiver "Afficher le Bureau".</td>
+              </tr>
+              <!--
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Up</b></td>
+                <td>Permet d'utiliser une fonction similaire à "exposé", qui vous présente avec toutes les fenêtres ouvertes, et dans laquelle vous pourrez sélectionner celle sur laquelle vous voulez donner le focus.</td>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Down</b></td>
+                <td>Défait le cube de votre espace de travail, ce qui permet de voir plus d'un espace de travail à la fois. Vous pouvez ensuite utiliser les flèches gauche et droite afin de sélectionner l'espace de travail voulu.</td>
+              </tr>
+              -->
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>Dé-zoomer, et afficher le commutateur d'espace de travail.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>Activer l'effet "mise à l'échelle" et afficher toutes les fenêtres de l'espace de travail en cours.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Majuscule</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>Activer l'effet "mise à l'échelle" et afficher toutes les fenêtres de tous les espaces de travail en cours.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>Inverser les couleurs de la fenêtre active.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">M</b></td>
+                <td>Inverser les couleurs de l'écran entier.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">La Molette</b></td>
+                <td>Zoomer sur l'écran.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Le bouton du Milieu de la souris</b></td>
+                <td>Sélectionner une zone dans laquelle zoomer, en utilisant un rectangle.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Le Bouton Gauche de la Souris</b></td>
+                <td>Bouger la fenêtre active.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Le bouton du Milieu de la souris</b></td>
+                <td>Modifier la taille de la fenêtre active.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Le Bouton Droit de la Souris</b></td>
+                <td>Afficher le menu de la fenêtre.</td>
+              </tr>
+            </table>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("customize","Personnalisation")'>
+                <span class="fa fa-chevron-left"></span> <b>Précédent :</b>&nbsp; Personnalisation</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's inside my computer? -->
+      <div id="specs" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Qu'y a-t-il dans mon ordinateur ?</h2>
+            <p>Votre ordinateur est fait de nombreux composants interagissant entre eux. Cette information est utile au moment ou vous voulez demander de l'aide, pour s'assurer que le matériel et les logiciels fonctionnent sur votre machine.</p>
+          </div>
+        </div>
+        <div id="specs-loading"><p>Veuillez attendre pendant que la fenêtre d'information se charge...</p></div>
+        <ul id="specs-tabs" class="nav nav-pills" data-tabs="tabs" hidden>
+          <li class="active"><a onclick="smoothFade('.tab-contents','#specs-basic')" data-toggle="tab">Basique</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-detailed')" data-toggle="tab">Détaillé</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-more')" data-toggle="tab">Utilitaires</a></li>
+        </ul>
+
+        <div class="tab-contents" id="specs-basic" hidden>
+          <div id="specs-icon">
+            <img class="specs-icon" hidden id="specs-device-normal" src="img/welcome/ubuntu-mate-laptop.png"/>
+            <img class="specs-icon" hidden id="specs-device-rpi" src="img/logos/raspberry-pi.png"/>
+            <img class="specs-icon" hidden id="specs-device-vbox" src="img/logos/virtualbox-vbox.png"/>
+            <img class="specs-icon" hidden id="specs-device-powerpc" src="img/logos/powerpc.png"/>
+            <img class="specs-icon" hidden id="specs-live-session" src="img/welcome/live-session-image.png"/>
+          </div>
+          <div id="specs-box">
+            <h4><span class="fa fa-cog"></span> Système</h4>
+            <table class="table">
+              <tr>
+                <th>Distribution :</th>
+                <td><span id="spec-distro"></span></td>
+              </tr>
+              <tr>
+                <th>Noyau :</th>
+                <td>
+                  <span id="spec-kernel"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Le Noyau Linux est le cœur d'Ubuntu.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Carte Mère :</th>
+                <td><span id="spec-motherboard"></span></td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Mode de Démarrage :</th>
+                <td>
+                  <span id="spec-boot-mode"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Affiche le mode qu'utilise Ubuntu MATE pour communiquer avec le micrologiciel.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-bolt"></span> Processeur</h4>
+            <table class="table">
+              <tr>
+                <th>Modèle :</th>
+                <td><span id="spec-cpu-model"></span></td>
+              </tr>
+              <tr>
+                <th>Vitesse :</th>
+                <td><span id="spec-cpu-speed"></span></td>
+              </tr>
+              <tr>
+                <th>Architecture utilisée :</th>
+                <td>
+                  <span id="spec-arch-use"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="L'architecture du système d'exploitation utilisé. Par exemple i386 = 32-bit.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi specs-hide-ppc">
+                <th>Architecture(s) supportées :</th>
+                <td>
+                  <span id="spec-arch-supported"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Les architectures supportées par ce processeur.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-plug"></span> Composants</h4>
+            <table class="table">
+              <tr>
+                <th>Mémoire (RAM) :</th>
+                <td>
+                  <span id="spec-memory"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Plus de mémoire vive (RAM) permet de lancer plus d'applications simultanément.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Carte(s) Graphique(s) :</th>
+                <td><span id="spec-graphics"></span></td>
+              </tr>
+              <tr>
+                <th>Accès Internet :</th>
+                <td>
+                  <span id="specs-has-net"    style="color:#006400" hidden>&nbsp; <span class="fa fa-check"></span> Connecté</span>
+                  <span id="specs-has-no-net" style="color:#640000" hidden>&nbsp; <span class="fa fa-close"></span> Déconnecté</span>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <div class="specs-hide-live">
+              <h4><span class="fa fa-hdd-o"></span> Stockage</h4>
+
+              <table class="table">
+                <tr>
+                  <th>Système de Fichiers Administrateur (Root) :</th>
+                  <td>
+                    <span id="spec-filesystem"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Le système de fichier sur lequel Ubuntu MATE est installé.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Capacité Totale du Disque :</th>
+                  <td>
+                    <span id="spec-capacity"></span>
+                    <br>
+                    <div id="disk-usage" style="width:200px">
+                      <a id="disk-allocated" class="disk-line" style="width:auto" data-toggle="tooltip" data-placement="bottom" title="Utilisation Ubuntu MATE">
+                        <div id="disk-used" class="disk-line" style="width:0px"></div>
+                        <div id="disk-free" class="disk-line" style="width:0px"></div>
+                      </a>
+                      <a id="disk-other" class="disk-line" style="width:0px" data-toggle="tooltip" data-placement="bottom" title="Other Usage"></a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Alloué pour Ubuntu MATE :</th>
+                  <td>
+                    <span id="spec-allocated-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="La taille de la partition de votre système d'exploitation.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #87A556"></div> Espace Utilisé:</th>
+                  <td>
+                    <span id="spec-used-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #C2D3A6"></div> Espace Libre :</th>
+                  <td>
+                    <span id="spec-free-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #484848;"></div> Autre Utilisation:</th>
+                  <td>
+                    <span id="spec-other-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Réservé au système, autres partitions, allouées ou swap.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <a data-trigger="hover" rel="unitsinfo" data-placement="top">
+                <span class="fa fa-info-circle"></span> Pourquoi vois-je deux unités ?
+              </a>
+            </div>
+
+          </div>
+          <div id="popover_units" style="display: none;">
+            <h4>Unités SI ou IEC ?</h4>
+            <p>
+              <b>Décimal (Standard SI)</b>
+              <ul>
+                <li><b>1 KB = 1000 bytes</b></li>
+                <li>Prononcé "ga" comme "Mega", "Giga".</li>
+                <li>Il est souvent employé dans les applications de tous les jours et de stoquage de fichiers.</li>
+              </ul>
+            </p>
+            <p>
+              <b>Binaire (Standard IEC)</b>
+              <ul>
+                <li><b>1 KiB = 1024 bytes</b></li>
+                <li>Prononcé "bi" comme "Mebi, "Gibi".</li>
+                <li>Il est souvent employé pour se référer à la taille de la Mémoire Vive (RAM), des disques durs et des partitions, ainsi que dans des outils comme GParted.</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-detailed" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <p><span class="fa fa-info-circle"></span> Les informations suivantes sont obtenues directement à partir du programme en ligne de commandes  <code>inxi</code> .</p>
+              <pre id="specs-inxi">Impossible de rassembler les données.</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-more" hidden>
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/hardinfo.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check hardinfo-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Système de Profilage et d'Évaluation</b></p>
+              <p>Afficher des informations système plus spécifiques dans une fenêtre graphique, y-compris les périphériques USB connectés, le matériel PCI ainsi qu'un simple test Processeur (CPU).</p>
+              <p class="text-right">
+                <a class="btn btn-inverse hardinfo-remove" href="cmd://launch-appid?hardinfo"><img src="img/applications/hardinfo.png" width="20px" height="20px"/>&nbsp; Ouvrir</a>
+                <a class="btn btn-success hardinfo-install" href="cmd://install-appid?hardinfo"><span class="fa fa-download"></span>&nbsp; Installer</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gnome-disk-utility.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gnome-disk-utility-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Disques</b></p>
+              <p>Un utilitaire pré-installé permettant de configurer, formater, partitioner, monter, et visualiser vos disques et partitions, et qui permet également l'écriture d'images disque sur cartes SD et disques USB.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gnome-disk-utility-remove" href="cmd://launch-appid?gnome-disk-utility"><img src="img/applications/gnome-disk-utility.png" width="20px" height="20px"/>&nbsp; Ouvrir</a>
+                <a class="btn btn-success gnome-disk-utility-install" href="cmd://install-appid?gnome-disk-utility"><span class="fa fa-download"></span>&nbsp; Installer</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gparted.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>GParted</b></p>
+              <p>Un utilitaire avancé pour afficher, créer, modifier, et supprimer des partitions. Il permet aussi d'étendre ou de rapetisser les systèmes de fichiers et supporte une large palette de formats.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gparted-remove" href="cmd://launch-appid?gparted"><img src="img/applications/gparted.png" width="20px" height="20px"/>&nbsp; Ouvrir</a>
+                <a class="btn btn-success gparted-install" href="cmd://install-appid?gparted"><span class="fa fa-download"></span>&nbsp; Installer</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-disk-usage-analyzer.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-disk-usage-analyzer-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Logiciel d'Analyse de Taux d'Utilisation des Disques</b></p>
+              <p>Un outil graphique pour explorer votre système de fichier ainsi que des dossiers individuels afin de déterminer la quantité d'espace disque étant actuellement utilisée.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-disk-usage-analyzer-remove" href="cmd://launch-appid?mate-disk-usage-analyzer"><img src="img/applications/mate-disk-usage-analyzer.png" width="20px" height="20px"/>&nbsp; Ouvrir</a>
+                <a class="btn btn-success mate-disk-usage-analyzer-install" href="cmd://install-appid?mate-disk-usage-analyzer"><span class="fa fa-download"></span>&nbsp; Installer</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-system-monitor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-system-monitor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Surveillance du Système</b></p>
+              <p>Affiche les processus, l'utilisation de ressource, ainsi que la quantité d'espace disque utilisé et libre sur les systèmes de fichiers montés.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-system-monitor-remove" href="cmd://launch-appid?mate-system-monitor"><img src="img/applications/mate-system-monitor.png" width="20px" height="20px"/>&nbsp; Ouvrir</a>
+                <a class="btn btn-success mate-system-monitor-install" href="cmd://install-appid?mate-system-monitor"><span class="fa fa-download"></span>&nbsp; Installer</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/psensor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check psensor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Sonde de température Psensor</b></p>
+              <p>Affiche et dessine des graphiques de la température des composants attachés au système. Ce qui inclue : Carte Mère, Processeur, Carte Graphique et disques durs.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse psensor-remove" href="cmd://launch-appid?psensor"><img src="img/applications/psensor.png" width="20px" height="20px"/>&nbsp; Ouvrir</a>
+                <a class="btn btn-success psensor-install" href="cmd://install-appid?psensor"><span class="fa fa-download"></span>&nbsp; Installer</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

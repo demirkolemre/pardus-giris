@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="indexClose(); smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <a id="index-open" onclick="indexOpen()" class="navigation-button"><span class="fa fa-bars"></span></a>
+        <div id="navigation-title" hidden>準備好開始 - <span id="navigation-sub-title"> </span></div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <a id="index-overlay" onclick="indexClose()" hidden></a>
+    <div id="index-menu" hidden>
+      <a id="index-close" onclick="indexClose();"><span class="fa fa-close"></span></a>
+
+      <!-- Shown in live session only -->
+      <span class="live-session-only"><h5>先決條件</h5></span>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("sysreq","系統需求")'>        <span class="fa fa-laptop"></span>        系統需求</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("prepare","安裝準備")'> <span class="fa fa-hdd-o"></span>         安裝準備</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("dualboot","雙開機")'>             <span class="fa fa-retweet"></span>       雙開機</a>
+      <a class="btn btn-success index-btn live-session-only" href="cmd://install">                                                    <span class="fa fa-download"></span>      立即安裝</a>
+
+      <!-- Shown when installed -->
+      <br class="live-session-only"/>
+      <span class="live-session"><h5>安裝後</h5></span>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("updates","軟體更新")'>          <span class="fa fa-refresh"></span>       軟體更新</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("drivers","驅動程式")'>                   <span class="fa fa-gear"></span>          驅動程式</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("languageInput","語言及輸入")'>    <span class="fa fa-globe"></span>         語言及輸入</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("tasks","選擇性任務")'>              <span class="fa fa-check-square"></span>  選擇性任務</a>
+
+      <br><h5>熟悉</h5>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("customize","自訂")'>           <span class="fa fa-adjust"></span>        自訂</a>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("shortcuts","鍵盤捷徑")'>      <span class="fa fa-keyboard-o"></span>    鍵盤捷徑</a>
+
+      <!-- Shown in either session -->
+      <br><h5>故障排除</h5>
+      <a class="btn btn-inverse index-btn"     onclick='changePage("specs","系統規格"); InitSystemInfo()'> <span class="fa fa-laptop"></span>        系統規格</a>
+
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+
+      <!-- Topics -->
+      <div id="initial" class="row-fluid topicContents" hidden>
+        <div class="span12">
+          <h4 class="center">請選擇一個主題開始</h4>
+        </div>
+      </div>
+
+      <!-- System Requirements (shown in guest session only) -->
+      <div id="sysreq" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>合理系統需求</h2>
+            <p>Ubuntu MATE在高階或低階電腦都可以運作的很好，即便是在低階電腦上也可以維持基本的功能。</p>
+
+            <h5>最小</h5>
+            <ul>
+              <li>Pentium III 750 MHz</li>
+              <li>512 MB of RAM</li>
+              <li>8 GB 磁碟空間</li>
+            </ul>
+
+            <h5>推薦的</h5>
+            <ul>
+              <li>Core 2 Duo 1.6 GHz</li>
+              <li>2 GB of RAM</li>
+              <li>16 GB 磁碟空間</li>
+            </ul>
+
+            <p>如果您的電腦符合或是超越推薦的系統需求，作業系統將會運作的更有效率。</p>
+
+            <div class="center">
+              <a onclick='changePage("specs","系統規格"); InitSystemInfo()' class="btn btn-inverse"><span class="fa fa-question-circle"></span>&nbsp; 我的電腦裡面有什麼?</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","安裝準備")'>
+                <b>下一步:</b>&nbsp; 安裝準備 <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Installation Preparations (shown in guest session only) -->
+      <div id="prepare" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>準備安裝</h2>
+            <p>Ubuntu MATE的設定相對簡單，不論您是否在尋找替代現存的作業系統或是在另一台電腦上安裝Ubuntu MATE - 例如&nbsp;<span class="fa fa-windows"></span>
+            Microsoft Windows或其他<span class="fa fa-linux"></span>
+            GNU/Linux發行版</p>
+
+            <h3>最佳的結果為:</h3>
+            <ul>
+              <li><u><b>備份</b></u> 任何重要的資料到另一個儲存裝置</li>
+              <li class="offline">在安裝階段連接至網際網路以安裝可取得的更新</li>
+              <li class="online">保持連線至網際網路以安裝所有可取得的更新</li>
+              <li>如果您是以電池供應電源，請接上插頭。</li>
+            </ul>
+            <hr class="soften"/>
+
+            <img src="img/applications/ubiquity.png" class="left"/>
+            <p>這個試用階段是讓您可以測試Ubuntu MATE而毋需修改您的電腦，讓您在安裝前可以測試所有的週邊裝置。一但您準備就緒，請從桌面雙擊安裝圖案。</p>
+            <hr class="soften"/>
+
+            <h3>現代基於UEFI的電腦</h3>
+            <p>如果您的新型PC使用Unifed Extended Firmware Interface(UEFI)，您可能需要關閉 <b>安全開機</b> (or enable the <b>Unlock Bootloader</b>
+            選擇性項目)在安裝之前，特別是在已經安裝了其他作業系統</p>
+
+            <p>如果您使用的是舊的BIOS機器，您將不需要執行這個動作。</p>
+
+            <p>
+              特別是雙開機，啟動您的系統至正確的模式將至關重要並且使用 <b> 64-bit image</b> 在安裝一個開啟UEFI模式的作業系統後，您不能啟動一個安裝於BIOS模式的作業系統，反之亦然。
+            </p>
+
+            <p>在一個GPT格式化的磁碟機上自BIOS模式開啟UEFI系統也會顯示"protection layer" <b>請不要擔心，</b> 您的資料沒有遺失或損毀!
+            </p>
+
+            <div class="alert alert-info">
+              您的系統目前正在運行 <b><span id="boot-mode">???</span> 模式</b>.
+            </div>
+
+            <hr class="soften"/>
+
+            <h3>Swap</h3>
+            <p>對於那些只有少許記憶體(RAM)的電腦，作業系統會在磁碟上切出swapping區，如同Windows的分頁檔一樣，效能會降低。並且有可能在您完全用盡記憶體及swap時當機。</p>
+            <p>By default, a swap partition is created based on the size of your RAM. For example, if you have 2 GiB of RAM, then 2 GiB of hard disk space will be reserved for swap at the end of the drive.</p>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("sysreq","系統需求")'>
+                <span class="fa fa-chevron-left"></span> <b>前一步:</b>&nbsp; 系統需求</a>
+              <a class="btn" onclick='changePage("dualboot","雙開機")'>
+                <b>下一步:</b>&nbsp; 雙開機 <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advise on Dual Booting (shown in guest session only) -->
+      <div id="dualboot" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h3>雙開機</h3>
+            <p>如果您安裝Ubuntu MATE並希望和現有的作業系統並存，您的分區應該縮小以騰出空間給不同的作業系統</p>
+
+            <label class="checkbox">
+              <input type="checkbox" value="" id="showDualBootWin">
+                &nbsp;I'm dual booting with &nbsp;<span class="fa fa-windows"></span> Microsoft Windows.
+            </label>
+
+            <h5>為了降低遺失或者損毀資料的風險，必須確保:</h5>
+            <ul class="unstyled" style="margin-left:8px">
+              <li><span class="fa fa-check-circle"></span> 有足夠的剩餘空間。至少要有10GB</li>
+              <li><span class="fa fa-check-circle"></span> <b><u>備份</u></b> 重要資料到另一個磁碟</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> 磁碟重組</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> 確保Windows已經完全關機(而不是休眠)</li>
+            </ul>
+
+            <hr>
+            <p><b>您偏好哪種方式?</b></p>
+            <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+              <li><a onclick="smoothFade('.partition','#partitionSimple')" data-toggle="tab">範例</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionAdvanced')" data-toggle="tab">進階</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionWindows')" data-toggle="tab" class="dualBootWin"><span class="fa fa-windows"></span> 最安全的</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane partition" id="partitionSimple">
+                <h5>最簡單的方式是使用這個安裝精靈</h5>
+                <p>
+                  此安裝精靈會掃描您的磁碟是否存在作業系統並且提供選項供您選擇
+                  <blockquote>
+                    <b>您會看到一個選項像這樣:</b>
+                    <br>
+                    <img src="img/screenshots/install-split-choice.png"/>
+                    <br>
+                    <b>接著:</b>
+                    <br>
+                    <img src="img/screenshots/install-split-partitions.png"/>
+                  </blockquote>
+                </p>
+                <div class="alert alert-danger">
+                  <h5><span class="fa fa-warning"></span> 在重新調整大小的過程中請勿中斷或者關閉電腦</h5>
+                  <p>如果您這麼做，將有可能發生資料遺失或者表格損毀。繼續之前請再次檢驗您的異動項目</p>
+                  <p>安裝精靈有可能顯示 <span class="fa fa-spinner"></span> spinner cursor for a long period of time, depending on the size of your disk.</p>
+                </div>
+                <p class="dualBootWin">
+                  <span class="fa fa-windows"></span> <b>當您下次啟動Windows時，執行</b>
+                  <code>chkdsk /f</code> 命令列會提示檢查檔案系統錯誤。Windows有可能自動排程此步驟。這將確保NTFS檔案系統的一致性。
+                </p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionAdvanced">
+                <h5>使用GParted或者安裝精靈的"自訂"選項</h5>
+                <p>
+                  <img class="left" src="img/applications/gparted.png"/>
+                  <b>GParted</b> 只在live階段才有
+                  位於之下 <b>系統 <span class="fa fa-long-arrow-right"></span>
+                  管理</b> 選單。GParted提供那些想要自行分配硬碟分區的進階使用者充份的彈性來調整分區。這必須在安裝前變更您的分區
+                </p>
+                <div class="center">
+                  <a href="cmd://gparted" class="btn btn-inverse"><img src="img/applications/gparted.png" width="32px" height="32px"> Open GParted</a>
+                </div>
+                <br>
+                <p>完成磁碟操作後，您可以保留剩餘空間不被分配。
+                其中的安裝精靈會偵測這個沒用到的空間來安裝Ubuntu MATE。</p>
+                <br>
+                <h5>使用安裝精靈的自訂選項</h5>
+                <p>替代或除了GParted之外， <b>自訂</b> 安裝精靈的選項中也可以設定和調整您的分區以及選擇mount points。如果您想要的話，分割您的磁碟讓您稍候可以更容易地重新安裝作業系統。</p>
+
+                <p><b>您可以指定這些mount points:</b></p>
+                <ul>
+                  <li><code>/</code> - Ubuntu MATE基礎</li>
+                  <li><code>/boot</code> - Bootloader和內核</li>
+                  <li><code>/home</code> - 您的個人檔案及資料夾</li>
+                  <li><code>/tmp</code> - 暫存檔</li>
+                  <li><code>/usr</code> - 包含大部分的應用程式 <i> (執行檔，文件，函式庫等等)</i></li>
+                  <li><code>/var</code> - 變數資料 <i>(例如系統logs)</i></li>
+                  <li><code>/srv</code> - 系統服務的資料 <i>(通常作為伺服器調整)</i></li>
+                  <li><code>/opt</code> - 額外的軟體將不會被套件管理員管理
+                                          <i>(例如 <img src="img/applications/spotify.png" width="16px" height="16px"> Spotify)</i></li>
+                </ul>
+                <p>給所有mount points建立獨立分區並非必要。
+                The commonly partitioned directories being <code>/</code>, <code>/home</code>
+                和 <code>/boot</code>. 這些mount points也可以由同地方設定
+                例如實體硬碟，如果您想要作業系統 <code>/</code> 在SSD上，
+                但是您的個人檔案 <code>/home</code> 在機械硬碟上</p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionWindows">
+                <h5>在Windows內縮小您的系統槽</h5>
+                <div class="alert alert-warning">
+                  <h5><span class="fa fa-exclamation-circle"></span> 應用在Windows Vista及之後的版本</h5>
+                  <p>如果您使用的是Windows XP或更早的版本，您將需要使用
+                  <b>範例</b> 或 <b>進階</b> 縮小您磁碟的方法。</p>
+                </div>
+
+                <p>在Windows系統裡面，新版本的Windows提供縮小NTFS體積的工具。這能讓您安全地同時體驗Windows和Ubuntu MATE。</p>
+                <blockquote>
+                  1. 打開 <b>磁碟管理</b> 從開始選單
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-1.png">
+                  </div>
+                  <br>
+                  2. 按右鍵選擇您指定的磁碟 <b>縮小分區</b> 從背景選單
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-2.png">
+                  </div>
+                  <br>
+                  3. 輸入要縮小您的系統分區的量。
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-3.png">
+                  </div>
+                  <br>
+                  <div class="alert alert-info">
+                    請記得，Ubuntu MATE需要至少8GB的磁碟空間。
+                    <b>1 GB = 1000 MB</b>
+                  </div>
+                </blockquote>
+
+                <h5>更多說明</h5>
+                <p>更多資訊關於修改包含Windows分區的最佳做法，請參閱以下
+                <a href="cmd://link?https://help.ubuntu.com/community/HowtoResizeWindowsPartitions">
+                  幫助文件</a> 線上.</p>
+              </div>
+
+            <hr class="soften"/>
+            <h3>修復開機問題</h3>
+
+            <p>Linux distributions use a boot loader known as<code>grub</code>,
+            用以尋找且bootstraps作業系統。然而，有些作業系統(例如Windows) 沒有和現存的boot loaders整合並且還會覆寫它們，可能造成暫時無法使用Ubuntu MATE。</p>
+
+            <p>幸運的是，您可以使用 <b>開機修復</b> 修復由其他作業系統所造成一般性問題的工具</p>
+            </div>
+
+            <div class="alert alert-warning offline">
+              <h5>需要下載一個套件。</h5>
+              <p>請連接網路以下載這個工具。</p>
+              <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> 抱歉，"歡迎"無法建立連線。</p></div>
+              <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> 重試</a>
+            </div>
+
+            <a class="boot-repair-install btn btn-inverse online" href="cmd://install-appid?boot-repair"><span class="fa fa-download"></span>&nbsp; 下載開機修復</a>
+            <a class="boot-repair-remove btn btn-success" href="cmd://run?boot-repair"><span class="fa fa-wrench"></span>&nbsp; 開啟開機修復</a>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","安裝準備")'>
+                <span class="fa fa-chevron-left"></span> <b>前一步:</b>&nbsp; 安裝準備</a>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software Updates -->
+      <div id="updates" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>軟體更新</h2>
+
+            <div class="alert alert-warning offline">
+              <h5>下載和安裝更新必須要有網路連線</h5>
+            </div>
+            <p>Ubuntu MATE會定期的檢查是否有新軟體和安全性更新。如果您剛剛裝好Ubuntu MATE，也許您希望立即執行這個動作。</p>
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://update" onclick="smoothFade('','#updates-hint')">
+                <img src="img/applications/system-software-update.png" width="32px" height="32px"/>&nbsp; 軟體更新
+              </a>
+              <span id="updates-hint" class="center" hidden><small>
+                <p><span class="fa fa-info-circle"></span> <b>軟體更新</b> 可以在之後找到
+                <b><i>系統 <span class="fa fa-long-arrow-right"></span> 管理.</i></b></p>
+              </small></span>
+            </div>
+            <hr class="soften"/>
+            <p>codecs套件包含完整，跨平台的解決方案來解碼，編碼，錄製，轉換和串流聲音和影像，也包含一個MP3音訊解碼器允許您播放MPEG 1 audio layer III (MP3).</p>
+            <!-- <p>You'll need the Blu-ray AACS database in order to play AACS encrypted or BD+ protected discs.</p> -->
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://install-appid?codecs">
+                <img src="img/applications/codecs.png" width="32px" height="32px"/>&nbsp; 安裝Codecs套件
+              </a>
+              <!-- <a class="btn btn-lg btn-inverse" href="cmd://get-aacs-db">
+                <img src="img/applications/bluray.png" width="32px" height="32px"/>&nbsp; Install Blu-ray AACS Database
+              </a> -->
+              <span class="codecs-applying bluray-applying"><br><br><img src="img/welcome/processing.gif" width="24px" height="24px"/> Installing...</span>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("drivers","驅動程式")'>
+                <b>下一步:</b>&nbsp; 驅動程式 <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drivers -->
+      <div id="drivers" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>驅動程式</h2>
+            <p>雖然Ubuntu MATE相容於眾多硬體，有些零件和週邊需要專利驅動程式才能適當的運作。有些裝置，通常是藍牙和Wi-FI，需要安裝軔體套件才能正常的運作。</p>
+            <div class="alert alert-warning offline">
+              <h5>需要網路連線以下載及安裝驅動程式。</h5>
+            </div>
+            <div align="center">
+                <a class="btn btn-inverse" href="cmd://drivers" onclick="smoothFade('','#drivers-hint')">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; 額外驅動程式
+                </a>
+                <a class="btn btn-inverse" href="cmd://install-appid?firmware">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; 安裝軔體套件
+                </a>
+            </div>
+
+            <span id="drivers-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>額外驅動程式</b> 可以在之後找到
+              <b><i>系統 <span class="fa fa-long-arrow-right"></span> 管理.</i></b></p>
+            </small></span>
+
+            <!-- Advice about graphics -->
+            <a onclick="toggleSub('graphics-section','graphics-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="graphics-arrow"></span> &zwnj;Graphics&zwnj;</h3></a>
+            <div id="graphics-section" hidden>
+
+              <div class="graphics-unknown alert alert-danger">
+                <h5>抱歉，"歡迎"無法自動辨別此系統上的圖形顯示晶片供應商。</h5>
+                <p><span class="fa fa-plug"></span><b> 晶片組: </b><i class="graphics-pci">未知的</i></p>
+              </div>
+
+              <div class="graphics-nvidia alert alert-info" hidden>
+                <h5>NVIDIA 偵測到繪圖卡</h5>
+                <p>NVIDIA may have drivers for your card that can boost performance for 3D applications and games as well as deliver improvements to power management.</p>
+                <p><span class="fa fa-plug"></span><b> 晶片組: </b><i class="graphics-pci">未知的</i></p>
+              </div>
+
+              <div class="graphics-amd alert alert-success" hidden>
+                <h5>AMD 偵測到繪圖卡</h5>
+                <p>AMD's drivers are no longer supported on Ubuntu. The open source drivers you are currently using will deliver the most stable performance out of your card.</p>
+                <p><span class="fa fa-plug"></span><b> 晶片組: </b><i class="graphics-pci">未知的</i></p>
+              </div>
+
+              <div class="graphics-intel alert alert-success" hidden>
+                <h5>已經準備就緒供您使用</h5>
+                <p>Intel的驅動程式是開源的而且由核心維護/更新。</p>
+                <p><span class="fa fa-plug"></span><b> 晶片組: </b><i class="graphics-pci">未知的</i></p>
+              </div>
+
+              <div class="graphics-vbox alert alert-info" hidden>
+                <h5>VirtualBox Guest Additions</h5>
+                <p>為了提升虛擬機器的圖形效能，請安裝Guest Additions。</p>
+              </div>
+
+              <div id="graphics-proprietary" hidden>
+                <h4>專利或開源驅動程式?</h4>
+                <p>專利驅動程式直接來自於製造商
+                當它們不屬於開源軟體，Ubuntu開發者們將 <b>無法檢查和改善程式碼</b> meaning you'll have to rely on the manufacturer for support.</p>
+
+                <p>此外，專利驅動程式可以 <b>顯著的改善圖形效能</b> 結果，
+                整個系統。使用者也許希望安裝這些驅動程式:</p>
+                <ul>
+                  <li>執行3D應用程式和遊戲。</li>
+                  <li>使用Compiz的視窗效果</li>
+                  <li>Improve power management, particularly if the device experiences overheating problems under open source drivers.</li>
+                  <li>改善高解析度和多螢幕支援。</li>
+                  <li>修復畫面空白的問題</li>
+                </ul>
+
+                <p>專利驅動程式也被稱作"binary blobs". 特定的硬體也許會有更糟的表現。
+                比開源驅動程式導至更多問題，例如:</p>
+                <ul>
+                  <li>開啟圖形化桌面失敗。</li>
+                  <li>升級後損毀的驅動程式。</li>
+                  <li>Severe graphical glitches.</li>
+                  <li>需要硬體加速的應用程式/遊戲伴隨的問題。</li>
+                </ul>
+
+                <p class="graphics-nvidia graphics-amd">
+                  <code id="graphics-open-driver-name"></code> 這是支援您晶片的開源驅動程式
+                </p>
+
+                <p id="graphics-nvidia" hidden>
+                  <hr class="soften"/>
+                  <h4>那麼最新的NVIDIA驅動程式呢?</h4>
+                  <p><b>額外驅動程式</b> 自Ubuntu軟體庫取得最新測試過的驅動程式。
+                  想要最新版本的進階使用者和遊戲玩家也許希望加入
+                  <a href="cmd://link?https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa">Ubuntu圖形驅動程式PPA</a>,
+                  包含了針對Ubuntu最新但並未經過全面的測試的NVIDIA驅動程式套件。</p>
+                  <div class="alert alert-warning">
+                    <span class="fa fa-exclamation-triangle"></span> 這只能在支援的晶片上生效，而非使用相容性驅動的舊晶片。
+                  </div>
+                  <a class="btn btn-warning" href="cmd://upgrade-appid?nvidia-settings"><span class="fa fa-level-up"></span>&nbsp; 加入Repository</a>
+                  <br><br>
+                  <!-- <a class="btn btn-danger" href="#"><span class="fa fa-trash"></span>&nbsp; Remove Repository</a> -->
+                  <p>如要加入repository至系統，請於終端機輸入:</p>
+                  <blockquote class="terminal miscCmd">
+                    <span class="fa fa-dollar"></span> sudo add-apt-repository ppa:graphics-drivers/ppa
+                    <br>&nbsp;<span class="fa fa-dollar"></span> sudo apt-get update
+                  </blockquote>
+                  <p>加入PPA之後，新版本可供安裝於 <a href="cmd://drivers">額外的驅動程式:</a></p>
+                  <img src="img/screenshots/graphics-drivers-nvidia.png"/>
+                </p>
+              </div>
+            </div>
+
+            <!-- Advice about wireless -->
+            <a onclick="toggleSub('wireless-section','wireless-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="wireless-arrow"></span> 無線，藍牙和其他裝置</h3></a>
+            <div id="wireless-section" hidden>
+             <p>如果沒有發現額外的驅動程式或者安裝無效的軔體套件，您可能需要自行研究您的裝置以找到合適的驅動程式。</p>
+
+              <p>Unfortunately, this is due to the fact the manufacturer for your hardware hasn't provided any source code for developers to freely use, or there is insufficient documentation to create drivers for your particular brand and model.</p>
+
+               <p>有些製造商可能自行提供閉源驅動程式。如果您需要幫助，請 <a onclick="smoothPageFade('community.html')">社群發問</a>.</p>
+
+               <p><a href="cmd://link?https://help.ubuntu.com/community/WifiDocs/WirelessTroubleShootingGuide/Drivers">
+               <span class="fa fa-globe"></span> 更多關於無線硬體故障排除的說明</a></p>
+            </div>
+
+            <!-- Advice about printers -->
+            <a onclick="toggleSub('printers-section','printers-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="printers-arrow"></span> 印表機</h3></a>
+            <div id="printers-section" hidden>
+              <p>當您設定一台印表機
+              <a href="cmd://printers">
+              <img src="/usr/share/icons/Humanity/actions/16/document-print.svg" width="20px" height="20px"/>
+              <b>印表機</b></a>
+              常用工具 <i>(之下 系統 <span class="fa fa-long-arrow-right"></span>
+              管理)</i>, 如果合適的話，您將會看到一個可用的驅動程式清單。</p>
+
+              <p>有些製造商有可能提供他們自己的驅動程式，您必須自行從他們的網站上下載。</p>
+              <p><a href="cmd://link?https://help.ubuntu.com/community/Printers">
+              <span class="fa fa-globe"></span> 更多關於列印的說明</a>.</p>
+
+              <hr class="soften"/>
+
+              <div class="row-fluid">
+                <div class="span2 center-inside">
+                  <img src="img/applications/hplip.png" width="64px" height="64px"/>
+                  <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+                </div>
+                <div class="span10">
+                  <p><b>HP  Linux影像和列印系統</b></p>
+                  <p>如果您有一台支援HP SFP(single function peripheral)的噴墨或雷射印表機</p>
+                  <p class="text-right">
+                    <a class="btn btn-inverse hp-printer-remove" href="cmd://launch-appid?hp-printer"><img src="img/applications/hplip.png" width="20px" height="20px"/>&nbsp; 打開</a>
+                    <a class="btn btn-success hp-printer-install" href="cmd://install-appid?hp-printer"><span class="fa fa-download"></span>&nbsp; 安裝</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("updates","軟體更新")'>
+                <span class="fa fa-chevron-left"></span> <b>前一步:</b>&nbsp; 軟體更新</a>
+              <a class="btn" onclick='changePage("languageInput","語言輸入")'>
+                <b>下一步:</b>&nbsp; 語言輸入 <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language & Input Support -->
+      <div id="languageInput" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>語言支援</h2>
+            <p>Your computer may require updates to your language and localization settings, or you may want to install additional language support.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://language" onclick="smoothFade('','#locale-hint')">
+              <img src="img/humanity/preferences-desktop-locale.svg" width="32px" height="32px"/>&nbsp; 語言支援
+            </a></div>
+            <span id="locale-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>語言支援</b> 可以在之後找到
+              <b><i>系統 <span class="fa fa-long-arrow-right"></span> 偏好
+                           <span class="fa fa-long-arrow-right"></span> 個人的</i></b></p>
+            </small></span>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>複雜的輸入</h2>
+            <p>世界上有些地區需要複雜的輸入法。 </p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-chinese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; 中文</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-japanese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; 日文</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-korean"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; 韓文</a>
+          </div>
+        </div>
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("drivers","驅動程式")'>
+            <span class="fa fa-chevron-left"></span> <b>前一步:</b>&nbsp; 驅動程式</a>
+          <a class="btn" onclick='changePage("tasks","選擇性任務")'>
+            <b>下一步:</b>&nbsp; 選擇性任務 <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Additional Tasks - Backups / Firewall / Users -->
+      <div id="tasks" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>備份，防火牆和使用者管理</h2>
+            <p>Ubuntu MATE內建防火牆並支援多使用者帳號，還提供備份工具讓您可以備份您的檔案。</p>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-backup.png">
+          </div>
+          <div class="span6">
+            <h3>備份</h3>
+            <p>為了預防電腦無預警損壞，沒有比備份您個人資料更重要的事情。</p>
+            <p><img src="img/applications/deja-dup.png" width="20px" height="20px"/>
+            <b>Deja-Dup</b> 預先安裝好並支援備份至區域裝置以及雲端服務。</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://backup" onclick="smoothFade('','#backup-hint')">
+              <img src="img/applications/deja-dup.png" width="32px" height="32px"/>&nbsp; 備份設定
+            </a>
+            <span id="backup-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>備份</b> 可以在之後找到
+              <b><i>系統 <span class="fa fa-long-arrow-right"></span> 偏好
+                           <span class="fa fa-long-arrow-right"></span> 個人的</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-firewall.png">
+          </div>
+          <div class="span6">
+            <h3>防火牆</h3>
+            <p>防火牆能避免惡意連線入侵您的電腦。防火牆預設關閉。
+              <a href="cmd://link?https://help.ubuntu.com/community/DoINeedAFirewall">更多關於防火牆的說明</a>.</p>
+            <p><img src="img/applications/gufw.png" width="20px" height="20px"/>
+              <b>Gufw</b> provides a graphical frontend to <code>ufw</code>
+              (不複雜的防火牆). 如果安全對您很重要，這裡有
+              <a href="cmd://link?https://wiki.ubuntu.com/BasicSecurity">也有更多方法來確保安全</a>.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://firewall" onclick="smoothFade('','#firewall-hint')">
+              <img src="img/applications/gufw.png" width="32px" height="32px"/>&nbsp; 調整防火牆
+            </a>
+            <span id="firewall-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>防火牆參數</b> 可以在之後找到
+              <b><i>系統 <span class="fa fa-long-arrow-right"></span> 偏好
+                           <span class="fa fa-long-arrow-right"></span> 網路</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-users.png">
+          </div>
+          <div class="span6">
+            <h3>使用者</h3>
+            <p>
+              Share your computer with others? Set up a separate user account for each user to protect the individual privacy of each user sharing the same computer.
+            </p>
+            <p>您也可以登入一個 <b>訪客階段</b> if someone is using your computer as a one-off.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://users" onclick="smoothFade('','#users-hint')">
+              <img src="img/humanity/system-users.svg" width="32px" height="32px"/>&nbsp; 調整使用者
+            </a>
+            <span id="users-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>使用者和群組</b> 可以在之後找到
+              <b><i>系統 <span class="fa fa-long-arrow-right"></span> 管理
+                           <span class="fa fa-long-arrow-right"></span> 使用者和群組</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("languageInput","語言輸入")'>
+            <span class="fa fa-chevron-left"></span> <b>前一步:</b>&nbsp; 語言輸入</a>
+          <a class="btn" onclick='changePage("customize","自訂")'>
+            <b>下一步:</b>&nbsp; 自訂 <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Customizing the Experience -->
+      <div id="customize" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>使用者介面</h2>
+            <p>Ubuntu MATE提供獨特的工具來調整使用者介面。它可以被用來快速設定有如其他受歡迎的作業系統外觀。 <b>Redmond</b> layouts are most similar to Microsoft Windows while <b>Cupertino</b> 整體佈局近似於Apple Mac OS X。</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://tweak" onclick="smoothFade('','#tweak-hint')">
+              <img src="img/applications/control-centre.png" width="32px" height="32px"/>&nbsp; 使用者介面
+            </a></div>
+            <span id="tweak-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>MATE Tweak</b> 可以在之後找到
+              <b><i>系統 <span class="fa fa-long-arrow-right"></span> 偏好
+                           <span class="fa fa-long-arrow-right"></span> 外觀</i></b>.</p>
+            </small></span>
+
+            <h2>控制中心</h2>
+            <p>上述提到的常用工具都是Ubuntu MATE控制中心所提供的一部份。您幾乎可以在控制中心找到每一項設定。</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://control" onclick="smoothFade('','#control-hint')">
+              <img src="img/applications/user-desktop.svg" width="32px" height="32px"/>&nbsp; 控制中心
+            </a></div>
+            <span id="control-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>控制中心</b> 可以在之後被找到
+              <b><i>系統</i></b> 選單</p>
+            </small></span>
+
+            <h2>桌面桌布</h2>
+            <p>The Ubuntu MATE Community have contributed dozens of desktop wallpaper images over the years. Why not install them and find something that suits your tastes?</p>
+            <div class="center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?ubuntu-mate-wallpapers-complete"><span class="fa fa-3x fa-picture-o fa-va"></span>&nbsp; 桌布</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("tasks","選擇性任務")'>
+                <span class="fa fa-chevron-left"></span> <b>前一步:</b>&nbsp; 選擇性任務</a>
+              <a class="btn" onclick='changePage("shortcuts","鍵盤捷徑")'>
+                <b>下一步:</b>&nbsp; 鍵盤捷徑 <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts -->
+      <div id="shortcuts" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>鍵盤捷徑</h2>
+            <p>Ubuntu MATE有許多快捷鍵可以幫助您更有效率地使用電腦。</p>
+            <h3>一般程式捷徑</h3>
+            <p>這些捷徑適用於大部分的應用程式。</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">C</b></td>
+                <td>複製所選的文字/物件</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">X</b></td>
+                <td>剪下所選的文字/物件</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">V</b></td>
+                <td>貼上/插入所選的文字/物件</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>全選</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F</b></td>
+                <td>尋找和取代文字</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">B</b></td>
+                <td>所選文字粗體</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">I</b></td>
+                <td>所選文字斜體</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">U</b></td>
+                <td>所選文字加入底線</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>打開新文件或視窗</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>儲存當前文件</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">O</b></td>
+                <td>打開令一個文件</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">P</b></td>
+                <td>列印當前文件</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>復原上一動作</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>取消復原上一動作</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">F11</b></td>
+                <td>當前應用程式全螢幕或是往下還原</td>
+              </tr>
+            </table>
+
+            <h3>桌面捷徑</h3>
+            <p>這個部份列出一般您可以用來操作桌面的快捷鍵。</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F1</b></td>
+                <td>開啟應用程式選單</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F2</b></td>
+                <td>藉由輸入名稱來執行程式</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Prt Sc</b></td>
+                <td>擷取整個畫面</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Prt Sc</b></td>
+                <td>擷取當前視窗</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Delete</b></td>
+                <td>Open the dialog box to shutdown, restart or suspend.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">L</b></td>
+                <td>鎖定螢幕</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">T</b></td>
+                <td>打開終端機</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>Screen reader enable/disable.</td>
+              </tr>
+            </table>
+
+            <h3>視窗捷徑</h3>
+            <table class="table">
+              <tr>
+                <td style="width:270px;"><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tab</b></td>
+                <td>
+                  Switch between currently-open windows.
+                  <ul>
+                    <li>Press Alt + Tab and then release Tab (but continue to hold Alt).</li>
+                    <li>Press Tab repeatedly to cycle through the list of available windows which appears on the screen.</li>
+                    <li>Release the Alt key to switch to the selected window.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tab</b></td>
+                <td>
+                  Switch between currently-open windows in all Workspaces.
+                  <ul>
+                    <li>Press Tab repeatedly to cycle through the list of available windows which appears on the screen.</li>
+                    <li>Release the Ctrl and Alt keys to switch to the selected window.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">左</b></td>
+                <td>Switch to the previous workspace.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">右</b></td>
+                <td>切換至下一個工作區</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">左</b></td>
+                <td>移動當前視窗至前一個工作區</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">右</b></td>
+                <td>移動當前視窗至下一個工作區</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F4</b></td>
+                <td>關閉視窗</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F5</b></td>
+                <td>調整視窗回正常或前一個大小。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F7</b></td>
+                <td>移動當前視窗(可以由滑鼠或鍵盤來移動)。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F8</b></td>
+                <td>重新調整當前視窗大小(可被滑鼠或鍵盤移動)。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F9</b></td>
+                <td>最小化當前視窗。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F10</b></td>
+                <td>最大化當前視窗。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F12</b></td>
+                <td>Pulldown Terminal.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">空白鍵</b></td>
+                <td>顯示視窗選單如:'永遠置於頂端'、'最小化'和'最大化'以及上述指令。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 7</b></td>
+                <td>置視窗於左上角</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 8</b></td>
+                <td>置視窗於上半部份</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 9</b></td>
+                <td>置視窗於右上角</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 5</b></td>
+                <td>中心/最大化視窗於螢幕中間</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 1</b></td>
+                <td>置視窗於左下角。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 2</b></td>
+                <td>置視窗於下半部。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 3</b></td>
+                <td>置視窗於右下角。</td>
+              </tr>
+            </table>
+
+            <h3>Compiz特效捷徑</h3>
+            <p>所有下列捷徑都需要開啟Compiz特效。</p>
+            <table class="table">
+              <tr>
+                <td style="width: 280px"><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">D</b></td>
+                <td>開關'桌面'。</td>
+              </tr>
+              <!--
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Up</b></td>
+                <td>開啟'expose'之類的功能來呈現所有當前您開啟的視窗，允許您選擇其中之一並將焦點至於上面。</td>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Down</b></td>
+                <td>展開您的工作區方塊允許您一次看到多個工作區域，當您打開這個選項，使用左鍵和右鍵可以選擇您想要使用的工作區。</td>
+              </tr>
+              -->
+              <tr>
+                <td><b class="btn btn-xs disabled">超級</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>拉遠，顯示工作區切換器</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">超級</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>開啟'scale'效果，呈現當前工作區中所有的視窗。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">超級</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>開啟'scale'效果，呈現所有工作區中的所有視窗。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">超級</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>反轉焦點視窗的顏色。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">超級</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">M</b></td>
+                <td>反轉整個畫面顏色。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">超級</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">滑鼠滾輪</b></td>
+                <td>拉近螢幕</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">超級</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">滑鼠中鍵</b></td>
+                <td>使用方形來選擇一個區域放大</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">滑鼠左鍵</b></td>
+                <td>移動焦點視窗。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">滑鼠中鍵</b></td>
+                <td>重新調整焦點視窗。</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">滑鼠右鍵</b></td>
+                <td>顯示視窗選單</td>
+              </tr>
+            </table>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("customize","自訂")'>
+                <span class="fa fa-chevron-left"></span> <b>前一步:</b>&nbsp; 自訂</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's inside my computer? -->
+      <div id="specs" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>我的電腦裡面有什麼?</h2>
+            <p>Your machine is made up of various components that interact with one another. This information is useful when providing support to ensure hardware and software works on your machine.</p>
+          </div>
+        </div>
+        <div id="specs-loading"><p>產生資訊時請耐心等待...</p></div>
+        <ul id="specs-tabs" class="nav nav-pills" data-tabs="tabs" hidden>
+          <li class="active"><a onclick="smoothFade('.tab-contents','#specs-basic')" data-toggle="tab">基礎</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-detailed')" data-toggle="tab">細節</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-more')" data-toggle="tab">常用工具</a></li>
+        </ul>
+
+        <div class="tab-contents" id="specs-basic" hidden>
+          <div id="specs-icon">
+            <img class="specs-icon" hidden id="specs-device-normal" src="img/welcome/ubuntu-mate-laptop.png"/>
+            <img class="specs-icon" hidden id="specs-device-rpi" src="img/logos/raspberry-pi.png"/>
+            <img class="specs-icon" hidden id="specs-device-vbox" src="img/logos/virtualbox-vbox.png"/>
+            <img class="specs-icon" hidden id="specs-device-powerpc" src="img/logos/powerpc.png"/>
+            <img class="specs-icon" hidden id="specs-live-session" src="img/welcome/live-session-image.png"/>
+          </div>
+          <div id="specs-box">
+            <h4><span class="fa fa-cog"></span> 系統</h4>
+            <table class="table">
+              <tr>
+                <th>發行版:</th>
+                <td><span id="spec-distro"></span></td>
+              </tr>
+              <tr>
+                <th>內核:</th>
+                <td>
+                  <span id="spec-kernel"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="The Linux kernel is the heart of Ubuntu.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>主機板:</th>
+                <td><span id="spec-motherboard"></span></td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>開機模式:</th>
+                <td>
+                  <span id="spec-boot-mode"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Displays the mode that Ubuntu MATE is communicating with the firmware.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-bolt"></span> 處理器</h4>
+            <table class="table">
+              <tr>
+                <th>型號:</th>
+                <td><span id="spec-cpu-model"></span></td>
+              </tr>
+              <tr>
+                <th>速度:</th>
+                <td><span id="spec-cpu-speed"></span></td>
+              </tr>
+              <tr>
+                <th>使用的架構:</th>
+                <td>
+                  <span id="spec-arch-use"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="The operating system's architecture in use. For instance, i386 = 32-bit.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi specs-hide-ppc">
+                <th>支援的架構:</th>
+                <td>
+                  <span id="spec-arch-supported"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Architectures that are supported by this processor.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-plug"></span> 零件</h4>
+            <table class="table">
+              <tr>
+                <th>記憶體(RAM):</th>
+                <td>
+                  <span id="spec-memory"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="More RAM allows more applications to run simultaneously.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>繪圖晶片:</th>
+                <td><span id="spec-graphics"></span></td>
+              </tr>
+              <tr>
+                <th>網路存取:</th>
+                <td>
+                  <span id="specs-has-net"    style="color:#006400" hidden>&nbsp; <span class="fa fa-check"></span> 已連線</span>
+                  <span id="specs-has-no-net" style="color:#640000" hidden>&nbsp; <span class="fa fa-close"></span> 未連線</span>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <div class="specs-hide-live">
+              <h4><span class="fa fa-hdd-o"></span> 儲存體</h4>
+
+              <table class="table">
+                <tr>
+                  <th>Root檔案系統:</th>
+                  <td>
+                    <span id="spec-filesystem"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="The file system where Ubuntu MATE is installed.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>總計磁碟容量:</th>
+                  <td>
+                    <span id="spec-capacity"></span>
+                    <br>
+                    <div id="disk-usage" style="width:200px">
+                      <a id="disk-allocated" class="disk-line" style="width:auto" data-toggle="tooltip" data-placement="bottom" title="Ubuntu MATE Usage">
+                        <div id="disk-used" class="disk-line" style="width:0px"></div>
+                        <div id="disk-free" class="disk-line" style="width:0px"></div>
+                      </a>
+                      <a id="disk-other" class="disk-line" style="width:0px" data-toggle="tooltip" data-placement="bottom" title="Other Usage"></a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Allocated for Ubuntu MATE:</th>
+                  <td>
+                    <span id="spec-allocated-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="The size of your operating system partition.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #87A556"></div> Used Space:</th>
+                  <td>
+                    <span id="spec-used-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #C2D3A6"></div> 剩餘空間:</th>
+                  <td>
+                    <span id="spec-free-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #484848;"></div> Other Usage:</th>
+                  <td>
+                    <span id="spec-other-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Reserved by system, other partitions, unallocated or swap.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <a data-trigger="hover" rel="unitsinfo" data-placement="top">
+                <span class="fa fa-info-circle"></span> 為什麼我會看到兩個?
+              </a>
+            </div>
+
+          </div>
+          <div id="popover_units" style="display: none;">
+            <h4>SI or IEC Units?</h4>
+            <p>
+              <b>十進位(SI Standard)</b>
+              <ul>
+                <li><b>1 KB = 1000 bytes</b></li>
+                <li>發音如"ga" - like "Mega", "Giga".</li>
+                <li>常見於日常應用程式及檔案儲存體。</li>
+              </ul>
+            </p>
+            <p>
+              <b>Binary (IEC Standard)</b>
+              <ul>
+                <li><b>1 KiB = 1024 bytes</b></li>
+                <li>發音如"bi" - like "Mebi", "Gibi".</li>
+                <li>Common in RAM, drives and partitions, including tools like GParted.</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-detailed" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <p><span class="fa fa-info-circle"></span> The following information is retrieved directly from the <code>inxi</code> 命令列程式</p>
+              <pre id="specs-inxi">無法收集資料</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-more" hidden>
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/hardinfo.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check hardinfo-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>系統剖析和效能評定</b></p>
+              <p>檢視更多特定的系統資訊，包含已連接的USB, PCI裝置和簡單的CPU效能評分。</p>
+              <p class="text-right">
+                <a class="btn btn-inverse hardinfo-remove" href="cmd://launch-appid?hardinfo"><img src="img/applications/hardinfo.png" width="20px" height="20px"/>&nbsp; 打開</a>
+                <a class="btn btn-success hardinfo-install" href="cmd://install-appid?hardinfo"><span class="fa fa-download"></span>&nbsp; 安裝</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gnome-disk-utility.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gnome-disk-utility-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>磁碟</b></p>
+              <p>一個預載的工具讓您可以基本的設定磁碟和分區，包含格式化，切割分區，mounting，檢視S.M.A.R.T資訊和寫入映像檔至SD卡/USB隨身碟。</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gnome-disk-utility-remove" href="cmd://launch-appid?gnome-disk-utility"><img src="img/applications/gnome-disk-utility.png" width="20px" height="20px"/>&nbsp; 打開</a>
+                <a class="btn btn-success gnome-disk-utility-install" href="cmd://install-appid?gnome-disk-utility"><span class="fa fa-download"></span>&nbsp; 安裝</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gparted.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>GParted</b></p>
+              <p>一個進階的工具提供檢視，建立，修改和刪除分區。同時它也支援各式格式和擴大/縮小檔案系統的功能。</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gparted-remove" href="cmd://launch-appid?gparted"><img src="img/applications/gparted.png" width="20px" height="20px"/>&nbsp; 打開</a>
+                <a class="btn btn-success gparted-install" href="cmd://install-appid?gparted"><span class="fa fa-download"></span>&nbsp; 安裝</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-disk-usage-analyzer.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-disk-usage-analyzer-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Disk Usage Analyser</b></p>
+              <p>A graphical tool for exploring your file system or individual folders to determine how much space is being used.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-disk-usage-analyzer-remove" href="cmd://launch-appid?mate-disk-usage-analyzer"><img src="img/applications/mate-disk-usage-analyzer.png" width="20px" height="20px"/>&nbsp; 打開</a>
+                <a class="btn btn-success mate-disk-usage-analyzer-install" href="cmd://install-appid?mate-disk-usage-analyzer"><span class="fa fa-download"></span>&nbsp; 安裝</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-system-monitor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-system-monitor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>系統監控</b></p>
+              <p>檢視目前mounted的檔案系統中執行中的程序，資源使用量以及使用空間。</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-system-monitor-remove" href="cmd://launch-appid?mate-system-monitor"><img src="img/applications/mate-system-monitor.png" width="20px" height="20px"/>&nbsp; 打開</a>
+                <a class="btn btn-success mate-system-monitor-install" href="cmd://install-appid?mate-system-monitor"><span class="fa fa-download"></span>&nbsp; 安裝</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/psensor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check psensor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Psensor</b></p>
+              <p>Views and graphs the current temperature of components attached to the system. Including: Motherboard, CPU, GPU and hard disks.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse psensor-remove" href="cmd://launch-appid?psensor"><img src="img/applications/psensor.png" width="20px" height="20px"/>&nbsp; 打開</a>
+                <a class="btn btn-success psensor-install" href="cmd://install-appid?psensor"><span class="fa fa-download"></span>&nbsp; 安裝</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

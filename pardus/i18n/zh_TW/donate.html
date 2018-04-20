@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>捐款</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+      <div class="row-fluid">
+        <div class="span12">
+          <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+            <li class="active"><a onclick="smoothFade('#supporters','#about')" data-toggle="tab" id="tabAbout">關於捐款</a></li>
+            <li><a onclick="smoothFade('#about','#supporters')" data-toggle="tab" id="tabSupporters">芳名錄</a></li>
+          </ul>
+          <div class="alert alert-warning offline">
+            <h5>沒有連接到網際網路。請檢查您的連線</h5>
+            <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> 抱歉，"歡迎"無法建立連線</p></div>
+            <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> 重試</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="about">
+          <div class="row-fluid">
+            <div class="span12">
+              <p>Ubuntu MATE由我們的社群贊助。您的捐款將幫助我們支付下列項目:</p>
+              <ul>
+                <li>網頁主機租用和頻寬成本</li>
+                <li>支持Ubuntu MATE依賴的開源專案</li>
+                <li>最終將會支付給Ubuntu MATE和MATE Desktop的全職開發者</li>
+              </ul>
+              <p><b>贊助者</b> 是一個特殊的方式來贊助開源專案。每個月定期的收入確保Ubuntu MATE專案的持續。贊助者將享有專案的獨家內幕，更新以及被邀請參加和開發者們直接對談的視訊會議。</p>
+              <p>如果您偏好使用 <b>PayPal</b> 然後我們有權選擇每月捐款或者一次性捐款。最後，我們也接受捐款經由 <b>比特幣</b>.</p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?http://www.patreon.com/ubuntu_mate"><span class="fa fa-3x fa-usd fa-va"></span>&nbsp; 成為一個贊助者</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-paypal fa-va"></span>&nbsp; 使用Paypal捐款</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-bitcoin fa-va"></span>&nbsp; 使用比特幣捐款</a>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12">
+              <hr class="soften" />
+              <p><b>商業贊助</b> is also available. Click the
+              <a href="cmd://link?http://www.patreon.com/ubuntu_mate">成為一個贊助者</a> 上面的按鈕有更詳細的說明</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="supporters" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <h4>感謝您!</h4>
+              <p>每個月，我們會公佈一個捐款明細以及如何使用他們的清單。</p>
+              <p>這些資訊將會每個月公開 <a href="cmd://link?http://ubuntu-mate.org/blog/">Ubuntu MATE部落格</a>,
+              您可以看一下下面</p>
+
+              <!-- Idea = Server side word graph that compiles names of all donators together - Higher donations = Larger names. -->
+
+              <table class="table table-bordered" id="donationTable">
+                <tr>
+                  <th style="text-align:center">年</th>
+                  <th style="text-align:center" colspan="12">月</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

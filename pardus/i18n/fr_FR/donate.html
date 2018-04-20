@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Dons</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+      <div class="row-fluid">
+        <div class="span12">
+          <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+            <li class="active"><a onclick="smoothFade('#supporters','#about')" data-toggle="tab" id="tabAbout">Au sujet des Dons</a></li>
+            <li><a onclick="smoothFade('#about','#supporters')" data-toggle="tab" id="tabSupporters">Nos supporteurs</a></li>
+          </ul>
+          <div class="alert alert-warning offline">
+            <h5>Il apparaît que vous n'êtes pas connecté(e) à Internet. Veuillez vérifier votre connexion afin d'accéder à ce contenu.</h5>
+            <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Désolé, Bienvenue n'a pas été en mesure de rétablir la connexion.</p></div>
+            <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Ré-Essayer</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="about">
+          <div class="row-fluid">
+            <div class="span12">
+              <p>Ubuntu MATE est financé par sa communauté. Vos dons aident à :</p>
+              <ul>
+                <li>Payer l'hébergement et la bande passante.</li>
+                <li>Soutenir les projets Open Source sur lesquels Ubuntu MATE dépend.</li>
+                <li>Éventuellement payer des développeurs à plein temps pour Ubuntu MATE et le bureau MATE Desktop.</li>
+              </ul>
+              <p><b>Patreon</b> est une façon unique de financer un projet Open Source. Un revenu mensuel régulier assure une stabilité pour le projet Ubuntu MATE. Les Patrons seront récompensés par des nouvelles exclusives, des mises à jour, et seront invités à participer à des vidéo-conférences où ils pourront parler directement aux développeurs.</p>
+              <p>Si vous préférez utiliser <b>PayPal</b> nous avons des options qui vous permettent de faire un (ou des) don(s) mensuels. Enfin, nous acceptons aussi les dons de <b>Bitcoin</b>.</p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?http://www.patreon.com/ubuntu_mate"><span class="fa fa-3x fa-usd fa-va"></span>&nbsp; Devenir un Patron</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-paypal fa-va"></span>&nbsp; Faire un Don avec Paypal</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-bitcoin fa-va"></span>&nbsp; Faire Don de Bitcoin</a>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12">
+              <hr class="soften" />
+              <p><b>Devenir Commanditaire Commercial</b> est aussi possible. Cliquez sur le
+              <a href="cmd://link?http://www.patreon.com/ubuntu_mate">Devenir un Patron</a> bouton plus haut afin d'en savoir plus.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="supporters" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <h4>Merci à vous !</h4>
+              <p>Chaque mois, nous compilons une liste des dons qui nous sont adressés et détaillons la façon dont ils ont été dépensés.</p>
+              <p>Ces informations sont publiées de façon mensuelle sur <a href="cmd://link?http://ubuntu-mate.org/blog/">Le Blog Ubuntu MATE</a>,
+              que vous pouvez apercevoir plus bas.</p>
+
+              <!-- Idea = Server side word graph that compiles names of all donators together - Higher donations = Larger names. -->
+
+              <table class="table table-bordered" id="donationTable">
+                <tr>
+                  <th style="text-align:center">Année</th>
+                  <th style="text-align:center" colspan="12">Mois</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

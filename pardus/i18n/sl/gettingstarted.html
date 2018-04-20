@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="indexClose(); smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <a id="index-open" onclick="indexOpen()" class="navigation-button"><span class="fa fa-bars"></span></a>
+        <div id="navigation-title" hidden>Kako začeti - <span id="navigation-sub-title"> </span></div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <a id="index-overlay" onclick="indexClose()" hidden></a>
+    <div id="index-menu" hidden>
+      <a id="index-close" onclick="indexClose();"><span class="fa fa-close"></span></a>
+
+      <!-- Shown in live session only -->
+      <span class="live-session-only"><h5>Predpogoji</h5></span>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("sysreq","Sistemske zahteve")'>        <span class="fa fa-laptop"></span>        Sistemske zahteve</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("prepare","Priprave na namestitev")'> <span class="fa fa-hdd-o"></span>         Priprava na namestitev</a>
+      <a class="btn btn-inverse index-btn live-session-only" onclick='changePage("dualboot","Dvojni zagon")'>             <span class="fa fa-retweet"></span>       Dvojni zagon</a>
+      <a class="btn btn-success index-btn live-session-only" href="cmd://install">                                                    <span class="fa fa-download"></span>      Namestite zdaj</a>
+
+      <!-- Shown when installed -->
+      <br class="live-session-only"/>
+      <span class="live-session"><h5>Po namestitvi</h5></span>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("updates","Posodobitve programov")'>          <span class="fa fa-refresh"></span>       Posodobitve programov</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("drivers","Gonilniki")'>                   <span class="fa fa-gear"></span>          Gonilniki</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("languageInput","Jezikovna podpora")'>    <span class="fa fa-globe"></span>         Jezikovna podpora</a>
+      <a class="btn btn-inverse index-btn live-session"      onclick='changePage("tasks","Izbirna opravila")'>              <span class="fa fa-check-square"></span>  Izbirna opravila</a>
+
+      <br><h5>Prepoznavanje</h5>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("customize","Prilagoditve")'>           <span class="fa fa-adjust"></span>        Prilagoditve</a>
+      <a class="btn btn-inverse index-btn"                   onclick='changePage("shortcuts","Tipkovne bližnjice")'>      <span class="fa fa-keyboard-o"></span>    Tipkovne bližnjice</a>
+
+      <!-- Shown in either session -->
+      <br><h5>Odpravljanje težav</h5>
+      <a class="btn btn-inverse index-btn"     onclick='changePage("specs","Sistemske specifikacije"); InitSystemInfo()'> <span class="fa fa-laptop"></span>        Sistemske specifikacije</a>
+
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+
+      <!-- Topics -->
+      <div id="initial" class="row-fluid topicContents" hidden>
+        <div class="span12">
+          <h4 class="center">Začnite z izborom teme.</h4>
+        </div>
+      </div>
+
+      <!-- System Requirements (shown in guest session only) -->
+      <div id="sysreq" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Skromne sistemske zahteve</h2>
+            <p>Ubuntu MATE je optimiziran, da deluje tako na visoko zmogljivih kot tudi počasnejših računalnikih, medtem pa porabi malo sistemskih sredstev.</p>
+
+            <h5>Minimalno</h5>
+            <ul>
+              <li>Pentium III 750 megahertz (MHz)</li>
+              <li>512 megabajtov (MB) RAM-a</li>
+              <li>8 gigabajtov (GB) prostora na disku</li>
+            </ul>
+
+            <h5>Priporočeno</h5>
+            <ul>
+              <li>Core 2 Duo 1.6 gigahertz (GHz)</li>
+              <li>2 gigabajta (GB) RAM-a</li>
+              <li>16 gigabajtov (GB) prostora na disku</li>
+            </ul>
+
+            <p>Operacijski sistem bo deloval veliko bolj učinkovito, če računalnik izpolnjuje ali presega priporočene zahteve.</p>
+
+            <div class="center">
+              <a onclick='changePage("specs","Sistemske specifikacije"); InitSystemInfo()' class="btn btn-inverse"><span class="fa fa-question-circle"></span>&nbsp; Kaj je v notranjosti mojega računalnika?</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","Priprave na namestitev")'>
+                <b>Naslednje:</b>&nbsp; Priprave na namestitev <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Installation Preparations (shown in guest session only) -->
+      <div id="prepare" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Priprava na namestitev</h2>
+            <p>Ubuntu MATE je dokaj enostavno nastaviti, če iščete zamenjavo za obstoječi operacijski sistem ali namestiti Ubuntu MATE zraven obstoječega - kot je&nbsp;<span class="fa fa-windows"></span>
+            Microsoft Windows ali kakšno drugo<span class="fa fa-linux"></span>
+            GNU/Linux distribucijo.</p>
+
+            <h3>Za najboljše rezultate:</h3>
+            <ul>
+              <li><u><b>Ustvarite varnostno kopijo</b></u> vseh pomembnih podatkov na drugo napravo za shranjevanje.</li>
+              <li class="offline">Povežite se na internet, da namestite vse razpoložljive posodobitve med namestitvijo.</li>
+              <li class="online">Ostanite povezani na internet, da namestite vse razpoložljive posodobitve.</li>
+              <li>Priklopite napravo na električno omrežje, če se napaja iz baterije.</li>
+            </ul>
+            <hr class="soften"/>
+
+            <img src="img/applications/ubiquity.png" class="left"/>
+            <p>Živa seja v kateri ste sedaj je odlična priložnost, da preizkusite Ubuntu MATE brez da bi spreminjali računalnik. Lahko boste preizkusili, če vse vaše zunanje naprave delujejo preden se odločite za namestitev na vaš računalnik. Ko boste pripravljeni dvakrat kliknite na ikono za namestitev na namizju.</p>
+            <hr class="soften"/>
+
+            <h3>Sodobni računalniki, ki temeljijo na UEFI</h3>
+            <p>Če imate sodoben računalnik, ki uporablja poenoten vmesnik vdelane programske opreme (UEFI), boste morda želeli onemogočiti <b>Varni zagon</b> (ali omogočite <b>Odkleni zagonski nalagalnik</b>
+            možnost) pred namestitvijo, še posebej, če je bil operacijski sistem vnaprej nameščen.</p>
+
+            <p>Če uporabljate računalnik z opuščenim BIOSom, potem tega ni potrebno storiti.</p>
+
+            <p>
+              Še posebej med dvojnim zagonom je pomembno, da zaženete svoj sistem v pravem načinu in uporabite <b> 64-bitna slika</b> , ker ni mogoče zagnati operacijskega sistema nameščenega v načinu BIOS po namestitvi UEFI omogočenega operacijskega sistema in obratno.
+            </p>
+
+            <p>Zagon v načinu BIOS na sistemu UEFI z diskom, ki uporablja GPT, bo pokazal tudi "zaščitno plast". <b>Ne skrbite,</b> vaši podatki niso izgubljeni ali pokvarjeni!
+            </p>
+
+            <div class="alert alert-info">
+              Vaš sistem trenutno teče v <b><span id="boot-mode">???</span> načinu</b>.
+            </div>
+
+            <hr class="soften"/>
+
+            <h3>Izmenjevalni razdelek</h3>
+            <p>Za računalnike, ki jim primanjkuje pomnilnika (RAM), bo operacijski sistem začel uporabljati izmenjevalni razdelek na disku. Na Windowsih znano kot "ostranjevalna datoteka". Hitrost delovanja bo manjša, ko bo primanjkovalo pomnilnika in mogoče bo sistem zmrznil, če vam bo zmanjkalo pomnilnika, če ste brez izmenjevalnega razdelka.</p>
+            <p>Privzeto je izmenjevalni razdelek ustvarjen glede na velikost vašega pomnilnika RAM. Na primer, če imate 2 GiB RAMa, potem bo 2 GiB prostora na trdem disku rezerviranega za izmenjevalni razdelek.</p>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("sysreq","Sistemske zahteve")'>
+                <span class="fa fa-chevron-left"></span> <b>Prejšnje:</b>&nbsp; Sistemske zahteve</a>
+              <a class="btn" onclick='changePage("dualboot","Dvojni zagon")'>
+                <b>Naslednje:</b>&nbsp; Dvojni zagon <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advise on Dual Booting (shown in guest session only) -->
+      <div id="dualboot" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h3>Dvojni zagon</h3>
+            <p>Če želite namestiti Ubuntu MATE zraven obstoječega operacijskega sistema, je treba skrčiti razdelke. Rezultat te operacije je razdelitev trdega diska med operacijskimi sistemi.</p>
+
+            <label class="checkbox">
+              <input type="checkbox" value="" id="showDualBootWin">
+                &nbsp;Imam dvojni zagon z &nbsp;<span class="fa fa-windows"></span> Microsoft Windows.
+            </label>
+
+            <h5>Za zmanjšanje tveganja izgube podatkov ali okvar, poskrbite da:</h5>
+            <ul class="unstyled" style="margin-left:8px">
+              <li><span class="fa fa-check-circle"></span> Imate dovolj prostega prostora na disku. Priporočeno je imeti vsaj 10 GB. </li>
+              <li><span class="fa fa-check-circle"></span> <b><u>Ustvarite varnostno kopijo</u></b> pomembnih podatkov na drugo napravo.</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> Defragmentirajte trdi disk.</li>
+              <li class="dualBootWin"><span class="fa fa-windows"></span> Poskrbite, da izberete zaustavitev sistema Windows (ne v mirovanje)</li>
+            </ul>
+
+            <hr>
+            <p><b>Kateri pristop želite izbrati?</b></p>
+            <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+              <li><a onclick="smoothFade('.partition','#partitionSimple')" data-toggle="tab">Enostavno</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionAdvanced')" data-toggle="tab">Napredno</a></li>
+              <li><a onclick="smoothFade('.partition','#partitionWindows')" data-toggle="tab" class="dualBootWin"><span class="fa fa-windows"></span> Najvarnejše</a></li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane partition" id="partitionSimple">
+                <h5>Najbolj enostavna metoda je uporaba namestilnika.</h5>
+                <p>
+                  Namestilnik preišče diske, da ugotovi ali že obstajajo drugi operacijski sistemi in ponudi na izbiro naslednji korak.
+                  <blockquote>
+                    <b>Videli boste opcijo podobno temu:</b>
+                    <br>
+                    <img src="img/screenshots/install-split-choice.png"/>
+                    <br>
+                    <b>Sledi:</b>
+                    <br>
+                    <img src="img/screenshots/install-split-partitions.png"/>
+                  </blockquote>
+                </p>
+                <div class="alert alert-danger">
+                  <h5><span class="fa fa-warning"></span> Ne prekinite ali ugasnite računalnika medtem ko poteka sprememba velikosti diska.</h5>
+                  <p>Če prekinete potek lahko izgubite podatke ali pokvarite tabelo razdelkov. Dvakrat preverite svoje spremembe preden nadaljujete.</p>
+                  <p>Namestilnik lahko kaže <span class="fa fa-spinner"></span> dejavnost kazalnika dlje časa, odvisno od velikosti vašega diska.</p>
+                </div>
+                <p class="dualBootWin">
+                  <span class="fa fa-windows"></span> <b>Pri naslednjem zagonu Windows, zaženite</b>
+                  <code>chkdsk /f</code> iz ukazne vrstice, da preverite če so kakšne napake na datotečnem sistemu. Windows lahko to naredi samodejno. To zagotavlja doslednost datotečnega sistema NTFS.
+                </p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionAdvanced">
+                <h5>Uporabite GParted ali možnost »Po meri« v namestilniku.</h5>
+                <p>
+                  <img class="left" src="img/applications/gparted.png"/>
+                  <b>GParted</b> je na voljo samo med živo sejo.
+                  Nahaja se v <b>Sistem <span class="fa fa-long-arrow-right"></span>
+                  Skrbništvo</b> . GParted zagotavlja popolno fleksibilnost nad vašimi razdelki, predvsem za napredne uporabnike, ki vedo, kakšno postavitev svojih diskov želijo. Ta metoda omogoča spreminjanje razdelkov pred namestitvijo.
+                </p>
+                <div class="center">
+                  <a href="cmd://gparted" class="btn btn-inverse"><img src="img/applications/gparted.png" width="32px" height="32px"> Open GParted</a>
+                </div>
+                <br>
+                <p>Ko zaključite s spreminjanjem razdelkov na disku, lahko pustite ostali prostor nerazporejen,
+                pri čemer bo namestilnik zaznal prazen prostor za namestitev Ubuntu MATE.</p>
+                <br>
+                <h5>Uporaba namestilnikove možnosti "Po meri"</h5>
+                <p>Namesto ali hkrati z GParted, <b>Po meri</b> možnost v čarovniku za namestitev lahko nastavite in spreminjanje velikosti razdelkov, kot tudi izbirate priklopne točke. Delitev diskov lahko tudi kasneje nekoliko olajša ponovno namestitev operacijskega sistema, če boste to želeli.</p>
+
+                <p><b>Določite lahko naslednje priklopne točke:</b></p>
+                <ul>
+                  <li><code>/</code> - Osnova za Ubuntu MATE</li>
+                  <li><code>/boot</code> - Zagonski nalagalnik in jedra</li>
+                  <li><code>/home</code> - Vaše osebne datoteke in mape</li>
+                  <li><code>/tmp</code> - Začasne datoteke</li>
+                  <li><code>/usr</code> - Vsebuje večino programov <i> (binarnih datotek, dokumentacija, knjižnice, ipd.)</i></li>
+                  <li><code>/var</code> - Spremenljivi podatki <i>(kot so sistemski dnevniki)</i></li>
+                  <li><code>/srv</code> - Podatki za sistemske storitve <i>(ponavadi uporabljeni za nastavitve strežnika)</i></li>
+                  <li><code>/opt</code> - Dodatni programi, niso upravljani prek upravljalnika paketov
+                                          <i>(kot je <img src="img/applications/spotify.png" width="16px" height="16px"> Spotify)</i></li>
+                </ul>
+                <p>Ustvarjanje ločenih razdelkov za vse zgoraj naštete točke nameščanja ni potrebno.
+                Pogosta razdelitev map je <code>/</code>, <code>/home</code>
+                in <code>/boot</code>. Te priklopne točke lahko nastavite tudi na različne
+                diske. Na primer, če želite imeti operacijski sistem <code>/</code> na SSD,
+                a osebne datoteke <code>/home</code> na navadnem trdem disku.</p>
+              </div>
+
+              <div class="tab-pane partition" id="partitionWindows">
+                <h5>Skrčite sistemski disk v Windowsih.</h5>
+                <div class="alert alert-warning">
+                  <h5><span class="fa fa-exclamation-circle"></span> Velja v Windows Vista in novejših.</h5>
+                  <p>V primeru, da uporabljate Windows XP ali starejše, boste morali uporabiti
+                  <b>Enostavno</b> ali <b>Napredno</b> metodo, za skrčenje diska.</p>
+                </div>
+
+                <p>Nove različice Windowsov ponujajo orodje za zmanjšanje nosilca NTFS znotraj Windowsov. To je varneje, če želite še vedno zagnati Windows medtem ko preizkušate Windows MATE.</p>
+                <blockquote>
+                  1. Odprite <b>Upravljalec diskov</b> iz menija Start.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-1.png">
+                  </div>
+                  <br>
+                  2. Z desno tipko miške kliknite želeni pogon in izberite <b>Skrči razdelek</b> iz menija.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-2.png">
+                  </div>
+                  <br>
+                  3. Vnesite za koliko želite skrčiti razdelek.
+                  <div class="center">
+                    <img src="img/screenshots/install-shrink-fromWindows-3.png">
+                  </div>
+                  <br>
+                  <div class="alert alert-info">
+                    Ne pozabite, Ubuntu MATE potrebuje najmanj 8 GB prostora na disku.
+                    <b>1 GB = 1000 MB</b>
+                  </div>
+                </blockquote>
+
+                <h5>Dodatno branje</h5>
+                <p>Za dodatne informacije o najboljših praksah za spremembo razdelkov, ki vsebujejo operacijski sistem Windows, si poglejte naslednji
+                <a href="cmd://link?https://help.ubuntu.com/community/HowtoResizeWindowsPartitions">
+                  članek s pomočjo</a> na spletu..</p>
+              </div>
+
+            <hr class="soften"/>
+            <h3>Popravljanje zagonskih težav</h3>
+
+            <p>Linux distribucije uporabljajo zagonski nalagalnik znan kot<code>grub</code>,
+            ki poišče in naloži operacijski sistem. Vendar nekateri operacijski sistemi (npr. Windows) ne vključijo obstoječih zagonskih nalagalnikov in jih bodo prepisali in takrat boste začasno izgubili dostop do Ubuntu MATE.</p>
+
+            <p>Na srečo, lahko uporabite <b>Boot Repair</b> orodje za popravilo pogostih problemov, ki jih povzročajo drugi operacijski sistemi.</p>
+            </div>
+
+            <div class="alert alert-warning offline">
+              <h5>Zahteva prenos paketa.</h5>
+              <p>Za prenos in uporabo tega pripomočka se povežite z internetom.</p>
+              <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Oprostite, Welcome ni mogel vzpostaviti povezave.</p></div>
+              <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Poskusi znova</a>
+            </div>
+
+            <a class="boot-repair-install btn btn-inverse online" href="cmd://install-appid?boot-repair"><span class="fa fa-download"></span>&nbsp; Prejmi Boot Repair</a>
+            <a class="boot-repair-remove btn btn-success" href="cmd://run?boot-repair"><span class="fa fa-wrench"></span>&nbsp; Odpri Boot Repair</a>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("prepare","Priprave na namestitev")'>
+                <span class="fa fa-chevron-left"></span> <b>Prejšnje:</b>&nbsp; Namestitvene priprave</a>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software Updates -->
+      <div id="updates" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Posodobitve programov</h2>
+
+            <div class="alert alert-warning offline">
+              <h5>Internetna povezava je potrebna za prenos in namestitev posodobitev.</h5>
+            </div>
+            <p>Ubuntu MATE redno preverja, če so na voljo nove programske ali varnostne posodobitve za vaš računalnik. V primeru, da ste ravno namestili Ubuntu MATE, morda želite to narediti sedaj.</p>
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://update" onclick="smoothFade('','#updates-hint')">
+                <img src="img/applications/system-software-update.png" width="32px" height="32px"/>&nbsp; Posodobilnik programov
+              </a>
+              <span id="updates-hint" class="center" hidden><small>
+                <p><span class="fa fa-info-circle"></span> <b>Posodobilnik programov</b> lahko kasneje najdete
+                <b><i>Sistem <span class="fa fa-long-arrow-right"></span> Skrbništvo.</i></b></p>
+              </small></span>
+            </div>
+            <hr class="soften"/>
+            <p>Paket s kodeki vključuje celovito rešitev, ki deluje na različnih sistemih, za odkodiranje, kodiranje, snemanje, pretvarjanje in pretok zvoka in videa. Prav tako vsebuje odkodirnik zvoka MP3, ki dovoljuje predvajanje MPEG1 audio layer III (MP3).</p>
+            <!-- <p>Potrebujete podatkovno zbirko Blu-ray AACS, če želite predvajati zaščitene z AACS ali BD+ diske.</p> -->
+            <div align="center">
+              <a class="btn btn-lg btn-inverse" href="cmd://install-appid?codecs">
+                <img src="img/applications/codecs.png" width="32px" height="32px"/>&nbsp; Namesti paket kodekov
+              </a>
+              <!-- <a class="btn btn-lg btn-inverse" href="cmd://get-aacs-db">
+                <img src="img/applications/bluray.png" width="32px" height="32px"/>&nbsp; Namestite podatkovno zbirko za Blu-ray AACS
+              </a> -->
+              <span class="codecs-applying bluray-applying"><br><br><img src="img/welcome/processing.gif" width="24px" height="24px"/> Nameščanje ...</span>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("drivers","Gonilniki")'>
+                <b>Naslednje:</b>&nbsp; Gonilniki <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drivers -->
+      <div id="drivers" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Gonilniki</h2>
+            <p>Medtem, ko je širok izbor strojne opreme združljiv z Ubuntu MATE, obstaja nekaj komponent in zunanjih naprav, ki potrebuje lastniške gonilnike za pravilno delovanje. Za pravilno delovanje nekaterih naprav, navadno Bluetooth in Wi-Fi je potrebna namestitev paketov strojne programske opreme.</p>
+            <div class="alert alert-warning offline">
+              <h5>Internetna povezava je potrebna za prenos in namestitev gonilnikov.</h5>
+            </div>
+            <div align="center">
+                <a class="btn btn-inverse" href="cmd://drivers" onclick="smoothFade('','#drivers-hint')">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; Dodatni gonilniki
+                </a>
+                <a class="btn btn-inverse" href="cmd://install-appid?firmware">
+                    <img src="img/humanity/jockey.svg" width="32px" height="32px"/>&nbsp; Namesti pakete strojne programske opreme
+                </a>
+            </div>
+
+            <span id="drivers-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Dodatni gonilniki</b> lahko kasneje najdete
+              <b><i>Sistem <span class="fa fa-long-arrow-right"></span> Skrbništvo.</i></b></p>
+            </small></span>
+
+            <!-- Advice about graphics -->
+            <a onclick="toggleSub('graphics-section','graphics-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="graphics-arrow"></span> &zwnj;Graphics&zwnj;</h3></a>
+            <div id="graphics-section" hidden>
+
+              <div class="graphics-unknown alert alert-danger">
+                <h5>Oprostite, Welcome ni mogel samodejno prepoznati grafičnega proizvajalca na tem sistemu.</h5>
+                <p><span class="fa fa-plug"></span><b> Kartica/Nabor čipov: </b><i class="graphics-pci">Neznano</i></p>
+              </div>
+
+              <div class="graphics-nvidia alert alert-info" hidden>
+                <h5>NVIDIA Zaznane grafične kartice.</h5>
+                <p>NVIDIA lahko vsebuje gonilnike za kartico s katero lahko povečate zmogljivosti 3D aplikacij in iger, kot tudi izboljšave upravljanja z energijo.</p>
+                <p><span class="fa fa-plug"></span><b> Kartica/Nabor čipov: </b><i class="graphics-pci">Neznano</i></p>
+              </div>
+
+              <div class="graphics-amd alert alert-success" hidden>
+                <h5>AMD Zaznane grafične kartice.</h5>
+                <p>AMD gonilniki za Ubuntu niso več podprti. Odprto-kodni gonilniki, ki jih trenutno uporabljate bodo prinesli najbolj stabilno delovanje iz vaše kartice.</p>
+                <p><span class="fa fa-plug"></span><b> Kartica/Nabor čipov: </b><i class="graphics-pci">Neznano</i></p>
+              </div>
+
+              <div class="graphics-intel alert alert-success" hidden>
+                <h5>Pripravljeni ste.</h5>
+                <p>Intelovi gonilniki so odprtokodni in se vzdržujejo / posodabljajo v jedru.</p>
+                <p><span class="fa fa-plug"></span><b> Kartica/Nabor čipov: </b><i class="graphics-pci">Neznano</i></p>
+              </div>
+
+              <div class="graphics-vbox alert alert-info" hidden>
+                <h5>Dodatki gosta VirtualBox</h5>
+                <p>Za grafično pospeševanje znotraj navideznega računalnika namestite Dodatke za gosta.</p>
+              </div>
+
+              <div id="graphics-proprietary" hidden>
+                <h4>Lastniški ali Odprtokodni gonilniki?</h4>
+                <p>Lastniški gonilniki prihajajo neposredno od proizvajalca.
+                Ker niso odprtokodni jih razvijalci pri Ubuntu <b>ne morejo pregledati in izboljšati kode</b> kar pomeni, da se boste morali zanesli na proizvajalca za podporo.</p>
+
+                <p>Poleg tega lahko lastniški gonilniki <b>bistveno izboljšajo grafične zmogljivosti</b> in kot rezultat
+                celoten sistem. Uporabniki morda želijo namestiti tudi te gonilnike:</p>
+                <ul>
+                  <li>Zaženite 3D programe in igre.</li>
+                  <li>Uporabite Compizov učinke na oknih.</li>
+                  <li>Izboljšanje upravljanja energije, še posebej, če ima naprava težave z pregrevanjem v okviru odprtokodnih gonilnikov.</li>
+                  <li>Izboljšanje podpore za visoko ločljivost in več monitorjev.</li>
+                  <li>Popravite težave s črnim zaslonom.</li>
+                </ul>
+
+                <p>Lastniški gonilniki so znani kot "zbirka binarnih podatkov". Nekatera strojna oprema lahko deluje slabše,
+                povzroča več težav kot odprtokodni gonilnikot kot je na primer:</p>
+                <ul>
+                  <li>V primeru, da se grafično namizje na zažene.</li>
+                  <li>Pokvarjeni gonilniki po nadgradnji.</li>
+                  <li>Resne grafične težave.</li>
+                  <li>Težave z aplikacijami / igrami, ki zahtevajo strojno pospeševanje.</li>
+                </ul>
+
+                <p class="graphics-nvidia graphics-amd">
+                  <code id="graphics-open-driver-name"></code> je odprtokoden gonilnik za vašo kartico.
+                </p>
+
+                <p id="graphics-nvidia" hidden>
+                  <hr class="soften"/>
+                  <h4>Kaj pa najnovejši gonilnik NVIDIA?</h4>
+                  <p><b>Dodatni gonilniki</b> pridobi najnovejše preverjene gonilnike iz Ubuntu skladišč.
+                  Napredni uporabniki in igralci iger, ki bi radi novejše različice bodo morda želeli dodati
+                  <a href="cmd://link?https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa">PPA za grafični gonilnik Ubuntu</a>,
+                  , ki vsebuje najnovejši gonilnik NVIDIA za Ubuntu. Vendar ti paketi niso temeljito preizkušeni.</p>
+                  <div class="alert alert-warning">
+                    <span class="fa fa-exclamation-triangle"></span> To velja samo za aktivno podprte kartice in ne za starejše kartice, ki uporabljajo opuščene gonilnike.
+                  </div>
+                  <a class="btn btn-warning" href="cmd://upgrade-appid?nvidia-settings"><span class="fa fa-level-up"></span>&nbsp; Dodaj skladišče</a>
+                  <br><br>
+                  <!-- <a class="btn btn-danger" href="#"><span class="fa fa-trash"></span>&nbsp; Remove Repository</a> -->
+                  <p>Če želite dodati skladišče v sistem, odprite terminal in vnesite naslednje:</p>
+                  <blockquote class="terminal miscCmd">
+                    <span class="fa fa-dollar"></span> sudo add-apt-repository ppa:graphics-drivers/ppa
+                    <br>&nbsp;<span class="fa fa-dollar"></span> sudo apt-get update
+                  </blockquote>
+                  <p>Potem ko dodamo PPA, se novejše različice prikažejo za namestitev v <a href="cmd://drivers">Dodatni Gonilniki:</a></p>
+                  <img src="img/screenshots/graphics-drivers-nvidia.png"/>
+                </p>
+              </div>
+            </div>
+
+            <!-- Advice about wireless -->
+            <a onclick="toggleSub('wireless-section','wireless-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="wireless-arrow"></span> Brezžično omrežje, Bluetooth in ostale naprave</h3></a>
+            <div id="wireless-section" hidden>
+             <p>Če ni bilo najdenih nobenih dodatnih gonilnikov, niti ne deluje po namestitvi paketov strojne programske opreme, boste morda morali raziskati svojo napravo, da boste našli ustrezen gonilnik.</p>
+
+              <p>Na žalost je to posledica dejstva, da proizvajalec za strojno opremo ni predložil nobene izvorne kode za razvijalce za prosto uporabo, ali pa ni predložil zadostne dokumentacije za ustvarjanje gonilnike za določeno blagovno znamko in model.</p>
+
+               <p>Nekateri proizvajalci lahko neposredno zagotovijo zaprte gonilnike. Če potrebujete pomoč, vas prosimo, da <a onclick="smoothPageFade('community.html')">vprašate skupnost</a>.</p>
+
+               <p><a href="cmd://link?https://help.ubuntu.com/community/WifiDocs/WirelessTroubleShootingGuide/Drivers">
+               <span class="fa fa-globe"></span> Preberite več o odpravljanju težav z brezžično strojno opremo.</a></p>
+            </div>
+
+            <!-- Advice about printers -->
+            <a onclick="toggleSub('printers-section','printers-arrow');"><h3 class="sub-collapse"><span class="fa fa-chevron-down" id="printers-arrow"></span> Tiskalniki</h3></a>
+            <div id="printers-section" hidden>
+              <p>Ko nastavite tiskalnik v
+              <a href="cmd://printers">
+              <img src="/usr/share/icons/Humanity/actions/16/document-print.svg" width="20px" height="20px"/>
+              <b>Tiskalniki</b></a>
+              &nbsp; <i>(pod Sistem <span class="fa fa-long-arrow-right"></span>
+              Skrbništvo)</i>, bo prikazan seznam gonilnikov, ki so na voljo za uporabo, če bo potrebno.</p>
+
+              <p>Nekateri proizvajalci lahko zagotovijo svoje gonilnike in zahtevajo, da jih prenesete iz njihove spletne strani.</p>
+              <p><a href="cmd://link?https://help.ubuntu.com/community/Printers">
+              <span class="fa fa-globe"></span> Preberite več o tiskalnikih</a>.</p>
+
+              <hr class="soften"/>
+
+              <div class="row-fluid">
+                <div class="span2 center-inside">
+                  <img src="img/applications/hplip.png" width="64px" height="64px"/>
+                  <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+                </div>
+                <div class="span10">
+                  <p><b>HP Linux Printing and Imaging System</b></p>
+                  <p>Priporočeno, če imate tiskalnik HP, ker ponuja popolno podporo za tiskanje na večini brizgalnik tiskalnikov HP (inkjet) in veliko LaserJets, optično branje, pošiljanje faksov in za dostop do kartice fotografij na večini večnamenskih tiskalnikov HP (MFP).</p>
+                  <p class="text-right">
+                    <a class="btn btn-inverse hp-printer-remove" href="cmd://launch-appid?hp-printer"><img src="img/applications/hplip.png" width="20px" height="20px"/>&nbsp; Odprite</a>
+                    <a class="btn btn-success hp-printer-install" href="cmd://install-appid?hp-printer"><span class="fa fa-download"></span>&nbsp; Namesti</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("updates","Posodobitve programov")'>
+                <span class="fa fa-chevron-left"></span> <b>Prejšnje:</b>&nbsp; Posodobitve programov</a>
+              <a class="btn" onclick='changePage("languageInput","Jezik vnosa")'>
+                <b>Naslednje:</b>&nbsp; Jezik vnosa <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language & Input Support -->
+      <div id="languageInput" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Jezikovna podpora</h2>
+            <p>Računalnik lahko zahteva posodobitve za vaš jezik in lokalizacijo nastavitev, ali pa boste morda želeli namestiti dodatno jezikovno podporo.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://language" onclick="smoothFade('','#locale-hint')">
+              <img src="img/humanity/preferences-desktop-locale.svg" width="32px" height="32px"/>&nbsp; Jezikovna podpora
+            </a></div>
+            <span id="locale-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Jezikovna podpora</b> lahko kasneje najdete
+              <b><i>Sistem <span class="fa fa-long-arrow-right"></span> Možnosti
+                           <span class="fa fa-long-arrow-right"></span> Osebno</i></b></p>
+            </small></span>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Zapleten vnos</h2>
+            <p>Nekatere regije po svetu potrebujejo zapletene vnose. </p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-chinese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Kitajščina</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-japanese"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Japonščina</a>
+          </div>
+          <div class="span4 center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?keyboard-korean"><span class="fa fa-3x fa-keyboard-o fa-va"></span>&nbsp; Korejščina</a>
+          </div>
+        </div>
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("drivers","Gonilniki")'>
+            <span class="fa fa-chevron-left"></span> <b>Prejšnje:</b>&nbsp; Gonilniki</a>
+          <a class="btn" onclick='changePage("tasks","Izbirna opravila")'>
+            <b>Naslednje:</b>&nbsp; Izbirna opravila <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Additional Tasks - Backups / Firewall / Users -->
+      <div id="tasks" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Varnostna kopija, požarni zid in upravljanje uporabnikov</h2>
+            <p>Ubuntu MATE zagotavlja orodje za varnostno kopiranje datotek, ima vnaprej nameščen požarni zid in podpira več uporabniških računov.</p>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-backup.png">
+          </div>
+          <div class="span6">
+            <h3>Varnostne kopije</h3>
+            <p>Nič ni bolj pomembno kot imeti varnostno kopijo osebnih podatkov, v primeru, da se kaj nepredvidljivega zgodi z vašim računalnikom.</p>
+            <p><img src="img/applications/deja-dup.png" width="20px" height="20px"/>
+            <b>Deja-Dup</b> je vnaprej nameščen in podpira ustvarjanje varnostnih kopij na lokalnih napravah ter spletnih storitvah v oblaku.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://backup" onclick="smoothFade('','#backup-hint')">
+              <img src="img/applications/deja-dup.png" width="32px" height="32px"/>&nbsp; Nastavi ustvarjanje varnostnih kopij
+            </a>
+            <span id="backup-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Varnostne kopije</b> lahko kasneje najdete
+              <b><i>Sistem <span class="fa fa-long-arrow-right"></span> Možnosti
+                           <span class="fa fa-long-arrow-right"></span> Osebno</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-firewall.png">
+          </div>
+          <div class="span6">
+            <h3>Požarni zid</h3>
+            <p>Požarni zid preprečuje vstop in izstop zlonamernim povezavam v/iz računalnika. Privzeto je požarni zid onemogočen,
+              <a href="cmd://link?https://help.ubuntu.com/community/DoINeedAFirewall">več informacij o požarnih zidih</a>.</p>
+            <p><img src="img/applications/gufw.png" width="20px" height="20px"/>
+              <b>Gufw</b> ponuja grafično zaledje za <code>ufw</code>
+              (preprost požarni zid). Če je varnost pomembna za vas, obstaja
+              <a href="cmd://link?https://wiki.ubuntu.com/BasicSecurity">tudi več načinov, da ostanete varni</a>.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://firewall" onclick="smoothFade('','#firewall-hint')">
+              <img src="img/applications/gufw.png" width="32px" height="32px"/>&nbsp; Nastavi varnostni zid
+            </a>
+            <span id="firewall-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Nastavitev požarnega zida</b> lahko kasneje najdete
+              <b><i>Sistem <span class="fa fa-long-arrow-right"></span> Možnosti
+                           <span class="fa fa-long-arrow-right"></span> Internet in omrežje</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+        <hr class="soften-light">
+
+        <div class="row-fluid wow fadeIn">
+          <div class="span6 center-inside">
+            <img src="img/screenshots/tasks-users.png">
+          </div>
+          <div class="span6">
+            <h3>Uporabniki</h3>
+            <p>
+              Ali delite računalnik z drugimi? Nastavite ločene uporabniške račune za vsakega uporabnika posebej, da zaščitite zasebnost vsakega posameznika, ki ta računalnik uporablja.
+            </p>
+            <p>Prav tako se lahko prijavite kot <b>Gost</b> če nekdo uporablja vaš računalnik samo enkrat.</p>
+            <a class="btn btn-lg btn-inverse" href="cmd://users" onclick="smoothFade('','#users-hint')">
+              <img src="img/humanity/system-users.svg" width="32px" height="32px"/>&nbsp; Nastavi uporabnike
+            </a>
+            <span id="users-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Uporabniki in skupine</b> lahko kasneje najdete
+              <b><i>Sistem <span class="fa fa-long-arrow-right"></span> Skrbništvo
+                           <span class="fa fa-long-arrow-right"></span> Uporabniki in skupine</i></b>.</p>
+            </small></span>
+          </div>
+        </div>
+
+        <div class="center">
+          <hr class="soften-light">
+          <a class="btn" onclick='changePage("languageInput","Jezik vnosa")'>
+            <span class="fa fa-chevron-left"></span> <b>Prejšnje:</b>&nbsp; Jezik vnosa</a>
+          <a class="btn" onclick='changePage("customize","Prilagoditve")'>
+            <b>Naslednje:</b>&nbsp; Prilagoditve <span class="fa fa-chevron-right"></span></a>
+        </div>
+      </div>
+
+      <!-- Customizing the Experience -->
+      <div id="customize" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Uporabniški vmesnik</h2>
+            <p>Ubuntu MATE ponuja edinstveno orodje za preoblikovanje uporabniškega vmesnika. Prav tako se lahko uporablja za hitro nastavitev uporabniškega vmesnika, da imajo podoben videz in občutek kot drugi priljubljeni operacijski sistemi.  <b>Redmond</b> postavitve so najbolj podobne Microsoft Windows, medtem ko so <b>Cupertino</b> postavitve najbolj podobne Apple Mac OS X.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://tweak" onclick="smoothFade('','#tweak-hint')">
+              <img src="img/applications/control-centre.png" width="32px" height="32px"/>&nbsp; Uporabniški vmesnik
+            </a></div>
+            <span id="tweak-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>MATE Tweak</b> lahko kasneje najdete
+              <b><i>Sistem <span class="fa fa-long-arrow-right"></span> Možnosti
+                           <span class="fa fa-long-arrow-right"></span> Izgled in videz</i></b>.</p>
+            </small></span>
+
+            <h2>Nadzorno središče</h2>
+            <p>Zgoraj navedeni pripomočki so vsi del obsežnega nadzornega središča, ki ga zagotavlja Ubuntu MATE. Nastavite lahko skoraj vsak vidik vašega računalnika iz nadzornega središča.</p>
+            <div align="center"><a class="btn btn-lg btn-inverse" href="cmd://control" onclick="smoothFade('','#control-hint')">
+              <img src="img/applications/user-desktop.svg" width="32px" height="32px"/>&nbsp; Nadzorno središče
+            </a></div>
+            <span id="control-hint" class="center" hidden><small>
+              <p><span class="fa fa-info-circle"></span> <b>Nadzorno središče</b> lahko kasneje najdete v
+              <b><i>Sistem</i></b> meniju.</p>
+            </small></span>
+
+            <h2>Slike ozadja za namizje</h2>
+            <p>Ubuntu MATE Skupnost je prispevala na desetine slik ozadja za namizje v preteklih letih. Zakaj jih ne namestite in najdete nekaj, kar ustreza vašemu okusu?</p>
+            <div class="center">
+            <a class="btn btn-lg btn-inverse" href="cmd://install-appid?ubuntu-mate-wallpapers-complete"><span class="fa fa-3x fa-picture-o fa-va"></span>&nbsp; Slike ozadja</a>
+            </div>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("tasks","Izbirna opravila")'>
+                <span class="fa fa-chevron-left"></span> <b>Prejšnje:</b>&nbsp; Izbirna opravila</a>
+              <a class="btn" onclick='changePage("shortcuts","Tipkovne bližnjice")'>
+                <b>Naslednje:</b>&nbsp; Tipkovne bližnjice <span class="fa fa-chevron-right"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts -->
+      <div id="shortcuts" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Tipkovne bližnjice</h2>
+            <p>Ubuntu MATE ima veliko bližnjic na tipkovnici, ki pomagajo, da uporabljate računalnik bolj učinkovito.</p>
+            <h3>Pogosto uporabljene bližnjice</h3>
+            <p>Te bližnjice se lahko uporabljajo v večini programov.</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">C</b></td>
+                <td>Kopiraj izbrano besedilo / predmet</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">X</b></td>
+                <td>Izreži izbrano besedilo / predmet</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">V</b></td>
+                <td>Prilepi / vstavi izbrano besedilo / predmet</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>Izberi vso besedilo</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F</b></td>
+                <td>Najdi in zamenjaj besede</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">B</b></td>
+                <td>Izbrano besedilo naj postane krepko</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">I</b></td>
+                <td>Izbrano besedilo naj postane poševno</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">U</b></td>
+                <td>Podčrtaj izbrano besedilo</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>Odpri nov dokument ali okno</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>Shrani trenuten dokument</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">O</b></td>
+                <td>Odpri drug dokument</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">P</b></td>
+                <td>Natisni trenutni dokument</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>Razveljavi zadnjo spremembo, ki je bila narejena</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Z</b></td>
+                <td>Uveljavi zadnjo spremembo</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">F11</b></td>
+                <td>Preklopi trenutni program med celozaslonskim in okenskim načinom</td>
+              </tr>
+            </table>
+
+            <h3>Bližnjice za namizje</h3>
+            <p>V tem razdelku so navedene najpogostejše bližnjice na tipkovnici, ki jih lahko uporabite za upravljanje z deli namizja.</p>
+
+            <table class="table">
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F1</b></td>
+                <td>Odpri meni programi</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F2</b></td>
+                <td>Zaženi program z vnosom imena programa v polje, ki se pojavi</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Prt Sc</b></td>
+                <td>Zajemi celotno namizje</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Prt Sc</b></td>
+                <td>Zajem trenutnega okna</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Delete</b></td>
+                <td>Odpre pogovorno okno za izklop, ponovni zagon ali v pripravljenost.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">L</b></td>
+                <td>Zakleni zaslon.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">T</b></td>
+                <td>Odpri terminal.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">S</b></td>
+                <td>Omogoči/onemogoči zaslonski bralnik.</td>
+              </tr>
+            </table>
+
+            <h3>Bližnjice za okna</h3>
+            <table class="table">
+              <tr>
+                <td style="width:270px;"><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tab</b></td>
+                <td>
+                  Preklopi med trenutno odprtimi okni.
+                  <ul>
+                    <li>Pritisni Alt+Tab in nato izpusti Tab (ampak še vedno drži pritisnjen Alt).</li>
+                    <li>Pritisni Tab večkrat za pomikanje po seznamu razpoložljivih oken, ki se pojavijo na zaslonu.</li>
+                    <li>Spusti tipko Alt za preklop na izbrano okno.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Tab</b></td>
+                <td>
+                  Preklopi med trenutno odprtimi okni na vseh delovnih površinah.
+                  <ul>
+                    <li>Pritisni Tab večkrat za pomikanje po seznamu razpoložljivih oken, ki se pojavijo na zaslonu.</li>
+                    <li>Spusti tipki Ctrl in Alt za preklop na izbrano okno.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Levo</b></td>
+                <td>Preklopi na predhodno delovno površino.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Desno</b></td>
+                <td>Preklopi na naslednjo delovno površino.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Levo</b></td>
+                <td>Premakni trenutno okno na predhodno delovno površino.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Desno</b></td>
+                <td>Premakni trenutno okno na naslednjo delovno površino.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F4</b></td>
+                <td>Zapre okno.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F5</b></td>
+                <td>Povrne okno na 'normalno' ali predhodno velikost.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F7</b></td>
+                <td>Premakne trenutno okno (lahko premaknemo z miško ali tipkovnico).</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F8</b></td>
+                <td>Spremeni velikost trenutnemu oknu (lahko premaknemo z miško ali tipkovnico).</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F9</b></td>
+                <td>Pomanjšaj trenutno okno.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F10</b></td>
+                <td>Povečaj trenutno okno.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">F12</b></td>
+                <td>Spustni Terminal.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Preslednica</b></td>
+                <td>Prikaže okenski meni z možnostmi kot so 'Vedno na vrhu' in 'Skrči' in 'Razpni' in podobno.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 7</b></td>
+                <td>Postavi okno v zgornji levi kot zaslona.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 8</b></td>
+                <td>Postavi okno v zgornjo polovico zaslona.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 9</b></td>
+                <td>Postavi okno v zgornji desni kot zaslona.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 5</b></td>
+                <td>Središči/povečaj okno v sredino zaslona.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 1</b></td>
+                <td>Postavi okno v spodnji levi kot zaslona.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 2</b></td>
+                <td>Postavi okno v spodnjo polovico zaslona.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Numpad 3</b></td>
+                <td>Postavi okno v spodnji desni kot zaslona.</td>
+              </tr>
+            </table>
+
+            <h3>Bližnjice učinkov Compiza</h3>
+            <p>Vse bližnjice iz tega seznama potrebujejo omogočen Compiz.</p>
+            <table class="table">
+              <tr>
+                <td style="width: 280px"><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">D</b></td>
+                <td>Preklopi 'Pokaži namizje'</td>
+              </tr>
+              <!--
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Up</b></td>
+                <td>Omogoči zmožnost "izpostavi", katera vam prikaže vsa trenutno odprta okna, in vam omogoči izbiro okna za v ospredje.</td>
+              <tr>
+                <td><b class="btn btn-xs disabled">Ctrl</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Down</b></td>
+                <td>Razgrne vaše delovno okolje, kocko, tako da lahko naenkrat vidite več kot eno delovno okolje. Ko je to dejavno, boste lahko z uporabo tipk za levo in desno izbirali želeno delovno okolje.</td>
+              </tr>
+              -->
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">A</b></td>
+                <td>Oddalji, prikaži preklopnik delovnih površin.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>Omogoči učinek "spreminjanja velikosti". Pokaže vsa okna trenutnega delovnega okolja.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Shift</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">W</b></td>
+                <td>Omogoči učinek "spreminjanja velikosti". Pokaže vsa okna vseh delovnih okolij.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">N</b></td>
+                <td>Obrni barve okna v žarišču.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">M</b></td>
+                <td>Obrni barve celotnega zaslona.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Drsenje z miško</b></td>
+                <td>Približa na zaslonu.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Super</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Srednji miškin gumb</b></td>
+                <td>Izberite območje povečave z uporabo štirikotnika.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Levi miškin gumb</b></td>
+                <td>Premakni okna v žarišču.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Srednji miškin gumb</b></td>
+                <td>Spremeni velikost okna v žarišču.</td>
+              </tr>
+              <tr>
+                <td><b class="btn btn-xs disabled">Alt</b> <b class="fa fa-plus"></b> <b class="btn btn-xs disabled">Desni miškin gumb</b></td>
+                <td>Prikaži meni okna.</td>
+              </tr>
+            </table>
+
+            <div class="center">
+              <hr class="soften-light">
+              <a class="btn" onclick='changePage("customize","Prilagoditve")'>
+                <span class="fa fa-chevron-left"></span> <b>Prejšnje:</b>&nbsp; Prilagoditve</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's inside my computer? -->
+      <div id="specs" class="topicContents" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <h2>Kaj je v notranjosti mojega računalnika?</h2>
+            <p>Vaš računalnik je sestavljen iz različnih delov, ki se sporazumevajo eden z drugim. Ta podrobnost je uporabna pri zagotavljanju podpore, da zagotovite da tako strojna kot programska oprema dela na vašem računalniku.</p>
+          </div>
+        </div>
+        <div id="specs-loading"><p>Počakajte dokler ne zberemo vseh podrobnosti...</p></div>
+        <ul id="specs-tabs" class="nav nav-pills" data-tabs="tabs" hidden>
+          <li class="active"><a onclick="smoothFade('.tab-contents','#specs-basic')" data-toggle="tab">Osnovno</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-detailed')" data-toggle="tab">Podrobno</a></li>
+          <li><a onclick="smoothFade('.tab-contents','#specs-more')" data-toggle="tab">Pripomočki</a></li>
+        </ul>
+
+        <div class="tab-contents" id="specs-basic" hidden>
+          <div id="specs-icon">
+            <img class="specs-icon" hidden id="specs-device-normal" src="img/welcome/ubuntu-mate-laptop.png"/>
+            <img class="specs-icon" hidden id="specs-device-rpi" src="img/logos/raspberry-pi.png"/>
+            <img class="specs-icon" hidden id="specs-device-vbox" src="img/logos/virtualbox-vbox.png"/>
+            <img class="specs-icon" hidden id="specs-device-powerpc" src="img/logos/powerpc.png"/>
+            <img class="specs-icon" hidden id="specs-live-session" src="img/welcome/live-session-image.png"/>
+          </div>
+          <div id="specs-box">
+            <h4><span class="fa fa-cog"></span> Sistem</h4>
+            <table class="table">
+              <tr>
+                <th>Distribucija:</th>
+                <td><span id="spec-distro"></span></td>
+              </tr>
+              <tr>
+                <th>Jedro:</th>
+                <td>
+                  <span id="spec-kernel"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Jedro Linuxa je srce Ubuntuja.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Matična plošča:</th>
+                <td><span id="spec-motherboard"></span></td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Način zagona:</th>
+                <td>
+                  <span id="spec-boot-mode"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Prikaže način, katerega Ubuntu MATE uporablja za sporočanje s strojno programsko opremo.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-bolt"></span> Procesor</h4>
+            <table class="table">
+              <tr>
+                <th>Model:</th>
+                <td><span id="spec-cpu-model"></span></td>
+              </tr>
+              <tr>
+                <th>Hitrost:</th>
+                <td><span id="spec-cpu-speed"></span></td>
+              </tr>
+              <tr>
+                <th>Arhitektura:</th>
+                <td>
+                  <span id="spec-arch-use"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Arhitektura katero operacijski sistem uporablja. Na primer i386 = 32-bit.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi specs-hide-ppc">
+                <th>Podprta/e arhitektura(e):</th>
+                <td>
+                  <span id="spec-arch-supported"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Arhitekture, ki jih podpira ta procesor.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <h4><span class="fa fa-plug"></span> Sestavni deli</h4>
+            <table class="table">
+              <tr>
+                <th>Pomnilnik (RAM):</th>
+                <td>
+                  <span id="spec-memory"></span>
+                  <a data-toggle="tooltip" data-placement="right" title="Več RAM-a omogoča, da več programov deluje istočasno.">
+                    <span class="fa fa-info-circle"></span>
+                  </a>
+                </td>
+              </tr>
+              <tr class="specs-hide-vbox specs-hide-pi">
+                <th>Grafika:</th>
+                <td><span id="spec-graphics"></span></td>
+              </tr>
+              <tr>
+                <th>Dostop do interneta:</th>
+                <td>
+                  <span id="specs-has-net"    style="color:#006400" hidden>&nbsp; <span class="fa fa-check"></span> Povezan</span>
+                  <span id="specs-has-no-net" style="color:#640000" hidden>&nbsp; <span class="fa fa-close"></span> Brez povezave</span>
+                </td>
+              </tr>
+            </table>
+            <hr>
+
+            <div class="specs-hide-live">
+              <h4><span class="fa fa-hdd-o"></span> Shramba</h4>
+
+              <table class="table">
+                <tr>
+                  <th>Korenski datotečni sistem:</th>
+                  <td>
+                    <span id="spec-filesystem"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Datotečni sistem, kjer je nameščen Ubuntu MATE.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Celotna velikost diska:</th>
+                  <td>
+                    <span id="spec-capacity"></span>
+                    <br>
+                    <div id="disk-usage" style="width:200px">
+                      <a id="disk-allocated" class="disk-line" style="width:auto" data-toggle="tooltip" data-placement="bottom" title="Poraba Ubuntu MATE">
+                        <div id="disk-used" class="disk-line" style="width:0px"></div>
+                        <div id="disk-free" class="disk-line" style="width:0px"></div>
+                      </a>
+                      <a id="disk-other" class="disk-line" style="width:0px" data-toggle="tooltip" data-placement="bottom" title="Other Usage"></a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Dodeljen Ubuntu MATEu:</th>
+                  <td>
+                    <span id="spec-allocated-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Velikost razdelka operacijskega sistema.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #87A556"></div> Uporabljen prostor:</th>
+                  <td>
+                    <span id="spec-used-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #C2D3A6"></div> Neporabljen prostor:</th>
+                  <td>
+                    <span id="spec-free-space"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th><div class="disk-legend" style="background-color: #484848;"></div> Ostala uporaba:</th>
+                  <td>
+                    <span id="spec-other-space"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Rezervirano s strani sistema, drugih razdelkov, nedodeljeno ali izmenjevalni razdelek.">
+                      <span class="fa fa-info-circle"></span>
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <a data-trigger="hover" rel="unitsinfo" data-placement="top">
+                <span class="fa fa-info-circle"></span> Zakaj vidim dve enoti?
+              </a>
+            </div>
+
+          </div>
+          <div id="popover_units" style="display: none;">
+            <h4>Enote SI ali IEC?</h4>
+            <p>
+              <b>Desetiški (standard SI)</b>
+              <ul>
+                <li><b>1 KB = 1000 bajtov</b></li>
+                <li>Izgovorjava z "ga" - kot je "Mega", "Giga".</li>
+                <li>Pogosto pri vsakodnevnih programih in shranjevanju datotek.</li>
+              </ul>
+            </p>
+            <p>
+              <b>Dvojiško (standard IEC)</b>
+              <ul>
+                <li><b>1 KiB = 1024 bajtov</b></li>
+                <li>Izgovorjava z "bi" - kot je "Mebi", "Gibi".</li>
+                <li>Pogosta v RAMu, diskih in razdelkih, vključno z orodji, kot je GParted.</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-detailed" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <p><span class="fa fa-info-circle"></span> Naslednje informacije se pridobijo neposredno iz <code>inxi</code> ukazne vrstice programa.</p>
+              <pre id="specs-inxi">Podatkov ni bilo mogoče zbrati.</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-contents" id="specs-more" hidden>
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/hardinfo.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check hardinfo-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>System Profiler and Benchmark</b></p>
+              <p>Za več podrobnosti o sistemu vključno s povezanimi USBji, napravami PCI in preprostim primerjalnim preizkusom CPU, si oglejte v grafičnem oknu.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse hardinfo-remove" href="cmd://launch-appid?hardinfo"><img src="img/applications/hardinfo.png" width="20px" height="20px"/>&nbsp; Odprite</a>
+                <a class="btn btn-success hardinfo-install" href="cmd://install-appid?hardinfo"><span class="fa fa-download"></span>&nbsp; Namesti</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gnome-disk-utility.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gnome-disk-utility-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Diski</b></p>
+              <p>Prednameščeno orodje, ki dovoli splošno nastavitev diskov in razdelkov, vključno s formatiranjem, ustvarjanjem razdelkov, priklopom, ogledom podatkov S.M.A.R.T in zapisom slik na kartice SD/naprave USB.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gnome-disk-utility-remove" href="cmd://launch-appid?gnome-disk-utility"><img src="img/applications/gnome-disk-utility.png" width="20px" height="20px"/>&nbsp; Odprite</a>
+                <a class="btn btn-success gnome-disk-utility-install" href="cmd://install-appid?gnome-disk-utility"><span class="fa fa-download"></span>&nbsp; Namesti</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/gparted.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check gparted-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>GParted</b></p>
+              <p>Napredno orodje za ogled, ustvarjanje, spreminjanje in brisanje razdelkov. Prav tako ima funkcije za razširitev / krčenje datotečnih sistemov in podpira široko paleto formatov.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse gparted-remove" href="cmd://launch-appid?gparted"><img src="img/applications/gparted.png" width="20px" height="20px"/>&nbsp; Odprite</a>
+                <a class="btn btn-success gparted-install" href="cmd://install-appid?gparted"><span class="fa fa-download"></span>&nbsp; Namesti</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-disk-usage-analyzer.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-disk-usage-analyzer-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Preučevalnik porabe diska</b></p>
+              <p>Grafično orodje za raziskovanje datotečnega sistema ali posameznih map in ugotovitev koliko prostora je v uporabi.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-disk-usage-analyzer-remove" href="cmd://launch-appid?mate-disk-usage-analyzer"><img src="img/applications/mate-disk-usage-analyzer.png" width="20px" height="20px"/>&nbsp; Odprite</a>
+                <a class="btn btn-success mate-disk-usage-analyzer-install" href="cmd://install-appid?mate-disk-usage-analyzer"><span class="fa fa-download"></span>&nbsp; Namesti</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/mate-system-monitor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check mate-system-monitor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Sistemski nadzornik</b></p>
+              <p>Prikaže postopke, ki se trenutno izvajajo, uporabo virov, in koliko prostora se uporablja in koliko je prosto na trenutno priklopljenih datotečnih sistemih.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse mate-system-monitor-remove" href="cmd://launch-appid?mate-system-monitor"><img src="img/applications/mate-system-monitor.png" width="20px" height="20px"/>&nbsp; Odprite</a>
+                <a class="btn btn-success mate-system-monitor-install" href="cmd://install-appid?mate-system-monitor"><span class="fa fa-download"></span>&nbsp; Namesti</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="row-fluid">
+            <div class="span2 center-inside">
+              <img src="img/applications/psensor.png"/>
+              <span class="fa fa-check-circle fa-2x installed-check psensor-remove"></span>
+            </div>
+            <div class="span10">
+              <p><b>Psensor</b></p>
+              <p>Prikazi in grafi trenutnih temperatur sestavnih delov, povezanih s sistemom. Vključno z: matično ploščo, CPU, GPU in trdimi diski.</p>
+              <p class="text-right">
+                <a class="btn btn-inverse psensor-remove" href="cmd://launch-appid?psensor"><img src="img/applications/psensor.png" width="20px" height="20px"/>&nbsp; Odprite</a>
+                <a class="btn btn-success psensor-install" href="cmd://install-appid?psensor"><span class="fa fa-download"></span>&nbsp; Namesti</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

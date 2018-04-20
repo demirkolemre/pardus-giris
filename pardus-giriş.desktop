@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=pardus-giriş
+Comment=pardus arm a hoşgeldiniz
+Exec=pardus-giris
+Icon=/usr/share/plymouth/pardusarm_logo (1).jpg
+Path=/usr/bin
+Terminal=false
+StartupNotify=true

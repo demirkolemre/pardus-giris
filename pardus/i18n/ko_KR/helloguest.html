@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <div id="navigation-title" hidden>웰컴</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div id="hello-page" class="span12 animated fadeIn" hidden>
+            <img id="hello-image" src="img/welcome/ubuntu-mate-laptop.png"/>
+
+            <h2 id="hello-header">손님 세션에 입장하기.</h2>
+            <p>손님 세션은 다른 사람들이 애플리케이션들을 설정하지 않고, 파일을 변형시키지 않은 채 이 컴퓨터를 사용할 수 있도록 하도록 하기에 중요합니다.</p>
+
+            <p><b>로그 아웃하면 세션에 남은 모든 데이터는 모두 사라지게 됩니다!</b>
+            외장 장치나 네트워크 공유 또는 클라우드 서비스에 남기고자 하시는 모든 것을 전송하세요.</p>
+
+            <p>본 <img src="img/welcome/ubuntu-mate-icon.svg" width="16px" height="16px"/>
+            <b>웰컴</b> 애플리케이션은 여러분에게 운영체제를 소개해 드립니다, 하지만 몇 가지 관리자 권한이 필요한 기능들은 사용이 불가합니다.</p>
+
+            <p>우분투 마테를 이용해 주셔서 감사합니다.</p>
+
+            <a class="btn btn-success" onclick="smoothPageFade('index.html')">발견하기</a>
+            <a class="btn btn-inverse" href="cmd://quit">버리기</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>

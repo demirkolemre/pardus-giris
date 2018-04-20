@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Paaukoti</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+      <div class="row-fluid">
+        <div class="span12">
+          <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+            <li class="active"><a onclick="smoothFade('#supporters','#about')" data-toggle="tab" id="tabAbout">Apie paaukojimus</a></li>
+            <li><a onclick="smoothFade('#about','#supporters')" data-toggle="tab" id="tabSupporters">Mūsų remėjai</a></li>
+          </ul>
+          <div class="alert alert-warning offline">
+            <h5>Atrodo, kad jūs nesate prisijungę prie interneto. Prašome, norint gauti prieigą prie šio turinio, patikrinti savo ryšį.</h5>
+            <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Atleiskite, programai Sveiki nepavyko užmegzti ryšio.</p></div>
+            <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Bandyti dar kartą</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="about">
+          <div class="row-fluid">
+            <div class="span12">
+              <p>Ubuntu MATE yra remiama mūsų bendruomenės. Jūsų paaukojimai padeda apmokėti:</p>
+              <ul>
+                <li>Saityno prieglobą ir siuntimo spartos išlaidas.</li>
+                <li>Atviro kodo projektų, nuo kurių yra priklausoma Ubuntu MATE, palaikymą.</li>
+                <li>Galiausiai, mokėti atlyginimus Ubuntu MATE ir MATE darbalaukio pilno etato kūrėjams.</li>
+              </ul>
+              <p><b>Patreon</b> yra unikalus būdas kaip galima paremti atviro kodo projektą. Nuolatinės mėnesinės pajamos Ubuntu MATE projektui užtikrina tvarumą. Globėjai bus apdovanoti išskirtinėmis projekto naujienomis, informacija ir bus pakviesti dalyvauti vaizdo konferencijose, kuriose galės tiesiogiai bendrauti su kūrėjais.</p>
+              <p>Jeigu jūs teikiate pirmenybę naudoti <b>PayPal</b> , tuomet yra pasirinkimai aukoti kas mėnesį arba atlikti vienkartinį paaukojimą. Galiausiai, mes taip pat priimame paaukojimus per <b>Bitcoin</b>.</p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?http://www.patreon.com/ubuntu_mate"><span class="fa fa-3x fa-usd fa-va"></span>&nbsp; Tapti globėju</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-paypal fa-va"></span>&nbsp; Paaukoti per PayPal</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-bitcoin fa-va"></span>&nbsp; Paaukoti per Bitcoin</a>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12">
+              <hr class="soften" />
+              <p><b>Komercinis rėmimas</b> irgi yra prieinamas. Spustelėkite
+              <a href="cmd://link?http://www.patreon.com/ubuntu_mate">Tapti globėju</a> mygtuką viršuje, kad sužinotumėte daugiau.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="supporters" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <h4>Dėkojame!</h4>
+              <p>Kiekvieną mėnesį, mes sudarome mūsų paaukojimų sąrašą ir detalizuojame kaip jie yra išleidžiami.</p>
+              <p>Ši informacija yra kas mėnesį skelbiama <a href="cmd://link?http://ubuntu-mate.org/blog/">Ubuntu MATE tinklaraštyje</a>,
+              į ją galite žvilgtelėti žemiau.</p>
+
+              <!-- Idea = Server side word graph that compiles names of all donators together - Higher donations = Larger names. -->
+
+              <table class="table table-bordered" id="donationTable">
+                <tr>
+                  <th style="text-align:center">Metai</th>
+                  <th style="text-align:center" colspan="12">Mėnuo</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

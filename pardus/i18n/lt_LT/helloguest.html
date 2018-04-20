@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <div id="navigation-title" hidden>Sveiki</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div id="hello-page" class="span12 animated fadeIn" hidden>
+            <img id="hello-image" src="img/welcome/ubuntu-mate-laptop.png"/>
+
+            <h2 id="hello-header">Įžengimas į svečio seansą.</h2>
+            <p>Svečio seansai yra puikus būdas leisti kitiems žmonėms naudotis šiuo kompiuteriu, neliečiant jūsų programų, nustatymų ar failų.</p>
+
+            <p><b>Bet kokie šiame seanse palikti duomenys, po jūsų atsijungimo bus prarasti!</b>
+            Prašome viską, ką norėtumėte išsaugoti, perkelti į išorinį diską, bendrinamą vietą tinkle arba debesijos paslaugą.</p>
+
+            <p>Programa <img src="img/welcome/ubuntu-mate-icon.svg" width="16px" height="16px"/>
+            <b>Sveiki</b> pristatys jums operacinę sistemą, tačiau kai kurios didesnių teisių reikalaujančios ypatybės bus išjungtos.</p>
+
+            <p>Ačiū, kad naudojatės Ubuntu MATE.</p>
+
+            <a class="btn btn-success" onclick="smoothPageFade('index.html')">Atrasti</a>
+            <a class="btn btn-inverse" href="cmd://quit">Atmesti</a>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>

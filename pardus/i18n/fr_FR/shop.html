@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Boutique en Ligne</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+      <h3>Acheter sur la Boutique en Ligne</h3>
+      <div class="row-fluid">
+        <div class="span12">
+          <table width="100%">
+            <tr style="text-align: center">
+              <td height="100px"><img src="img/shop/laptop.png"></td>
+              <td height="100px"><img src="img/shop/badge.png"></td>
+              <td height="100px"><img src="img/shop/flash-drive.png"></td>
+              <td height="100px"><img src="img/shop/mug.png"></td>
+              <td height="100px"><img src="img/shop/shirt.png"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <br>
+      <div class="row-fluid">
+        <div class="span12">
+          <p>Sur la Boutique en Ligne Ubuntu MATE vous trouverez tout, de l'ordinateur venant pré-installé avec Ubuntu MATE aux vêtements portant la marque Ubuntu MATE. Chaque objet vendu rapporte une petite commission au projet Ubuntu MATE.</p>
+          <div class="alert alert-warning offline">
+            <h5>Il semble que vous n'êtes pas connecté(e) à Internet. Veuillez vérifier votre connexion afin d'accéder à ce contenu.</h5>
+            <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Désolé, Bienvenue n'a pas été en mesure d'établir une connexion.</p></div>
+            <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Ré-Essayer</a>
+          </div>
+          <div align="center">
+            <a class="btn btn-lg btn-success" href="cmd://link?https://ubuntu-mate.boutique"><span class="fa fa-2x fa-shopping-cart fa-va"></span>&nbsp; ubuntu-mate.boutique</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

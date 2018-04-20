@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Información sobre Raspberry Pi</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <!--Body content-->
+            <h2>Unas pocas notas importantes.</h2>
+            <p>Mientras que la experiencia es visualmente similar a la edición de escritorio de Ubuntu MATE, la arquitectura subyacente es muy diferente. Esta página destacará unas pocas de esas diferencias.</p>
+            <hr class="soften"/>
+
+            <h3>Redimensionando el sistema de ficheros</h3>
+            <span id="rpi-resized" hidden>
+              <p class="success-text"><span class="fa fa-check-circle"></span>
+              Tu sistema de ficheros ya ha sido redimensionado.</p>
+            </span>
+            <span id="rpi-not-resized" hidden>
+              <p>Después de configurar Ubuntu MATE por primera vez en tu Raspberry Pi, el sistema de archivos estará restringido al tamaño de la imagen original, el cual es de alrededor de 3,9 GB. Usa este botón para redimensionar y utilizar toda la tarjeta Micro-SD.</p>
+              <a href="cmd://resize-rpi" class="btn btn-inverse"><span class="fa fa-hdd-o"></span>&nbsp; Redimensionar Ahora</a>
+            </span>
+            <span id="rpi-restart-now" hidden>
+              <p><span class="fa fa-warning"></span>
+              To complete the resize of your Raspberry Pi file system, please close all open windows and restart now.</p>
+              <a href="cmd://reboot-rpi" class="btn btn-danger"><span class="fa fa-refresh"></span>&nbsp; Reboot</a>
+            </span>
+            <hr class="soften"/>
+
+            <h3>Software Incompatible</h3>
+            <p>Algunos paquetes disponibles para Ubuntu han sido únicamente escritos y compilados para la <code>i386</code> o
+            <code>amd64</code> arquitectura. Como la Raspberry Pi está basada en <code>armv7</code>, estos paquetes no estarán disponibles para instalar. Dependiendo del paquete, puede ser posible compilar o utilizar un puerto existente.</p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
+            <h5>Incompatibles:</h5>
+            <ul>
+              <li><img src="img/applications/google-chrome.png" width="24px" height="24px"> Google Chrome</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft (Java Edition)</li>
+              <li><img src="img/applications/adobeflash.png" width="24px" height="24px"> Adobe Flash</li>
+              <li><img src="img/applications/virtualbox.png" width="24px" height="24px"> VirtualBox</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <h5>Compatible:</h5>
+            <ul>
+              <li><img src="img/applications/chromium.png" width="24px" height="24px"> Chromium</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft: Pi Edition</li>
+              <li><a href="cmd://link?https://ubuntu-mate.community/t/tutorial-flash-player-for-chromium-and-firefox/3598">Pepper Flash</a></li>
+              <li>QEMU</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+            <hr class="soften"/>
+            <h3>Actualizaciones</h3>
+            <p>Por favor <b><u>no</u></b> intentes <b>actualizar</b>
+            tu Raspberry Pi a una versión más reciente de la distribución (por ejemplo, desde 15.04 a 15.10), ya que el núcleo subyacente será <b>not designed</b> el que lo haga. Este proceso </p>
+
+            <p>Es más seguro respaldar todos los datos que desea mantener y volver a grabar la tarjeta con la nueva imagen. El intento de actualización puede dañar la tarjeta SD, evitar que su instalación arranque, o provocar fallos graves.</p>
+
+            <p>Puedes, sin embargo, instalar <b>actualizaciones normales</b> a través de la
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Actualización de software</a> herramienta para tu software instalado.</p>
+
+            <hr class="soften"/>
+            <h3>Actualizaciones del Núcleo</h3>
+            <p>El mismo núcleo proporcionado por la
+            <a href="cmd://link?https://www.raspberrypi.org/documentation/linux/kernel/">fundación Raspberry Pi</a>
+            se usa en esta edición de Ubuntu MATE. Como este núcleo es distribuido como un blob "firmware", sus actualizaciones no son distruidas a través del
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Actualización de software</a> o <b>apt-get</b>.</p>
+
+            <p><b>En su lugar, para actualizar el núcleo, abre una terminal y ejecuta:</b></p>
+            <blockquote><code>sudo rpi-update</code></blockquote>
+
+            <hr class="soften"/>
+            <h3>Aceleración por Hardware</h3>
+            <p>Actualmente, las aplicaciones aceleradas por hardware no <b>están soportadas</b>
+            diferente a <a href="cmd://link?https://www.raspbian.org/">Raspbian</a>.
+            Las aplicaciones que dependen de las bibliotecas OpenGL ES o que requieren la GPU no se podrán iniciar.</p>
+
+            <p>Para reproducir vídeos, la aplicación <code>omxplayer</code> será capaz de hacerlo y viene preinstalada. Si buscas reproducir archivos de vídeo MPEG-2 o VC-1 entonces <b>necesitarás las licencias MPEG-2 y/o VC-1 de la
+            <a href="cmd://link?http://www.raspberrypi.com/license-keys/">Tienda Raspberry Pi</a></b></p>
+
+            <hr class="soften"/>
+            <h3>Habilita/Deshabilita X11</h3>
+            <p>Para usuarios que estén buscando crear sus propios "servidores" <i>sin interfaz gráfica</i> usando Ubuntu MATE, hay una herramienta para alternar con el entorno gráfico.</p>
+
+            <p><b>Para deshabilitar X11 e iniciar sesión a través de la consola:</b>
+            <blockquote><code>sudo graphical disable</code></blockquote>
+            </p>
+
+            <p><b>Para habilitar X11 y volver al escritorio de Ubuntu MATE:</b>
+            <blockquote><code>sudo graphical enable</code></blockquote>
+
+            Los cambios tienen efecto después de un reinicio.
+            </p>
+
+            <hr class="soften"/>
+            <h3>Notas de Lanzamiento</h3>
+            <p>Para informarse sobre las notas de lanzamiento y los cambios por version, visitar el sitio web de Ubuntu MATE.</p>
+            <div align="center">
+              <a class="btn btn-lg btn-success" href="cmd://link?https://ubuntu-mate.org/raspberry-pi/"><img src="img/welcome/ubuntu-mate-gray.svg">&nbsp; ubuntu-mate.org/raspberry-pi</a>
+            </div>
+
+            <div class="center">
+              <br>
+              <small>Raspberry Pi es una marca registrada de la <a href="cmd://link?https://www.raspberrypi.org/">Raspberry Pi Foundation</a>.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+  <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+  <link href="css/animate.css" rel="stylesheet" media="screen">
+  <link href="css/welcome.css" rel="stylesheet" media="screen">
+</head>
+<body class="backdrop-simple">
+  <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Adományozás</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+    <div id="content" class="container-fluid entire-page-fade" hidden>
+      <div class="row-fluid">
+        <div class="span12">
+          <ul id="tabs" class="nav nav-pills" data-tabs="tabs">
+            <li class="active"><a onclick="smoothFade('#supporters','#about')" data-toggle="tab" id="tabAbout">Az adományokról</a></li>
+            <li><a onclick="smoothFade('#about','#supporters')" data-toggle="tab" id="tabSupporters">Támogatóink</a></li>
+          </ul>
+          <div class="alert alert-warning offline">
+            <h5>Úgy tűnik, nem csatlakozol az internetre. Kérlek ellenőrizd az internetkapcsolatod, hogy elérd ezt a tartalmat.</h5>
+            <div id="reconnectFailed" hidden><p><span class="fa fa-warning"></span> Elnézést, az Üdvözlőképernyő nem képes létrehozni a kapcsolatot.</p></div>
+            <a href="cmd://checkInternetConnection" onclick="reconnectTimeout();" class="btn btn-warning"> <span class="fa fa-refresh"></span> Megismétel</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="about">
+          <div class="row-fluid">
+            <div class="span12">
+              <p>Az Ubuntu MATE-t a közösségünk támogatja. Az adományod az alábbiakhoz járul hozzá:</p>
+              <ul>
+                <li>Web tárhely és internet költségek.</li>
+                <li>Olyan nyílt forrású projektek támogatása, amikre az Ubuntu MATE épül.</li>
+                <li>Végeredményben az Ubuntu MATE és a MATE asztali környezet teljes munkaidőben dolgozó fejlesztőinek fizetése.</li>
+              </ul>
+              <p><b>A Patreon</b> egy egyedi módja egy nyílt forrású projekt támogatásának. A rendszeres havi jövedelem biztosítja az Ubuntu MATE projekt fenntarthatóságát. A támogatók cserébe kizárólag számukra elérhető híreket, frissítéseket kapnak, és részvételi lehetőségeket videóbeszélgetésre a fejlesztőkkel.</p>
+              <p>Ha ezt szeretnéd használni <b>PayPal</b> akkor lehetőségünk van havi adományozásra vagy egyszeri adományozásra. Végül elfogadunk még adományokat az alábbi módokon is: <b>Bitcoin</b>.</p>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?http://www.patreon.com/ubuntu_mate"><span class="fa fa-3x fa-usd fa-va"></span>&nbsp; Légy támogató</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-paypal fa-va"></span>&nbsp; Adományozz PayPal-lel</a>
+            </div>
+            <div class="span4 center">
+              <a class="btn btn-warning btn-lg" href="cmd://link?https://ubuntu-mate.org/donate/"><span class="fa fa-3x fa-bitcoin fa-va"></span>&nbsp; Adományozz Bitcoin-nal</a>
+            </div>
+          </div>
+          <div class="row-fluid">
+            <div class="span12">
+              <hr class="soften" />
+              <p><b>Kereskedelmi támogatás</b> szintén elérhető. Kattints a
+              <a href="cmd://link?http://www.patreon.com/ubuntu_mate">Légy támogató</a> gombra fent több információért.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="supporters" hidden>
+          <div class="row-fluid">
+            <div class="span12">
+              <h4>Köszönjük!</h4>
+              <p>Minden hónapban összeállítunk egy listát az adományokról és részleteket arról, hogy mire fordítottuk.</p>
+              <p>Ezt az információt havonta közzétesszük az <a href="cmd://link?http://ubuntu-mate.org/blog/">Ubuntu MATE Blogon</a>,
+              amit alább megtekinthetsz.</p>
+
+              <!-- Idea = Server side word graph that compiles names of all donators together - Higher donations = Larger names. -->
+
+              <table class="table table-bordered" id="donationTable">
+                <tr>
+                  <th style="text-align:center">Év</th>
+                  <th style="text-align:center" colspan="12">Hónap</th>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer" class="bottom">
+      <div class="footer-content">
+        <div id="footer-left">
+          <span id="footer-global-left"></span>
+        </div>
+        <div id="footer-right" class="form">
+          <span id="footer-global-right"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/bootstrap-2.3.2.js"></script>
+  <script src="js/janimate.js"></script>
+  <script src="js/welcome.js"></script>
+</body>
+</html>

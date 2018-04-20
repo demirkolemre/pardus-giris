@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap-2.3.2.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="css/animate.css" rel="stylesheet" media="screen">
+    <link href="css/welcome.css" rel="stylesheet" media="screen">
+  </head>
+  <body class="backdrop-simple">
+    <div id="wrapper">
+    <div class="container-fluid">
+      <div id="navigation">
+        <a id="menu-button" class="navigation-button" onclick="smoothPageFade('index.html')">
+          <span class="fa fa-chevron-left"></span>
+        </a>
+        <div id="navigation-title" hidden>Raspberry Pi információ</div>
+        <div id="navigation-right"></div>
+        <img id="navigation-divider" src="img/welcome/header-shadow.png" width="100%" height="11px">
+      </div>
+    </div>
+      <div id="content" class="container-fluid entire-page-fade" hidden>
+        <div class="row-fluid">
+          <div class="span12">
+            <!--Body content-->
+            <h2>Néhány fontos megjegyzés.</h2>
+            <p>Bár látvány szempontjából hasonló az élmény, mint az Ubuntu MATE asztali kiadásában, a rendszer alapjául szolgáló felépítmény nagyon más. Ez az oldal kiemel néhány különbséget.</p>
+            <hr class="soften"/>
+
+            <h3>A fájlrendszer átméretezése</h3>
+            <span id="rpi-resized" hidden>
+              <p class="success-text"><span class="fa fa-check-circle"></span>
+              A fájlrendszered már át lett méretezve.</p>
+            </span>
+            <span id="rpi-not-resized" hidden>
+              <p>Az Ubuntu MATE első beállítása után a Raspberry Pi-n, a fájlrendszer az eredeti kép méretére van korlátozva, ami úgy 3.9 GB. Használd ezt a gombot az átméretezéshez, az egész Micro-SD kártya felhasználásához.</p>
+              <a href="cmd://resize-rpi" class="btn btn-inverse"><span class="fa fa-hdd-o"></span>&nbsp; Átméretezés most</a>
+            </span>
+            <span id="rpi-restart-now" hidden>
+              <p><span class="fa fa-warning"></span>
+              A Raspberry Pi fájlrendszered átméretezésének befejezéséhez kérjük zárj be minden ablakot és indítsd újra a rendszert.</p>
+              <a href="cmd://reboot-rpi" class="btn btn-danger"><span class="fa fa-refresh"></span>&nbsp; Újraindítás</a>
+            </span>
+            <hr class="soften"/>
+
+            <h3>Nem kompatibilis szoftver</h3>
+            <p>Néhány az Ubuntuhoz elérhető csomag csak ehhez lett megírva és összeállítva: <code>i386</code> vagy
+            <code>amd64</code> architektúra. Mivel a Raspberry Pi alapja <code>armv7</code>, ezek a csomagok nem érhetők el telepítésre. A csomagtól függően lehetséges, hogy össze tudod állítani magadnak, vagy egy létező portot használhatsz.</p>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span6">
+            <h5>Nem kompatibilis:</h5>
+            <ul>
+              <li><img src="img/applications/google-chrome.png" width="24px" height="24px"> Google Chrome</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft (Java Edition)</li>
+              <li><img src="img/applications/adobeflash.png" width="24px" height="24px"> Adobe Flash</li>
+              <li><img src="img/applications/virtualbox.png" width="24px" height="24px"> VirtualBox</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <h5>Kompatibilis:</h5>
+            <ul>
+              <li><img src="img/applications/chromium.png" width="24px" height="24px"> Chromium</li>
+              <li><img src="img/applications/minecraft.png" width="24px" height="24px"> Minecraft: Pi Edition</li>
+              <li><a href="cmd://link?https://ubuntu-mate.community/t/tutorial-flash-player-for-chromium-and-firefox/3598">Pepper Flash</a></li>
+              <li>QEMU</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span12">
+            <hr class="soften"/>
+            <h3>Frissítések</h3>
+            <p>Kérlek <b><u>ne</u></b> próbálkozz <b>frissíteni</b>
+            a Raspberry Pi-t a disztribúció egy újabb verziójára (pl. 15.04-ről 15.10-re), mivel az alapjául szolgáló kernelt <b>nem arra tervezték</b> hogy ilyesmit végrehajtson. Ez a folyamat nagyon hosszú időt fog igénybe venni, mialatt valószínűleg megtölti az SD kártyádat addig, hogy nem marad szabad hely rajta.</p>
+
+            <p>Biztosabb , ha a kívánt adataidat elmented és újraírod  a kártyát egy új képfájllal. Kísérlet a  hibás SD kártya javítására megakadályozhatja a telepítő indítását és egyéb más hibákat is okozhat.</p>
+
+            <p>Azonban telepíthetsz <b>rendszeres frissítéseket</b> a
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Szoftverfrissítő</a> segédprogrammal a telepített szoftvereidhez.</p>
+
+            <hr class="soften"/>
+            <h3>Kernel frissítések </h3>
+            <p>Ugyanazt a kernelt, amit biztosít a
+            <a href="cmd://link?https://www.raspberrypi.org/documentation/linux/kernel/">Raspberry Pi alapítvány</a>
+            használja az Ubuntu MATE ezen kiadása. Mivel ez a kernel egyfajta "firmware buborékként" van kiadva, a frissítéseket nem terjeszti a
+            <a href="cmd://update"><img src="img/applications/system-software-update.png" width="20px" height="20px"/>
+            Szoftverfrissítő</a> vagy <b>apt-get</b>.</p>
+
+            <p><b>Ehelyett a kernel frissítéséhez nyisd meg a parancssort és futtasd ezt:</b></p>
+            <blockquote><code>sudo rpi-update</code></blockquote>
+
+            <hr class="soften"/>
+            <h3>Hardveres gyorsítás</h3>
+            <p>Pillanatnyilag a hardveres gyorsítással rendelkező programok <b>nem támogatottak</b>
+            nem úgy mint a <a href="cmd://link?https://www.raspbian.org/">Raspbian</a>.
+            Az OpenGL ES könyvtáraktól függő, vagy GPU-t igénylő alkalmazások nem tudnak elindulni.</p>
+
+            <p>Videó lejátszáshoz használatos program <code>omxplayer</code> képes lesz erre és előre van telepítve. Ha MPEG-2 vagy VC-1 videó fájlokat szeretnél lejátszani, akkor <b>szükséged lesz egy MPEG-2-es és/vagy VC-1-es engedélyre a
+            <a href="cmd://link?http://www.raspberrypi.com/license-keys/">Raspberry Pi Áruházból.</a></b></p>
+
+            <hr class="soften"/>
+            <h3>X11 engedélyezése/letiltása</h3>
+            <p>Azoknak a felhasználóknak akik szeretnék létrehozni a saját fejetlen <i>"szerverüket"</i> az Ubuntu MATE használatával, van egy segédprogram a grafikus környezet váltásához.</p>
+
+            <p><b>Az X11 kikapcsolása és belépés konzol segítségével:</b>
+            <blockquote><code>sudo graphical disable</code></blockquote>
+            </p>
+
+            <p><b>X11 engedélyezéséhez és az Ubuntu MATE asztal visszaállításához:</b>
+            <blockquote><code>sudo graphical enable</code></blockquote>
+
+            A változások újraindítás után lépnek érvénybe.
+            </p>
+
+            <hr class="soften"/>
+            <h3>Kiadási megjegyzések</h3>
+            <p>A kiadási naplókért és a verziónkénti változásokért keresd fel az Ubuntu MATE weboldalát.</p>
+            <div align="center">
+              <a class="btn btn-lg btn-success" href="cmd://link?https://ubuntu-mate.org/raspberry-pi/"><img src="img/welcome/ubuntu-mate-gray.svg">&nbsp; ubuntu-mate.org/raspberry-pi</a>
+            </div>
+
+            <div class="center">
+              <br>
+              <small>A Raspberry Pi védjegy tulajdonosa a(z) <a href="cmd://link?https://www.raspberrypi.org/">Raspberry Pi Foundation</a>.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footer" class="bottom">
+        <div class="footer-content">
+          <div id="footer-left">
+            <span id="footer-global-left"></span>
+          </div>
+          <div id="footer-right" class="form">
+            <span id="footer-global-right"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="js/bootstrap-2.3.2.js"></script>
+    <script src="js/janimate.js"></script>
+    <script src="js/welcome.js"></script>
+  </body>
+</html>
