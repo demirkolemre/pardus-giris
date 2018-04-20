@@ -1,3 +1,7 @@
+
+
+
+-----------------------------------------------------
 Setup
 
 pardus-giriş.desktop ===> /usr/share/applications
